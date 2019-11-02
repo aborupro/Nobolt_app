@@ -1,24 +1,31 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Nobologのアプリケーション
 
-Things you may want to cover:
+これはボルダリングでクリアした課題を記録していき、さらなる高みを目指していくアプリケーションです。
 
-* Ruby version
+## 使い方
 
-* System dependencies
+このアプリケーションを動かす場合は、まずはリポジトリを手元にクローンしてください。
+その後、次のコマンドで必要になる RubyGems をインストールします。
 
-* Configuration
+```
+$ bundle install --without production
+```
 
-* Database creation
+その後、データベースへのマイグレーションを実行します。
 
-* Database initialization
+```
+$ rails db:migrate
+```
 
-* How to run the test suite
+最後に、テストを実行してうまく動いているかどうか確認してください。
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ rails test
+```
 
-* Deployment instructions
+テストが無事に通ったら、Railsサーバーを立ち上げる準備が整っているはずです。
 
-* ...
+```
+$ rails server
+```
