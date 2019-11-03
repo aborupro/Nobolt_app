@@ -5,4 +5,4 @@ require_relative 'application'
 Rails.application.initialize!
 
 # compile ON
-config.assets.compile = true
+# config.assets.compile = true
