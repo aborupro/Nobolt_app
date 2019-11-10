@@ -2,17 +2,27 @@ require 'rails_helper'
 
 RSpec.describe StaticPagesController, type: :controller do
 
-  describe "GET #home" do
-    it "returns http success" do
+  describe "#home" do
+    it "responds successfully" do
       get :home
-      expect(response).to have_http_status(:success)
+      expect(response).to be_success
+    end
+
+    it "returns a 200 response" do
+      get :home
+      expect(response).to have_http_status "200"
     end
   end
 
-  describe "GET #help" do
-    it "returns http success" do
+  describe "#help" do
+    it "responds successfully" do
       get :help
-      expect(response).to have_http_status(:success)
+      expect(response).to be_success
+    end
+
+    it "returns a 200 response" do
+      get :help
+      expect(response).to have_http_status "200"
     end
   end
 
