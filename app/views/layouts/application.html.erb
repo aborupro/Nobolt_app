@@ -15,12 +15,12 @@
   <body>
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
-        <%= link_to "Nobolog app", '#', id: "logo" %>
+        <%= link_to "Nobolog", '#', id: "logo", class: "header-logo" %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home",   '#' %></li>
-            <li><%= link_to "Help",   '#' %></li>
-            <li><%= link_to "Log in", '#' %></li>
+            <li><%= link_to "お試し",   '#' %></li>
+            <li><%= link_to "ログイン",   '#' %></li>
+            <li><%= link_to "新規登録", '#' %></li>
           </ul>
         </nav>
       </div>
@@ -28,5 +28,16 @@
     <div class="container">
       <%= yield %>
     </div>
+    <footer>
+      <div class="container">
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "お問い合わせ",   '#' %></li>
+            <li><%= link_to "使い方", '#' %></li>
+          </ul>
+        </nav>
+        <p>&copy; 2019<script>new Date().getFullYear()>2019&&document.write("-"+new Date().getFullYear());</script> Nobolog.</p>
+      </div>
+    </footer>
   </body>
 </html>
