@@ -1,8 +1,7 @@
-<% provide(:title, "Home") %>
 <!DOCTYPE html>
 <html>
   <head>
-  <title><%= yield(:title) %> | Nobolog App</title>
+  <title><%= full_title(yield(:title)) %></title>
   </head>
   <body>
     <h1>Nobolog App</h1>
