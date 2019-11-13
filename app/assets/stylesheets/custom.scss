@@ -1,8 +1,14 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
 /* universal */
+@import "bootstrap";
 
 body {
   padding-top: 80px;
 }
+
+.head-point {
+  color: #8c1309;
+}
+
+// .center {
+//   text-align: center;
+// }
