@@ -14,4 +14,9 @@ RSpec.feature "Statics", type: :feature do
     expect(page).to have_title "使い方 | #{base_title}"
   end
 
+  scenario "returns correct contact title" do
+    visit contact_path
+    expect(page).to have_title "お問い合わせ | #{base_title}"
+  end
+
 end
