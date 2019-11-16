@@ -14,30 +14,41 @@
     <![endif]-->
   </head>
   <body>
-    <header class="navbar navbar-dark bd-navbar">
-      <div class="container">
-        <%= link_to "Nobolog", '#', id: "logo", class: "header-logo" %>
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "お試し",   '#' %></li>
-            <li><%= link_to "ログイン",   '#' %></li>
-            <li><%= link_to "新規登録", '#' %></li>
-          </ul>
-        </nav>
-      </div>
+    <header class="container-fluid">
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container">
+        <%= link_to "Nobolog", '#', id: "logo", class: "navbar-brand header-logo" %>
+        <div class="navbar-collapse collapse" id="navbarColor02" style="">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">お試し</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">ログイン</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">新規登録</a>
+          </li>
+        </ul>
+        </div>
+      </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
       <%= yield %>
     </div>
-    <footer>
+    <footer class="fixed-bottom">
       <div class="container">
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "お問い合わせ",   '#' %></li>
-            <li><%= link_to "使い方", '#' %></li>
-          </ul>
-        </nav>
-        <p>&copy; 2019<script>new Date().getFullYear()>2019&&document.write("-"+new Date().getFullYear());</script> Nobolog.</p>
+        <div class="d-flex bd-highlight mb-3">
+          <div class="mr-auto p-2 bd-highlight">
+            <p class="nav-link d-flex justify-content-start">&copy; 2019<script>new Date().getFullYear()>2019&&document.write("-"+new Date().getFullYear());</script> Nobolog.</p>
+          </div>
+          <div class="p-2 bd-highlight">
+            <%= link_to "使い方", '#', class: "nav-link d-flex justify-content-end" %>
+          </div>
+          <div class="p-2 bd-highlight">
+            <%= link_to "お問い合わせ", '#', class: "nav-link d-flex justify-content-end"%>
+          </div>
+        </div>
       </div>
     </footer>
   </body>

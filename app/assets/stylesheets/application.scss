@@ -1,2 +1,6 @@
- // Custom bootstrap variables must be set or imported *before* bootstrap.
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+//bootswatch
+@import "flatly/variables";
 @import "bootstrap";
+@import "flatly/bootswatch";
+@import "*";

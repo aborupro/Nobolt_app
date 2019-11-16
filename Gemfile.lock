@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/thomaspark/bootswatch.git
+  revision: 8cb385c1a83a5850c3f3fe79d3042be687412b41
+  specs:
+    bootswatch (4.3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -72,11 +78,10 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.12.2)
+    coffee-script-source (1.8.0)
     concurrent-ruby (1.1.5)
     crass (1.0.5)
     diff-lcs (1.3)
-    duktape (2.3.0.0)
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.11.2)
@@ -260,10 +265,11 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
+  bootswatch!
   byebug
   capybara (>= 2.15)
   coffee-rails (~> 4.2)
-  duktape
+  coffee-script-source (= 1.8.0)
   guard
   guard-rspec
   jbuilder (~> 2.5)
