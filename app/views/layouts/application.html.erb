@@ -7,32 +7,10 @@
                                'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application',
                                'data-turbolinks-track': 'reload' %>
-
-    <!--[if lt IE 9]>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
-      </script>
-    <![endif]-->
+    <%= render 'layouts/shim' %>
   </head>
   <body>
-    <header class="container-fluid">
-      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container">
-        <%= link_to "Nobolog", '#', id: "logo", class: "navbar-brand header-logo" %>
-        <div class="navbar-collapse collapse" id="navbarColor02" style="">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">お試し</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">ログイン</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">新規登録</a>
-          </li>
-        </ul>
-        </div>
-      </nav>
-    </header>
+    <%= render 'layouts/header' %>
     <div class="container-fluid">
       <%= yield %>
     </div>

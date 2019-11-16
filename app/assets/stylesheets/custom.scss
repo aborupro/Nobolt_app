@@ -1,11 +1,14 @@
-
 .container-fluid {
   padding: 0;
 }
 
 //application.html.rb
+.navbar {
+  padding: 0;
+}
+
 #logo {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 footer {
@@ -15,6 +18,8 @@ footer {
       color: rgb(24, 188, 156);;
     }
   }
+  border-top: 1px solid #eaeaea;
+  margin-top: 45px;
 }
 
 //home.html.erb
