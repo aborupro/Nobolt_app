@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe StaticPagesController, type: :controller do
 
+  let(:base_title) { "Nobolog" }
+
   describe "#home" do
     it "responds successfully" do
       get :home
@@ -12,6 +14,8 @@ RSpec.describe StaticPagesController, type: :controller do
       get :home
       expect(response).to have_http_status "200"
     end
+
+    
   end
 
   describe "#help" do
