@@ -64,5 +64,6 @@ RSpec.configure do |config|
   # Use Devise helpers in tests
   config.include Devise::Test::ControllerHelpers, type: :controller
   # config.include RequestSpecHelper, type: :request
+  # ref https://qiita.com/yyh-gl/items/30bd91c2b33fdfbe49b5
   config.include Devise::Test::IntegrationHelpers, type: :system
 end
