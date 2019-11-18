@@ -74,4 +74,10 @@ RSpec.describe User, type: :model do
     expect(duplicate_user).to be_invalid
   end
 
+  it "is saved as lower-case email addresses" do
+    @user.email = "Foo@ExAMPle.CoM"
+    @user.save
+    expect(@user.reload.email).to eq 'foo@example.com'
+  end
+
 end
