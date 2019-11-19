@@ -99,17 +99,16 @@ RSpec.describe User, type: :model do
     expect(@user).to be_invalid
   end
 
-  context "mimimum passward length is 6" do
-    it "is mimimum length passward" do
+  context "mimimum password length is 6" do
+    it "is mimimum length password" do
       @user.password = @user.password_confirmation = "a" * 6
       expect(@user).to be_valid
     end
 
-    it "is less than mimimum passward length" do
+    it "is less than mimimum password length" do
       @user.password = @user.password_confirmation = "a" * 5
       expect(@user).to be_invalid
     end
-
   end
 
 end

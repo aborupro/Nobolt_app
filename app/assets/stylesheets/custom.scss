@@ -2,6 +2,16 @@
   padding: 0;
 }
 
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
 //application.html.rb
 .navbar {
   padding: 0;
@@ -10,6 +20,8 @@
 #logo {
   font-size: 28px;
 }
+
+//_footer.html.html.erb
 
 footer {
   a {
@@ -20,6 +32,7 @@ footer {
   }
   border-top: 1px solid #eaeaea;
   margin-top: 45px;
+  width: 100%;
 }
 
 //home.html.erb
@@ -37,4 +50,14 @@ footer {
   align-items: center;
 
   color: white;
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  background-color: $gray-medium-light;
+  padding: 20px;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
 }
