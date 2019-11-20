@@ -118,3 +118,20 @@ input {
   }
   margin: 0 auto;
 }
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  input {
+    @extend .is-invalid;
+  }
+  .form-control {
+    color: red;
+  }
+}
