@@ -63,11 +63,6 @@ footer {
 }
 
 /* sidebar */
-
-.row {
-  margin: 0px 20px;
-}
-
 aside {
   section.user_info {
     margin-top: 20px;
@@ -102,4 +97,24 @@ aside {
   border: 2px solid #eee;
   border-radius: 50%;
   margin: 0;
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+.center {
+  h1 {
+    text-align: center;;
+  }
+  margin: 0 auto;
 }
