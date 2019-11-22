@@ -2,6 +2,16 @@
   padding: 0;
 }
 
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
 //application.html.rb
 .navbar {
   padding: 0;
@@ -10,6 +20,12 @@
 #logo {
   font-size: 28px;
 }
+
+.flash_message {
+  margin: 20px 10% 0 10%;
+}
+
+//_footer.html.html.erb
 
 footer {
   a {
@@ -20,6 +36,7 @@ footer {
   }
   border-top: 1px solid #eaeaea;
   margin-top: 45px;
+  width: 100%;
 }
 
 //home.html.erb
@@ -37,4 +54,88 @@ footer {
   align-items: center;
 
   color: white;
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  background-color: $gray-medium-light;
+  padding: 20px;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+/* sidebar */
+aside {
+  section.user_info {
+    margin-top: 20px;
+  }
+  section {
+    padding: 10px 0;
+    margin-top: 20px;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: center;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}
+
+/*プロフィール画像表示*/
+
+.user_info img {
+  width: 100px;
+  height: 100px;
+  border: 2px solid #eee;
+  border-radius: 50%;
+  margin: 0;
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+.center {
+  h1 {
+    text-align: center;;
+  }
+  margin: 0 auto;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  input {
+    @extend .is-invalid;
+  }
+  .form-control {
+    color: red;
+  }
 }

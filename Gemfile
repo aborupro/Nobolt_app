@@ -34,6 +34,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem "bootswatch", github: "thomaspark/bootswatch"
+gem 'rails-i18n'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
