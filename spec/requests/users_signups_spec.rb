@@ -15,5 +15,19 @@ RSpec.describe "UsersSignups", type: :request do
         }
       }.to_not change(User, :count)
     end
+
+    it "is valid signup information" do
+      get signup_path
+      expect {
+        post signup_path, params: {
+          user: {
+            name: "Example User",
+            email: "user@example.com",
+            password: "password",
+            password_confirmation: "password"
+          }
+        }
+      }.to change(User, :count).by(1)
+    end
   end
 end
