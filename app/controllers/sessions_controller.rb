@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # ユーザーログイン後にユーザー情報のページにリダイレクトする
     else
-      flash[:danger] = 'メールアドレスまたはパスワードが間違っています' # 本当は正しくない
+      flash.now[:danger] = 'メールアドレスまたはパスワードが間違っています' # 本当は正しくない
       render 'new'
     end
   end
