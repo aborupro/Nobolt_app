@@ -10,7 +10,7 @@ RSpec.describe "Logins", type: :system do
 
   describe "Login" do
     context "invalid" do
-      it "has invalid information and danger message" do
+      it "has invalid information and danger message then deletes flash message" do
         visit login_path
         expect(current_path).to eq login_path
         login_with_invalid_information
