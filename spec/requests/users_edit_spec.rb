@@ -15,12 +15,34 @@ RSpec.describe "UsersEdits", type: :request do
     }
   end
 
+  def patch_valid_information
+    patch user_path(user), params: { 
+      user: { 
+        name:  "Foo Bar",
+        email: "foo@bar.com",
+        password: "",
+        password_confirmation: "" 
+      }
+    }
+  end
+
   describe "GET /users/:id/edit" do
     it "is unsuccessful edit" do
       get edit_user_path(user)
       expect(request.fullpath).to eq "/users/1/edit"
       patch_invalid_information
       expect(request.fullpath).to eq "/users/1"
+    end
+
+    it "is successful edit" do
+      get edit_user_path(user)
+      expect(request.fullpath).to eq "/users/1/edit"
+      patch_valid_information
+      expect(flash[:success]).to be_truthy
+      expect(request.fullpath).to eq "/users/1"
+      user.reload
+      expect(user.name).to eq "Foo Bar"
+      expect(user.email).to eq "foo@bar.com"
     end
   end
 end
