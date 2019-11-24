@@ -35,7 +35,7 @@ RSpec.describe "Logins", type: :system do
         expect(page).to have_current_path user_path(1)
         expect(page).to_not have_link 'ログイン', href: login_path
         expect(page).to have_link 'ログアウト', href: logout_path
-        expect(page).to have_link 'ユーザホーム', href: user_path(1)
+        expect(page).to have_link user.name, href: user_path(1)
         click_link "アカウント"
         click_link "ログアウト"
         expect(page).to have_current_path root_path
