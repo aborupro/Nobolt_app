@@ -37,7 +37,7 @@ RSpec.describe "UsersLogins", type: :request do
     end
 
     context "valid form information" do
-      it "post valid information and has no danger message" do
+      it "post valid information and has no danger message folloed by twice logout" do
         get login_path
         post_valid_information
         expect(flash[:danger]).to be_falsey
@@ -47,6 +47,10 @@ RSpec.describe "UsersLogins", type: :request do
         delete logout_path
         expect(is_logged_in?).to be_falsey
         follow_redirect!
+        expect(request.fullpath).to eq '/'
+        delete logout_path
+        follow_redirect!
+        expect(request.fullpath).to eq '/'
       end
     end
   end
