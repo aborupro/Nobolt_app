@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "UsersLogins", type: :request do
+  #is_logged_in?メソッドを使えるようにするために、呼び出す
   include SessionsHelper
+  
   let(:user) { FactoryBot.create(:user) }
 
   def post_invalid_information

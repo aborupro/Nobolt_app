@@ -11,7 +11,7 @@
       <%= f.label :password, User.human_attribute_name(:password) %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.submit "ログイン", class: "btn btn-primary f-submit" %>
+      <%= f.submit "ログイン", class: "btn btn-primary", id: "f-login-submit" %>
     <% end %>
 
     <p><%= link_to "新規登録はこちら", signup_path %></p>
