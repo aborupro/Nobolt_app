@@ -139,3 +139,19 @@ input {
     color: red;
   }
 }
+
+.checkbox {
+  margin-bottom: 10px;
+  span {
+    margin-left: 5px;
+    font-weight: normal;
+  }
+}
+
+#remember-me-text {
+  font-size: 0.85rem;
+}
+
+#session_remember_me {
+  width: auto;
+}
