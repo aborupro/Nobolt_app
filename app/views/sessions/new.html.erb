@@ -11,6 +11,11 @@
       <%= f.label :password, User.human_attribute_name(:password) %>
       <%= f.password_field :password, class: 'form-control' %>
 
+      <%= f.label :remember_me, class: "checkbox inline" do %>
+        <%= f.check_box :remember_me %>
+        <span id="remember-me-text">ログイン状態を保持する</span>
+      <% end %>
+
       <%= f.submit "ログイン", class: "btn btn-primary", id: "f-login-submit" %>
     <% end %>
 
