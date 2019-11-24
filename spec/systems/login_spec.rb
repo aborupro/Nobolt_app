@@ -28,14 +28,20 @@ RSpec.describe "Logins", type: :system do
       end
     end
 
-    context "valid" do
-      it "has valid information and" do
+    context "valid information" do
+      it "login with valid information followed by logout" do
         visit login_path
         login_with_valid_information
         expect(page).to have_current_path user_path(1)
         expect(page).to_not have_link 'ログイン', href: login_path
         expect(page).to have_link 'ログアウト', href: logout_path
         expect(page).to have_link 'ユーザホーム', href: user_path(1)
+        click_link "アカウント"
+        click_link "ログアウト"
+        expect(page).to have_current_path root_path
+        expect(page).to have_link 'ログイン', href: login_path
+        expect(page).to_not have_link 'ログアウト', href: logout_path
+        expect(page).to_not have_link 'ユーザホーム', href: user_path(1)
       end
     end
   end

@@ -20,7 +20,7 @@ RSpec.describe "Statics", type: :system do
   end
 
   describe "layout links" do
-    it "have root link" do
+    it "contain root link" do
       visit root_path
       expect(page).to have_link 'Nobolog', href: root_path
     end
@@ -33,6 +33,16 @@ RSpec.describe "Statics", type: :system do
     it "contains contact link" do
       visit root_path
       expect(page).to have_link 'お問い合わせ', href: contact_path
+    end
+
+    it "contains login link" do
+      visit root_path
+      expect(page).to have_link 'ログイン', href: login_path
+    end
+
+    it "contains sinup link" do
+      visit root_path
+      expect(page).to have_link '新規登録', href: signup_path
     end
   end
 
