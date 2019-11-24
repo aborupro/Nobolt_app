@@ -25,12 +25,12 @@ RSpec.describe "Statics", type: :system do
       expect(page).to have_link 'Nobolog', href: root_path
     end
 
-    it "contains signup link" do
+    it "contains help link" do
       visit root_path
       expect(page).to have_link '使い方', href: help_path
     end
 
-    it "contains login link" do
+    it "contains contact link" do
       visit root_path
       expect(page).to have_link 'お問い合わせ', href: contact_path
     end
