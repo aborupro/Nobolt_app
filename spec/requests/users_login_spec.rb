@@ -15,11 +15,12 @@ RSpec.describe "UsersLogins", type: :request do
     }
   end
 
-  def post_valid_information
+  def post_valid_information(remember_me: "1")
     post login_path, params: {
       session: {
         email: user.email,
-        password: user.password
+        password: user.password,
+        remember_me: remember_me
       }
     }
   end
@@ -43,14 +44,29 @@ RSpec.describe "UsersLogins", type: :request do
         expect(flash[:danger]).to be_falsey
         expect(is_logged_in?).to be_truthy
         follow_redirect!
-        expect(request.fullpath).to eq '/users/1'
+        expect(request.fullpath).to eq "/users/1"
         delete logout_path
         expect(is_logged_in?).to be_falsey
         follow_redirect!
-        expect(request.fullpath).to eq '/'
+        expect(request.fullpath).to eq "/"
         delete logout_path
         follow_redirect!
-        expect(request.fullpath).to eq '/'
+        expect(request.fullpath).to eq "/"
+      end
+    end
+
+    context "remember_me" do
+      it "has remember_token when checking remember_me" do
+        post_valid_information(remember_me: "1")
+        expect(cookies[:remember_token]).to_not be_empty
+      end
+
+      it "has no remember_token when not checking remember_me" do
+        post_valid_information(remember_me: "1")
+        expect(cookies[:remember_token]).to_not be_empty
+        delete logout_path
+        post_valid_information(remember_me: "0")
+        expect(cookies[:remember_token]).to be_empty
       end
     end
   end
