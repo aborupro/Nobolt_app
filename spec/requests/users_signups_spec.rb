@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "UsersSignups", type: :request do
+  #is_logged_in?メソッドを使えるようにするために、呼び出す
+  include SessionsHelper
+
   describe "GET /signup" do
     it "is invalid signup information" do
       get signup_path
@@ -28,6 +31,7 @@ RSpec.describe "UsersSignups", type: :request do
           }
         }
       }.to change(User, :count).by(1)
+      expect(is_logged_in?).to be_truthy
     end
   end
 end

@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "UsersSignups", type: :system do
+  #is_logged_in?メソッドを使えるようにするために、呼び出す
+  include SessionsHelper
+
   it "is invalid because it has no name" do
     visit signup_path
     fill_in "名前", with: ''
@@ -21,6 +24,6 @@ RSpec.describe "UsersSignups", type: :system do
     fill_in 'パスワード（確認）', with: 'password'
     click_on '登録'
     expect(current_path).to eq user_path(1)
-    expect(page).not_to have_selector '#error_explanation'
+    expect(page).to_not have_selector '#error_explanation'
   end
 end
