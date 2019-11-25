@@ -79,5 +79,18 @@ RSpec.describe "UsersEdits", type: :request do
         expect(request.fullpath).to eq root_path
       end
     end
+
+    it "is successful edit with friendly forwarding" do
+      get edit_user_path(user)
+      log_in_as(user)
+      follow_redirect!
+      expect(request.fullpath).to eq edit_user_path(user)
+      patch_valid_information
+      expect(flash[:success]).to be_truthy
+      expect(request.fullpath).to eq "/users/1"
+      user.reload
+      expect(user.name).to eq "Foo Bar"
+      expect(user.email).to eq "foo@bar.com"
+    end
   end
 end
