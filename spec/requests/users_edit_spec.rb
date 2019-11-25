@@ -28,6 +28,7 @@ RSpec.describe "UsersEdits", type: :request do
 
   describe "GET /users/:id/edit" do
     it "is unsuccessful edit" do
+      log_in_as(user)
       get edit_user_path(user)
       expect(request.fullpath).to eq "/users/1/edit"
       patch_invalid_information
@@ -35,6 +36,7 @@ RSpec.describe "UsersEdits", type: :request do
     end
 
     it "is successful edit" do
+      log_in_as(user)
       get edit_user_path(user)
       expect(request.fullpath).to eq "/users/1/edit"
       patch_valid_information
