@@ -46,5 +46,21 @@ RSpec.describe "UsersEdits", type: :request do
       expect(user.name).to eq "Foo Bar"
       expect(user.email).to eq "foo@bar.com"
     end
+
+    context "redirect" do
+      it "edit when not logged in" do
+        get edit_user_path(user)
+        expect(flash[:danger]).to_not be_empty
+        follow_redirect!
+        expect(request.fullpath).to eq login_path
+      end
+
+      it "update when not logged in" do
+        patch_valid_information
+        expect(flash[:danger]).to_not be_empty
+        follow_redirect!
+        expect(request.fullpath).to eq login_path
+      end
+    end
   end
 end
