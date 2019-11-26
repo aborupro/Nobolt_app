@@ -1,0 +1,12 @@
+<% provide(:title, 'ユーザ一覧') %>
+<h1>ユーザ一覧</h1>
+
+<ul class="users user_info">
+  <% @users.each do |user| %>
+    <li>
+      <!--ユーザごとに設定した画像を表示する-->
+      <img src="/assets/kaburikko1"></p>
+      <%= link_to user.name, user %>
+    </li>
+  <% end %>
+</ul>

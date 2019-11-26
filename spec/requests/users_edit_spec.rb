@@ -63,6 +63,12 @@ RSpec.describe "UsersEdits", type: :request do
         expect(request.fullpath).to eq login_path
       end
 
+      it "index when not logged in" do
+        get users_path
+        follow_redirect!
+        expect(request.fullpath).to eq login_path
+      end
+
       it "edit when not logged in as wrong user" do
         log_in_as(other_user)
         get edit_user_path(user)
