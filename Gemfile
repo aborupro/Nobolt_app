@@ -54,6 +54,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'guard'
   gem 'guard-rspec', require: false
+  gem 'faker'
 end
 
 group :test do
