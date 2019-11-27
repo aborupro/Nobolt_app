@@ -12,4 +12,25 @@ FactoryBot.define do
     password { "password" }
     password_confirmation { "password" }
   end
+
+  factory :user_lana, class: User do
+    name { "Lana Kane" }
+    email { "hands@example.gov" }
+    password { "password" }
+    password_confirmation { "password" }
+  end
+
+  factory :user_malory, class: User do
+    name { "Malory Archer" }
+    email { "boss@example.gov.gov" }
+    password { "password" }
+    password_confirmation { "password" }
+  end
+
+  factory :user_n, class: User do
+    sequence(:name) { |n| "User #{n}" }
+    sequence(:email) { |n| "user-#{n}@example.com" }
+    password { "password" }
+    password_confirmation { "password" }
+  end
 end
