@@ -67,4 +67,5 @@ RSpec.configure do |config|
   # ref https://qiita.com/yyh-gl/items/30bd91c2b33fdfbe49b5
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.include ApplicationHelpers
+  config.include LoginSupport
 end
