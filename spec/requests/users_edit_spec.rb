@@ -28,26 +28,42 @@ RSpec.describe "UsersEdits", type: :request do
   end
 
   describe "GET /users/:id/edit" do
-    it "is unsuccessful edit" do
-      log_in_as(user)
-      get edit_user_path(user)
-      expect(request.fullpath).to eq "/users/1/edit"
-      patch_invalid_information
-      expect(request.fullpath).to eq "/users/1"
-    end
 
-    it "is successful edit" do
-      log_in_as(user)
-      get edit_user_path(user)
-      expect(request.fullpath).to eq "/users/1/edit"
-      patch_valid_information
-      expect(flash[:success]).to be_truthy
-      expect(request.fullpath).to eq "/users/1"
-      user.reload
-      expect(user.name).to eq "Foo Bar"
-      expect(user.email).to eq "foo@bar.com"
+    context "successful & unsuccessful edit" do
+      it "is unsuccessful edit" do
+        log_in_as(user)
+        get edit_user_path(user)
+        expect(request.fullpath).to eq "/users/1/edit"
+        patch_invalid_information
+        expect(request.fullpath).to eq "/users/1"
+      end
+  
+      it "is successful edit" do
+        log_in_as(user)
+        get edit_user_path(user)
+        expect(request.fullpath).to eq "/users/1/edit"
+        patch_valid_information
+        expect(flash[:success]).to be_truthy
+        expect(request.fullpath).to eq "/users/1"
+        user.reload
+        expect(user.name).to eq "Foo Bar"
+        expect(user.email).to eq "foo@bar.com"
+      end
+  
+      it "is successful edit with friendly forwarding" do
+        get edit_user_path(user)
+        log_in_as(user)
+        follow_redirect!
+        expect(request.fullpath).to eq edit_user_path(user)
+        patch_valid_information
+        expect(flash[:success]).to be_truthy
+        expect(request.fullpath).to eq "/users/1"
+        user.reload
+        expect(user.name).to eq "Foo Bar"
+        expect(user.email).to eq "foo@bar.com"
+      end
     end
-
+    
     context "redirect" do
       it "edit when not logged in" do
         get edit_user_path(user)
@@ -86,17 +102,17 @@ RSpec.describe "UsersEdits", type: :request do
       end
     end
 
-    it "is successful edit with friendly forwarding" do
-      get edit_user_path(user)
-      log_in_as(user)
-      follow_redirect!
-      expect(request.fullpath).to eq edit_user_path(user)
-      patch_valid_information
-      expect(flash[:success]).to be_truthy
-      expect(request.fullpath).to eq "/users/1"
-      user.reload
-      expect(user.name).to eq "Foo Bar"
-      expect(user.email).to eq "foo@bar.com"
+    it "doesn't allow the admin attribute to be edited via the web" do
+      log_in_as(other_user)
+      expect(other_user.admin?).to be_falsey
+      patch user_path(other_user), params: { 
+        user: { 
+          password: other_user.password,
+          password_confirmation: other_user.password,
+          admin: true
+        }
+      }
+      expect(other_user.reload.admin?).to be_falsey
     end
   end
 end
