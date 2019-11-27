@@ -15,12 +15,11 @@ RSpec.describe "UsersLogins", type: :request do
     }
   end
 
-  def post_valid_information(remember_me: "1")
+  def post_valid_information
     post login_path, params: {
       session: {
         email: user.email,
-        password: user.password,
-        remember_me: remember_me
+        password: user.password
       }
     }
   end
@@ -57,15 +56,15 @@ RSpec.describe "UsersLogins", type: :request do
 
     context "remember_me" do
       it "has remember_token when checking remember_me" do
-        post_valid_information(remember_me: "1")
+        log_in_as(user, remember_me: "1")
         expect(cookies[:remember_token]).to_not be_empty
       end
 
       it "has no remember_token when not checking remember_me" do
-        post_valid_information(remember_me: "1")
+        log_in_as(user, remember_me: "1")
         expect(cookies[:remember_token]).to_not be_empty
         delete logout_path
-        post_valid_information(remember_me: "0")
+        log_in_as(user, remember_me: "0")
         expect(cookies[:remember_token]).to be_empty
       end
     end

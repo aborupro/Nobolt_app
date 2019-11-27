@@ -5,12 +5,12 @@
     <div class="navbar-collapse collapse" id="navbarColor02" style="">
     <ul class="navbar-nav ml-auto">
     <% if logged_in? %>
-      <li class="nav-item"><%= link_to "タイムライン", '#', class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "タイムライン", users_path, class: "nav-link" %></li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">アカウント</a>
         <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
-          <%= link_to "ユーザホーム", current_user, class: "dropdown-item" %>
-          <%= link_to "編集", '#', class: "dropdown-item" %>
+          <%= link_to "マイページ", current_user, class: "dropdown-item" %>
+          <%= link_to "プロフィール編集", edit_user_path(current_user), class: "dropdown-item" %>
           <div class="dropdown-divider"></div>
           <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>
         </div>
