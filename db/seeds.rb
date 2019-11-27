@@ -1,4 +1,4 @@
-User.create!(name:  "壁崎　登る",
+User.create!(name:  "壁崎 登る",
   email: "example@nobolog.com",
   password:              "foobar",
   password_confirmation: "foobar",
