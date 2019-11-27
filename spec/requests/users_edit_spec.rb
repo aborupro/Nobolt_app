@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "UsersEdits", type: :request do
   
-  let(:user) { FactoryBot.create(:user) }
-  let(:other_user) { FactoryBot.create(:other_user) }
+  let!(:user) { FactoryBot.create(:user) }
+  let!(:other_user) { FactoryBot.create(:other_user) }
 
   def patch_invalid_information
     patch user_path(user), params: { 
@@ -100,8 +100,25 @@ RSpec.describe "UsersEdits", type: :request do
         follow_redirect!
         expect(request.fullpath).to eq root_path
       end
-    end
+      
+      it "destroy when not logged in" do
+        expect {
+          delete user_path(user)
+        }.to_not change(User, :count)
+        follow_redirect!
+        expect(request.fullpath).to eq login_path
+      end
 
+      it "destroy when logged in as a non-admin" do
+        log_in_as(other_user)
+        expect {
+          delete user_path(user)
+        }.to_not change(User, :count)
+        follow_redirect!
+        expect(request.fullpath).to eq root_path
+      end
+    end
+    
     it "doesn't allow the admin attribute to be edited via the web" do
       log_in_as(other_user)
       expect(other_user.admin?).to be_falsey
