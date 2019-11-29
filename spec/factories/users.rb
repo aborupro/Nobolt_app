@@ -5,6 +5,7 @@ FactoryBot.define do
     password { "password" }
     password_confirmation { "password" }
     admin { true }
+    activated { true }
   end
 
   factory :other_user, class: User do
@@ -12,6 +13,7 @@ FactoryBot.define do
     email { "duchess@example.gov" }
     password { "password" }
     password_confirmation { "password" }
+    activated { true }
   end
 
   factory :user_lana, class: User do
@@ -19,6 +21,7 @@ FactoryBot.define do
     email { "hands@example.gov" }
     password { "password" }
     password_confirmation { "password" }
+    activated { true }
   end
 
   factory :user_malory, class: User do
@@ -26,6 +29,7 @@ FactoryBot.define do
     email { "boss@example.gov.gov" }
     password { "password" }
     password_confirmation { "password" }
+    activated { true }
   end
 
   factory :user_n, class: User do
@@ -33,5 +37,6 @@ FactoryBot.define do
     sequence(:email) { |n| "user-#{n}@example.com" }
     password { "password" }
     password_confirmation { "password" }
+    activated { true }
   end
 end
