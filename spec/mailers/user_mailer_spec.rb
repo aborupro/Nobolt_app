@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe UserMailer, type: :mailer do
   describe "account_activation" do
     let(:mail) { UserMailer.account_activation }
-    let!(:user) { FactoryBot.create(:user)}
+    let!(:user) { FactoryBot.create(:user) }
 
     it "renders the headers" do
       user.activation_token = User.new_token
