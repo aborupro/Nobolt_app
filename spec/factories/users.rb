@@ -24,12 +24,11 @@ FactoryBot.define do
     activated { true }
   end
 
-  factory :user_malory, class: User do
+  factory :unactivated_user, class: User do
     name { "Malory Archer" }
     email { "boss@example.gov.gov" }
     password { "password" }
     password_confirmation { "password" }
-    activated { true }
   end
 
   factory :user_n, class: User do
