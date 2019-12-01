@@ -2,10 +2,9 @@
 
 <p>こんにちは <%= @user.name %>さん,</p>
 
-<p>
-Nobologへようこそ！<br>
-アカウントを有効化するには、下記リンクをクリックしてください。
+<p>Nobologへようこそ！<br>
+下記リンクをクリックすると、メールアドレスの確認が完了します。
 </p>
 
-<%= link_to "アカウント有効化", edit_account_activation_url(@user.activation_token,
+<%= link_to "メールアドレス認証", edit_account_activation_url(@user.activation_token,
                                                     email: @user.email) %>

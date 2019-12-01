@@ -1,6 +1,6 @@
 こんにちは <%= @user.name %>さん,
 
 Nobologへようこそ！
-アカウントを有効化するには、下記リンクをクリックしてください。
+下記リンクをクリックすると、メールアドレスの確認が完了します。
 
 <%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
