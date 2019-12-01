@@ -5,18 +5,15 @@ RSpec.describe UserMailer, type: :mailer do
     let(:mail) { UserMailer.account_activation }
     let!(:user) { FactoryBot.create(:user) }
 
-    it "renders the headers" do
+    it "activate account" do
       user.activation_token = User.new_token
       mail = UserMailer.account_activation(user)
       expect(mail.subject).to eq("Nobologよりメールアドレスの確認")
       expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["noreply@example.com"])
-    end
-
-    it "renders the body" do
-      user.activation_token = User.new_token
-      mail = UserMailer.account_activation(user)
-      expect(mail.body.encoded.split(/\r\n/).map{|i| Base64.decode64(i)}.join).to include("Michael Example")
+      expect(mail.body.encoded.split(/\r\n/).map{|i| Base64.decode64(i)}.join).to include(user.name)
+      expect(mail.body.encoded.split(/\r\n/).map{|i| Base64.decode64(i)}.join).to include(user.activation_token)
+      expect(mail.body.encoded.split(/\r\n/).map{|i| Base64.decode64(i)}.join).to include(CGI.escape(user.email))
     end
   end
 
