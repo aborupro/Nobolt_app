@@ -1,0 +1,11 @@
+<h1>Nobolog</h1>
+
+<p>こんにちは <%= @user.name %>さん,</p>
+
+<p>
+Nobologへようこそ！<br>
+アカウントを有効化するには、下記リンクをクリックしてください。
+</p>
+
+<%= link_to "アカウント有効化", edit_account_activation_url(@user.activation_token,
+                                                    email: @user.email) %>
