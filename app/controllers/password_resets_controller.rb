@@ -28,7 +28,7 @@ class PasswordResetsController < ApplicationController
       render 'edit'
     elsif @user.update_attributes(user_params)
       log_in @user
-      flash[:success] = "Password has been reset."
+      flash[:success] = "パスワードは更新されました。"
       redirect_to @user
     else
       render 'edit'
@@ -58,7 +58,7 @@ class PasswordResetsController < ApplicationController
   # トークンが期限切れかどうか確認する
   def check_expiration
     if @user.password_reset_expired?
-      flash[:danger] = "Password reset has expired."
+      flash[:danger] = "このリンクは有効期限切れです。"
       redirect_to new_password_reset_url
     end
   end
