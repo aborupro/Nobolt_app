@@ -122,6 +122,7 @@ RSpec.describe "PasswordResets", type: :request do
       expect(is_logged_in?).to be_truthy
       follow_redirect!
       expect(request.fullpath).to eq "/users/1"
+      expect(user.reload.reset_digest).to be_falsey
     end
   end
 end
