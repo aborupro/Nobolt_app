@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.build(:user) }
 
   it "is valid with a name and email" do
     expect(user).to be_valid
@@ -111,6 +111,16 @@ RSpec.describe User, type: :model do
   describe "authenticated?" do
     it "returns false for a user with nil digest" do
       expect(user.authenticated?(:remember, '')).to be_falsey
+    end
+  end
+
+  describe "associated micropost" do
+    it "is destroyed by user destruction" do
+      user.save
+      user.microposts.create!(content: "Lorem ipsum")
+      expect{
+        user.destroy
+      }.to change(Micropost, :count).by(-1)
     end
   end
 end
