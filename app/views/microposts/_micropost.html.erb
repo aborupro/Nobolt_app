@@ -4,5 +4,9 @@
   <span class="content"><%= micropost.content %></span>
   <span class="timestamp">
     <%= micropost.created_at %>
+    <% if current_user?(micropost.user) %>
+      <%= link_to "削除", micropost, method: :delete,
+                                       data: { confirm: "本当に削除しますか?" } %>
+    <% end %>
   </span>
 </li>
