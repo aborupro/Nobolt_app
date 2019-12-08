@@ -96,7 +96,7 @@ GEM
     factory_bot_rails (4.10.0)
       factory_bot (~> 4.10.0)
       railties (>= 3.0.0)
-    faker (2.8.0)
+    faker (2.8.1)
       i18n (>= 1.6, < 1.8)
     ffi (1.11.3)
     ffi (1.11.3-x64-mingw32)

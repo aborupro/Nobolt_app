@@ -28,7 +28,7 @@ RSpec.describe "UsersSignup", type: :system do
       fill_in 'パスワード', with: 'password'
       fill_in 'パスワード（確認）', with: 'password'
       click_on '登録'
-    }.to change { User.count }.by(1)
+    }.to change(User, :count).by(1)
     expect(ActionMailer::Base.deliveries.size).to eq 1
 
     
