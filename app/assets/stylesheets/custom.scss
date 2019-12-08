@@ -59,13 +59,15 @@ footer {
 .login_home {
   justify-content: center;
   .user_info {
-    img {
-      float: left;
-      width: 100px;
-      height: 100px;
-      border: 2px solid #eee;
-      border-radius: 50%;
-      margin-right: 10px;
+    .avater_home {
+      img {
+        float: left;
+        width: 100px;
+        height: 100px;
+        border: 2px solid #eee;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
     }
     .user_basic_info {
       margin-top: 20px;
@@ -154,14 +156,16 @@ aside {
     display: block;
     margin-left: 60px;
   }
-  img {
-    float: left;
-    width: 60px;
-    height: 60px;
-    border: 2px solid #eee;
-    border-radius: 50%;
-    margin: 0;
-    margin-right: 10px;
+  .avater {
+    img {
+      float: left;
+      width: 60px;
+      height: 60px;
+      border: 2px solid #eee;
+      border-radius: 50%;
+      margin: 0;
+      margin-right: 10px;
+    }
   }
 }
 
