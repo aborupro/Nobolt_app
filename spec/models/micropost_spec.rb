@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Micropost, type: :model do
-  let(:micropost) { FactoryBot.build(:micropost, :micropost_1) }
+  let(:micropost) { FactoryBot.build(:micropost, :micropost) }
   
   describe "micropost" do
     it "is valid" do

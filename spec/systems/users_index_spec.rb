@@ -15,7 +15,7 @@ RSpec.describe "UsersIndex", type: :system do
     end
   end
 
-  describe "GET /users_indez" do
+  describe "GET /users_index" do
 
     it "has index including pagination" do
       system_log_in_as(user)

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "UsersSignups", type: :system do
+RSpec.describe "UsersSignup", type: :system do
   #is_logged_in?メソッドを使えるようにするために、呼び出す
   include SessionsHelper
 

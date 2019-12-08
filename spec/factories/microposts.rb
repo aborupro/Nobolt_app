@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :micropost do
     association :user
     
-    trait :micropost_1 do
+    trait :micropost do
       content { "Lorem ipsum" }
       created_at { Time.zone.now }
     end
@@ -26,5 +26,10 @@ FactoryBot.define do
       content { "Writing a short test" }
       created_at { Time.zone.now }
     end
+  end
+  
+  factory :micropost_n, class: Micropost do
+    content { "#{rand(1..9)}級をクリアした！！" }
+    created_at { 42.days.ago }
   end
 end
