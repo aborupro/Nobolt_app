@@ -1,6 +1,19 @@
-<div class="cover">
-  <div class="text-center">
-    <h1>Nobolog</h1>
-    <p>記録に残して、さらなる高みへ</p>
+<% if logged_in? %>
+  <div class="row login_home">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="micropost_form">
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </aside>
   </div>
-</div>
+<% else %>
+  <div class="cover">
+    <div class="text-center">
+      <h1>Nobolog</h1>
+      <p>記録に残して、さらなる高みへ</p>
+    </div>
+  </div>
+<% end %>
