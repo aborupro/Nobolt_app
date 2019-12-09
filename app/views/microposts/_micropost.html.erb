@@ -1,0 +1,15 @@
+<li id="micropost-<%= micropost.id %>" class="micropost">
+  <%= link_to image_tag("/assets/kaburikko1"), micropost.user, class: "avater"%>
+  <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
+  <span class="content">
+    <%= micropost.content %>
+    <%= image_tag micropost.picture.url if micropost.picture? %>
+  </span>
+  <span class="timestamp">
+    <%= micropost.created_at %>
+    <% if current_user?(micropost.user) %>
+      <%= link_to "削除", micropost, method: :delete,
+                                       data: { confirm: "本当に削除しますか?" } %>
+    <% end %>
+  </span>
+</li>

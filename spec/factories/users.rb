@@ -1,11 +1,15 @@
 FactoryBot.define do
   factory :user do
     name { "Michael Example" }
-    email { "michael@example.com" }
+    sequence(:email) { |n| "michael#{n}@example.com" }
     password { "password" }
     password_confirmation { "password" }
     admin { true }
     activated { true }
+
+    trait :with_microposts do
+      after(:create) { |user| create_list(:micropost_n, 100, user: user) }
+    end
   end
 
   factory :other_user, class: User do
