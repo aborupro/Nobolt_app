@@ -59,26 +59,34 @@ footer {
 .login_home {
   justify-content: center;
   .user_info {
-    .avater_home {
-      img {
-        float: left;
-        width: 100px;
-        height: 100px;
-        border: 2px solid #eee;
-        border-radius: 50%;
-        margin-right: 10px;
+    margin-top: 20px;
+  
+    .user_item {
+      display: flex;
+      // justify-content: center;
+      align-items: center;
+      .avater_home {
+        img {
+          overflow: auto;
+          float: left;
+          width: 100px;
+          height: 100px;
+          border: 2px solid #eee;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
       }
-    }
-    .user_basic_info {
-      margin-top: 20px;
-      padding-top: 20px;
-    }
-    h1 {
-      font-size: 1.4em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-      margin-top: 0px;
+      .user_basic_info {
+        // margin-top: 20px;
+        // padding-top: 20px;
+      }
+      h1 {
+        font-size: 1.4em;
+        text-align: left;
+        letter-spacing: -1px;
+        margin-bottom: 3px;
+        margin-top: 0px;
+      }
     }
   }
 }
@@ -120,9 +128,37 @@ aside {
   }
 }
 
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid e8e8e8;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.users.follow {
+  padding: 0;
+}
+
 /*プロフィール画像表示*/
 
 .user_info img {
+  overflow: auto;
   width: 100px;
   height: 100px;
   border: 2px solid #eee;
