@@ -31,6 +31,7 @@ group :development, :test do
   gem 'rspec-rails', '~>3.8.0'
   gem "factory_bot_rails", "~> 4.10.0"
   gem 'rails-controller-testing'
+  gem 'faker'
 end
 
 group :development do
@@ -42,7 +43,6 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'guard'
   gem 'guard-rspec', require: false
-  gem 'faker'
 end
 
 group :test do

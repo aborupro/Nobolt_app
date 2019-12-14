@@ -19,5 +19,12 @@ RSpec.describe "UsersProfile", type: :system do
         expect(page).to have_content micropost.content
       end
     end
+
+    it "shows follow and follower count" do
+      visit user_path(user)
+      expect(current_path).to eq '/users/1'
+      expect(page).to have_content user.active_relationships.count.to_s
+      expect(page).to have_content user.passive_relationships.count.to_s
+    end
   end
 end

@@ -123,4 +123,29 @@ RSpec.describe User, type: :model do
       }.to change(Micropost, :count).by(-1)
     end
   end
+
+  describe "feed" do
+    let(:user) { FactoryBot.create(:user_n, :with_microposts) }
+    let(:followed_user) { FactoryBot.create(:user_n, :with_microposts) }
+    let(:unfollowed_user) { FactoryBot.create(:user_n, :with_microposts) }
+    let!(:relationship) {Relationship.create(follower_id: user.id, followed_id: followed_user.id) }
+
+    it "has followed user's posts" do
+      followed_user.microposts.each do |post_following|
+        expect(user.feed.include?(post_following)).to be_truthy
+      end
+    end
+
+    it "has my posts" do
+      user.microposts.each do |post_self|
+        expect(user.feed.include?(post_self)).to be_truthy
+      end
+    end
+
+    it "has unfollowed user's posts" do
+      unfollowed_user.microposts.each do |post_unfollowed|
+        expect(user.feed.include?(post_unfollowed)).to be_falsey
+      end
+    end
+  end
 end
