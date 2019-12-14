@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Logins", type: :system do
   
-  let(:user_1) { FactoryBot.create(:user_n) }
+  let(:user_1) { FactoryBot.create(:user_n, :with_microposts) }
   let(:user_2) { FactoryBot.create(:user_n) }
   let(:user_3) { FactoryBot.create(:user_n) }
   let(:user_4) { FactoryBot.create(:user_n) }
@@ -30,6 +30,13 @@ RSpec.describe "Logins", type: :system do
     expect(page).to have_content user_1.followers.count.to_s
     user_1.followers.each do |user|
        expect(page).to have_link user.name, href: user_path(user)
+    end
+  end
+
+  it "has feed on Home page" do
+    visit root_path
+    user_1.feed.paginate(page: 1).each do |micropost|
+      expect(page).to have_content CGI.escapeHTML(micropost.content)
     end
   end
 end

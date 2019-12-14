@@ -19,7 +19,7 @@ RSpec.describe "UsersIndex", type: :system do
 
     it "has index including pagination" do
       system_log_in_as(user)
-      click_link "タイムライン"
+      click_link "ユーザ一覧"
       expect(page).to have_current_path "/users"
       expect(page).to have_css ".pagination", count: 2
       User.paginate(page: 1).each do |page_user|
@@ -30,7 +30,7 @@ RSpec.describe "UsersIndex", type: :system do
     context "index" do
       it "logged in ad admin including pagination and delete links" do
         system_log_in_as(admin)
-        click_link "タイムライン"
+        click_link "ユーザ一覧"
         expect(page).to have_current_path "/users"
         User.paginate(page: 1).each do |page_user|
           expect(page).to have_link page_user.name, href: user_path(page_user)
@@ -46,7 +46,7 @@ RSpec.describe "UsersIndex", type: :system do
 
       it "logged in as non-admin" do
         system_log_in_as(non_admin)
-        click_link "タイムライン"
+        click_link "ユーザ一覧"
         expect(page).to_not have_link "削除"
       end
     end
