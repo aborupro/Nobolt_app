@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "Logins", type: :system do
   
-  let(:user_1) { FactoryBot.create(:user_n, :with_microposts) }
-  let(:user_2) { FactoryBot.create(:user_n) }
-  let(:user_3) { FactoryBot.create(:user_n) }
-  let(:user_4) { FactoryBot.create(:user_n) }
+  let(:user_1) { FactoryBot.create(:user, :with_microposts) }
+  let(:user_2) { FactoryBot.create(:user) }
+  let(:user_3) { FactoryBot.create(:user) }
+  let(:user_4) { FactoryBot.create(:user) }
 
   before do
     Relationship.create(follower_id: user_1.id, followed_id: user_2.id)

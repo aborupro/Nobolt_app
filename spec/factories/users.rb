@@ -26,16 +26,4 @@ FactoryBot.define do
     password { "password" }
     password_confirmation { "password" }
   end
-
-  factory :user_n, class: User do
-    sequence(:name) { |n| "User #{n}" }
-    sequence(:email) { |n| "user-#{n}@example.com" }
-    password { "password" }
-    password_confirmation { "password" }
-    activated { true }
-    
-    trait :with_microposts do
-      after(:create) { |user_n| create_list(:micropost_n, 100, user: user_n) }
-    end
-  end
 end

@@ -125,9 +125,9 @@ RSpec.describe User, type: :model do
   end
 
   describe "feed" do
-    let(:user) { FactoryBot.create(:user_n, :with_microposts) }
-    let(:followed_user) { FactoryBot.create(:user_n, :with_microposts) }
-    let(:unfollowed_user) { FactoryBot.create(:user_n, :with_microposts) }
+    let(:user) { FactoryBot.create(:user, :with_microposts) }
+    let(:followed_user) { FactoryBot.create(:user, :with_microposts) }
+    let(:unfollowed_user) { FactoryBot.create(:user, :with_microposts) }
     let!(:relationship) {Relationship.create(follower_id: user.id, followed_id: followed_user.id) }
 
     it "has followed user's posts" do
