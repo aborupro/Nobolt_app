@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_120754) do
+ActiveRecord::Schema.define(version: 2019_12_15_141635) do
+
+  create_table "gyms", force: :cascade do |t|
+    t.string "name"
+    t.string "prefecture"
+    t.string "picture"
+    t.string "url"
+    t.string "business_hours"
+    t.string "address"
+    t.string "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"
