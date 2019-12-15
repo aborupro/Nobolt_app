@@ -8,7 +8,7 @@ RSpec.describe "UsersSignups", type: :request do
     ActionMailer::Base.deliveries.clear
   end
 
-  let(:user) { FactoryBot.create(:unactivated_user) }
+  let(:user) { FactoryBot.create(:user, activated: false) }
 
   describe "GET /signup" do
     it "is invalid signup information" do

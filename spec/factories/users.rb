@@ -11,11 +11,4 @@ FactoryBot.define do
       after(:create) { |user| create_list(:micropost_n, 100, user: user) }
     end
   end
-
-  factory :unactivated_user, class: User do
-    name { "Malory Archer" }
-    email { "boss@example.gov.gov" }
-    password { "password" }
-    password_confirmation { "password" }
-  end
 end
