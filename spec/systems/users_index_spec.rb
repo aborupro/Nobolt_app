@@ -5,7 +5,7 @@ RSpec.describe "UsersIndex", type: :system do
   let(:user) { FactoryBot.create(:user) }
 
   let!(:admin) { FactoryBot.create(:user, admin: true) }
-  let!(:non_admin) { FactoryBot.create(:other_user) }
+  let!(:non_admin) { FactoryBot.create(:user) }
 
   before do
     i = 100
