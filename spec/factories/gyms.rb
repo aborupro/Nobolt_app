@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :gym do
-    name "MyString"
-    prefecture "MyString"
-    picture "MyString"
+    sequence(:name) { |n| "Gym_#{n}" }
+    prefecture "東京都"
+    picture "sample_picture"
     url "MyString"
     business_hours "MyString"
     address "MyString"
