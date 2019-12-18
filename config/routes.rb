@@ -2,14 +2,18 @@ Rails.application.routes.draw do
   get 'password_resets/new'
   get 'password_resets/edit'
   root 'static_pages#home'
-  get '/help', to:'static_pages#help'
-  get '/contact', to: 'static_pages#contact'
-  get '/signup', to: 'users#new'
-  post '/signup',  to: 'users#create'
+  get    '/help',    to: 'static_pages#help'
+  get    '/contact', to: 'static_pages#contact'
+  get    '/signup',  to: 'users#new'
+  post   '/signup',  to: 'users#create'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  get 'gyms/new'
+  get    '/gyms',    to: 'gyms#new'
+  get 'gyms/index'
+  namespace :gym do
+    get 'list'
+  end
   resources :users do
     member do
       get :following, :followers
@@ -20,4 +24,5 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
+  resources :place, :only => [ :index, :show, :create, :destroy ]
 end

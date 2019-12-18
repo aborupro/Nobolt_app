@@ -286,6 +286,8 @@ GEM
       representable (~> 3.0)
       retriable (>= 2.0, < 4.0)
       signet (~> 0.9)
+    google_places (2.0.0)
+      httparty (>= 0.13.1)
     googleauth (0.6.7)
       faraday (~> 0.12)
       jwt (>= 1.4, < 3.0)
@@ -310,6 +312,9 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
+    httparty (0.17.3)
+      mime-types (~> 3.0)
+      multi_xml (>= 0.5.2)
     httpclient (2.8.3)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
@@ -352,6 +357,7 @@ GEM
     msgpack (1.3.1)
     msgpack (1.3.1-x64-mingw32)
     multi_json (1.14.1)
+    multi_xml (0.6.0)
     multipart-post (2.1.1)
     nenv (0.3.0)
     netrc (0.11.0)
@@ -557,6 +563,7 @@ DEPENDENCIES
   factory_bot_rails (~> 4.10.0)
   faker
   fog
+  google_places
   guard
   guard-rspec
   jbuilder (~> 2.5)

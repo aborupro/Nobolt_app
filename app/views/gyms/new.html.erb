@@ -6,6 +6,12 @@
     <%= form_with(model: @gym, url: '#', local: true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
+      <%= form_with(url: gyms_path, method: :get, local: true) do |search_f| %>
+        <%= f.label :name %>
+        <%= search_f.text_field :name %>
+        <%= search_f.submit 'Search'%> <%= link_to 'Clear', gyms_path %>
+      <% end %>
+
       <%= f.label :name %>
       <%= f.text_field :name, placeholder: "例）Nobolog 東京店", class: 'form-control' %>
 
