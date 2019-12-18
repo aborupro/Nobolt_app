@@ -7,7 +7,7 @@ class CreateGyms < ActiveRecord::Migration[5.2]
       t.string :url
       t.string :business_hours
       t.string :address
-      t.string :price
+      t.text :price
 
       t.timestamps
     end

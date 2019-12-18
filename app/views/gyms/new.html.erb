@@ -2,23 +2,32 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3 center">
-    <h1>新規登録</h1>
-    <%= form_with(model: @user, url: signup_path, local: true) do |f| %>
+    <h1>新規ジム登録</h1>
+    <%= form_with(model: @gym, url: '#', local: true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.text_field :name, placeholder: "例）Nobolog 東京店", class: 'form-control' %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.label :prefecture %>
+      <%= f.select :prefecture, placeholder: "例）東京都", class: 'form-control' %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.label :address %>
+      <%= f.text_field :address, placeholder: "例）東京都新宿区新宿1-2-3", class: 'form-control' %>
 
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= f.label :picture %>
+      <%= f.text_field :picture, placeholder: "例）Nobolog 東京店", class: 'form-control' %>
 
-      <%= f.submit "登録", class: "btn btn-primary" %>
+      <%= f.label :url %>
+      <%= f.text_field :url, placeholder: "例）https://nobolog.com", class: 'form-control' %>
+
+      <%= f.label :business_hours %>
+      <%= f.text_field :business_hours, placeholder: "例）9:00-22:00", class: 'form-control' %>
+
+      <%= f.label :price %>
+      <%= f.text_area :price, placeholder: "例）10:00-18:00 1800円", class: 'form-control' %>
+
+      <%= f.submit "ジム登録", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
