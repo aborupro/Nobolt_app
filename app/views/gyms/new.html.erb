@@ -43,8 +43,10 @@
         <%= f.label :address %>
         <%= f.text_field :address, value: @gym_address, readonly: true, placeholder: "例）東京都新宿区新宿1-2-3", class: 'form-control' %>
 
-        <%= f.label :picture %><span class="optional">任意</span>
-        <%= f.text_field :picture, placeholder: "例）Nobolog 東京店", class: 'form-control' %>
+        <span class="picture">
+          <%= f.label :picture %><span class="optional">任意</span>
+          <%= f.file_field :picture%>
+        </span>
 
         <%= f.label :url %><span class="optional">任意</span>
         <%= f.text_field :url, placeholder: "例）https://nobolog.com", class: 'form-control' %>

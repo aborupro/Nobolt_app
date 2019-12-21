@@ -10,10 +10,6 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   get    '/gyms',    to: 'gyms#new'
-  get 'gyms/index'
-  namespace :gym do
-    get 'list'
-  end
   resources :users do
     member do
       get :following, :followers
