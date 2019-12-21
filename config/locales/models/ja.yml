@@ -15,10 +15,10 @@ ja:
         user_id: ユーザID
         content: 内容
       gym:
-        name: ジム名
-        prefecture: 都道府県名
+        name: ジム
+        prefecture: 都道府県
         picture: 画像
-        url: URL
+        url: ジムのURL
         business_hours: 営業時間
         address: 住所
         price: 料金

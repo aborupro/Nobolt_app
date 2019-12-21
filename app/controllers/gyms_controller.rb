@@ -10,17 +10,33 @@ class GymsController < ApplicationController
   end
 
   def new
-    if params[:search].blank?
-      File.open("app/assets/data/bouldering_gyms.json") do |file|
-        @gyms = JSON.load(file)["results"]
-        @flag = 'blank'
-      end
-    else
+    if params[:search].present?
+      @keyword = params[:search]
       @client = GooglePlaces::Client.new( ENV['GOOGLE_API_KEY'] )
-      @gyms = @client.spots_by_query( params[:search] + "ボルダリング", language: 'ja' )
-      @flag = 'present'
+      @gyms = @client.spots_by_query( @keyword + "ボルダリング", language: 'ja', region: 'ja' )
     end
+
+    if params[:gym_name] && params[:gym_address]
+      @gym_name = params[:gym_name]
+      @gym_address = params[:gym_address]
+      
+      regions = ["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
+        "茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県",
+        "新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県",
+        "静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県",
+        "奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県",
+        "徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県",
+        "熊本県","大分県","宮崎県","鹿児島県","沖縄県"
+      ]
+
+      regions.each do |region|
+        @gym_prefecture = params[:gym_address][region]
+        break if @gym_prefecture == region
+      end
+    end
+
     @gym = Gym.new
+  
   end
 
   def create
@@ -41,6 +57,12 @@ class GymsController < ApplicationController
       format.html { redirect_to place_index_path, notice: "#{@place.name} の位置情報を削除しました" }
     end
   end
+
+  # def choose
+  #   @gym_name = params[:gym_name]
+  #   @gym_address = params[:gym_address]
+  #   render 'new'
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
