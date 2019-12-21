@@ -4,6 +4,7 @@ ja:
       user: ユーザ
       micropost: 投稿
       gym: ジム
+      record: 完登記録
     attributes:
       user:
         name: 名前
@@ -22,3 +23,8 @@ ja:
         business_hours: 営業時間
         address: 住所
         price: 料金
+      record:
+        grade: 級
+        problem_id: 課題の種類（番号、形、色など課題を特定できる情報）
+        strong_point: 一撃クリア（1度目のトライでクリアした場合にチェック）
+        picture: 課題の写真

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   get    '/gyms',    to: 'gyms#new'
+  post   '/gyms',    to: 'gyms#create'
+  get    '/record',  to: 'records#new'
+  post   '/record',  to: 'records#create'
   resources :users do
     member do
       get :following, :followers

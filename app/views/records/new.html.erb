@@ -1,0 +1,29 @@
+<% provide(:title, '完登記録') %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 center">
+    <h1>完登記録</h1>
+    <%= form_with(model: @record, url: '#', local: true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :gym_name, "ジム名" %>
+      <%= f.text_field :gym_name, value: @gym_name, placeholder: "例）Nobolog 東京店", class: 'form-control' %>
+
+      <%= f.label :grade %>
+      <%= f.text_field :grade, value: @gym_prefecture, placeholder: "例）東京都", class: 'form-control' %>
+
+      <%= f.label :problem_id %>
+      <%= f.text_field :problem_id, placeholder: "例）https://nobolog.com", class: 'form-control' %>
+
+      <%= f.label :strong_point %>
+      <%= f.text_field :strong_point, value: @gym_address, placeholder: "例）東京都新宿区新宿1-2-3", class: 'form-control' %>
+
+      <span class="picture">
+        <%= f.label :picture %><span class="optional">任意</span>
+        <%= f.file_field :picture%>
+      </span>
+
+      <%= f.submit "ジム登録", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
