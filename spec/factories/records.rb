@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :record do
-    grade "MyString"
+    sequence(:grade) { |n| "grade #{n}" }
     strong_point "MyString"
-    problem_id "MyString"
+    sequence(:problem_id) { |n| "problem_id #{n}" }
     picture "MyString"
-    user nil
-    gym nil
+    association :user
+    association :gym
   end
 end

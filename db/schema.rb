@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2019_12_21_131207) do
     t.string "url"
     t.string "business_hours"
     t.string "address"
-    t.string "price"
+    t.text "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

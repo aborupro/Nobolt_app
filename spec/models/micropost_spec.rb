@@ -30,8 +30,8 @@ RSpec.describe Micropost, type: :model do
         FactoryBot.create(:micropost, :orange)
         FactoryBot.create(:micropost, :tau_manifesto)
         FactoryBot.create(:micropost, :cat_video)
-        most_recent = FactoryBot.create(:micropost, :most_recent)
-        expect(Micropost.first).to eq most_recent
+        most_recent_post = FactoryBot.create(:micropost, :most_recent)
+        expect(Micropost.first).to eq most_recent_post
       end
     end
   end
