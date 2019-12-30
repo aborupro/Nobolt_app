@@ -42,7 +42,18 @@ class GymsController < ApplicationController
     @gym = Gym.new(gym_params)
     if @gym.save
       flash[:info] = "#{@gym.name} を保存しました"
-      redirect_to gyms_path
+      @selected_prefecture = @gym.prefecture
+      @selected_gym_name = @gym.name
+
+      gyms = Gym.where(prefecture: @selected_prefecture)
+      @gym_name = []
+      gyms.each do |gym|
+        @gym_name.push(gym.name)
+      end
+      @gym_name.sort!
+      @record = Record.new
+
+      render("records/new")
     else
       flash[:danger] = "#{@gym.name} を保存できませんでした"
       render 'new'

@@ -13,6 +13,7 @@ class RecordsController < ApplicationController
       @gym_name.push(gym.name)
     end
     @gym_name.sort!
+    @selected_gym_name ||= ''
     @record = Record.new
   end
 
@@ -20,7 +21,7 @@ class RecordsController < ApplicationController
     @gym = Gym.new(gym_params)
     if @gym.save
       flash[:info] = "#{@gym.name} を保存しました"
-      redirect_to gyms_path
+      redirect_to users_url
     else
       flash[:danger] = "#{@gym.name} を保存できませんでした"
       render 'new'

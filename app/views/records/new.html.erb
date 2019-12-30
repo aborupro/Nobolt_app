@@ -4,7 +4,7 @@
   <div class="col-md-6 col-md-offset-3 center">
     <h1>完登記録</h1>
  
-    <%= form_with(url: records_path, method: :get, remote: true) do |search_f| %>
+    <%= form_with(url: records_path, method: :get, local: true) do |search_f| %>
       <%= search_f.label :prefecture_key, 'ジム検索' %>
       <%= search_f.select :prefecture_key,
       ["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
@@ -21,7 +21,7 @@
       <%= render 'shared/error_messages', object: f.object %>
       <div>
         <%= f.label :gym_name, "ジム名" %>
-        <%= f.select :gym_name, @gym_name, class: 'form-control' %>
+        <%= f.select :gym_name, @gym_name, class: 'form-control', selected: @selected_gym_name %>
         <p>ジムが見つからない場合はこちら⇨<%= link_to "新規ジム登録", gyms_path%></p>
       </div>
 

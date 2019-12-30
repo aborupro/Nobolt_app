@@ -3,3 +3,4 @@ document.addEventListener('turbolinks:load', function(){
     $(this).parent().submit();
   });
 });
+
