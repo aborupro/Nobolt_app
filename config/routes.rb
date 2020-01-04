@@ -11,8 +11,11 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   get    '/gyms',    to: 'gyms#new'
   post   '/gyms',    to: 'gyms#create'
+  post   '/gyms_search', to: 'gyms#search'
+  post   '/gyms_choose', to: 'gyms#choose'
   get    '/records', to: 'records#new'
   post   '/records', to: 'records#create'
+  post   '/records_search', to: 'records#search'
   resources :users do
     member do
       get :following, :followers

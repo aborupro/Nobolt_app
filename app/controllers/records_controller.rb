@@ -15,6 +15,11 @@ class RecordsController < ApplicationController
     @gym_name.sort!
     @selected_gym_name ||= ''
     @record = Record.new
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
@@ -42,6 +47,13 @@ class RecordsController < ApplicationController
       @gym_name.push(gym.name)
     end
     @gym_name.sort!
-    head :no_content
+    @selected_gym_name ||= ''
+    @record = Record.new
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+    render 'new'
   end
 end

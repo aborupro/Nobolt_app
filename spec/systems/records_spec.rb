@@ -5,7 +5,7 @@ RSpec.describe "Records", type: :system do
   let!(:user) { FactoryBot.create(:user, :with_microposts) }
 
   describe "records" do
-    it "posts invalid content" do
+    it "registers a new gym" do
       system_log_in_as(user)
       visit records_path
       expect(page).to have_title full_title("完登記録")

@@ -10,12 +10,21 @@ class GymsController < ApplicationController
   end
 
   def new
+    @gym = Gym.new
+  end
+
+  def search
     if params[:search].present?
       @keyword = params[:search]
       @client = GooglePlaces::Client.new( ENV['GOOGLE_API_KEY'] )
       @gyms = @client.spots_by_query( @keyword + "ボルダリング", language: 'ja', region: 'ja' )
     end
 
+    @gym = Gym.new
+    render 'new'
+  end
+
+  def choose
     if params[:gym_name] && params[:gym_address]
       @gym_name = params[:gym_name]
       @gym_address = params[:gym_address]
@@ -36,6 +45,7 @@ class GymsController < ApplicationController
     end
 
     @gym = Gym.new
+    render 'new'
   end
 
   def create
