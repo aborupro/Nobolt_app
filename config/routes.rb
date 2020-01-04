@@ -11,10 +11,13 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   get    '/gyms',    to: 'gyms#new'
   post   '/gyms',    to: 'gyms#create'
-  post   '/gyms_search', to: 'gyms#search'
-  post   '/gyms_choose', to: 'gyms#choose'
-  get    '/records', to: 'records#new'
-  post   '/records', to: 'records#create'
+  get    '/gyms_search',    to: 'gyms#search'
+  post   '/gyms_search',    to: 'gyms#search'
+  get    '/gyms_choose',    to: 'gyms#choose'
+  post   '/gyms_choose',    to: 'gyms#choose'
+  get    '/records',        to: 'records#new'
+  post   '/records',        to: 'records#create'
+  get    '/records_search', to: 'records#new'
   post   '/records_search', to: 'records#search'
   resources :users do
     member do
