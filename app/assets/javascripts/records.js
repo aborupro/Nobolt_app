@@ -1,5 +1,5 @@
-document.addEventListener('turbolinks:load', function(){
-  $('#prefecture_key').change(function() {
-    $(this).parent().submit();
+$(document).on('turbolinks:load', function() {
+  $('#prefecture_key').on("change", function() {
+    Rails.fire($(this).parent()[0], "submit");
   });
 });

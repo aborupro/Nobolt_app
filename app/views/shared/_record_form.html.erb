@@ -1,0 +1,27 @@
+<%= form_with(model: @record, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div>
+    <%= f.label :gym_name, "ジム名" %>
+    <%= f.select :gym_name, @gym_name, class: 'form-control', selected: @selected_gym_name %>
+    <p>ジムが見つからない場合はこちら⇨<%= link_to "新規ジム登録", gyms_path%></p>
+  </div>
+
+  <%= f.label :grade %>
+  <%= f.select :grade, ['10級', '9級', '8級', '7級', '6級', '5級', '4級', '3級', '2級', '1級', '初段', '二段', '三段', '四級', '五段', '六段' ] %>
+
+  <%= f.label :problem_id %>
+  <%= f.text_field :problem_id, placeholder: "例）1番、スラブの四角、100°の棒など", class: 'form-control' %>
+
+  <%= f.label :strong_point %>
+  <div class="custom-control custom-switch">
+    <%= f.check_box :strong_point, class:"custom-control-input", id:"customSwitch1", checked:"" %>
+    <%= f.label :strong_point, "1度目のトライでクリアした場合にチェック", class:"custom-control-label", for:"customSwitch1"%>
+  </div>
+
+  <span class="picture">
+    <%= f.label :picture %><span class="optional">任意</span>
+    <%= f.file_field :picture%>
+  </span>
+
+  <%= f.submit "登録", class: "btn btn-primary" %>
+<% end %>

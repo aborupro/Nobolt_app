@@ -51,9 +51,8 @@ class RecordsController < ApplicationController
     @record = Record.new
 
     respond_to do |format|
-      format.html
+      format.html { render 'new' }
       format.js
     end
-    render 'new'
   end
 end
