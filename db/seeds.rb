@@ -19,10 +19,10 @@ User.create!(name:  name,
     activated_at: Time.zone.now)
 end
 
-users = User.order(:created_at).take(6)
+users_6 = User.order(:created_at).take(6)
 50.times do
   content = "#{rand(1..9)}級をクリアした！！"
-  users.each { |user| user.microposts.create!(content: content) }
+  users_6.each { |user| user.microposts.create!(content: content) }
 end
 
 users = User.all
@@ -58,5 +58,18 @@ gyms["results"].each do |gym|
     business_hours: "9:00-22:00",
     price: "1800円"
   )
+
+  record_gym = Gym.find_by(name: gym['name'])
+
+  10.times do
+    users_6.each do |user|
+      user.records.create!(
+        gym_id: record_gym.id,
+        grade: "#{rand(1..10)}級",
+        problem_id: "#{rand(1..13)}番",
+        strong_point: "#{rand(0..1)}"
+      )
+    end
+  end
 end
 f.close
