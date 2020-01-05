@@ -10,6 +10,6 @@ FactoryBot.define do
   end
   
   trait :prefecture_kanagawa do
-    prefecture { "神奈川" }
+    prefecture { "神奈川県" }
   end
 end
