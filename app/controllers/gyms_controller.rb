@@ -74,7 +74,7 @@ class GymsController < ApplicationController
     @gym.destroy
 
     respond_to do |format|
-      format.html { redirect_to place_index_path, notice: "#{@place.name} の位置情報を削除しました" }
+      format.html { redirect_to gyms_path, notice: "#{@gym.name} を削除しました" }
     end
   end
 
