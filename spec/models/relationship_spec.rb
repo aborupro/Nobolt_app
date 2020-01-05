@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Relationship, type: :model do
   
   let(:user) { FactoryBot.create(:user) }
-  let(:other_user) { FactoryBot.create(:other_user) }
+  let(:other_user) { FactoryBot.create(:user) }
   let(:relationship) { Relationship.new(follower_id: user.id,
                                         followed_id: other_user.id) }
   

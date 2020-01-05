@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "UsersEdits", type: :request do
   
   let!(:user) { FactoryBot.create(:user) }
-  let!(:other_user) { FactoryBot.create(:other_user) }
+  let!(:other_user) { FactoryBot.create(:user) }
 
   def patch_invalid_information
     patch user_path(user), params: { 

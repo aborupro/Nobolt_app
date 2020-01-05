@@ -4,7 +4,7 @@ RSpec.describe "MicropostsInterface", type: :system do
   include ApplicationHelper
 
   let!(:user) { FactoryBot.create(:user, :with_microposts) }
-  let!(:other_user) { FactoryBot.create(:other_user) }
+  let!(:other_user) { FactoryBot.create(:user) }
 
   describe "micropost interface" do
     it "posts invalid content" do

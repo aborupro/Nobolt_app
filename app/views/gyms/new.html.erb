@@ -1,0 +1,64 @@
+<% provide(:title, '新規ジム登録') %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 center">
+    <h1>新規ジム登録</h1>
+    <% if !@gym_name%>
+      <%= form_with(url: gyms_search_path, method: :post, local: true) do |search_f| %>
+        <%= search_f.label :search, 'ジム検索' %>
+        <%= search_f.text_field :search, value: @keyword, placeholder: "例）Nobolog", class: "form-control" %>
+        <%= search_f.submit '検索'%>
+      <% end %>
+      <% if @gyms%>
+        <table>
+          <thead>
+            <tr>
+              <th>ジム名</th>
+              <th>住所</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @gyms.each do |gym_search| %>
+              <tr>
+                <td><%= gym_search["name"] %></td>
+                <td><%= gym_search["formatted_address"] %></td>
+                <td><%= button_to "選択", {controller: 'gyms', action: 'choose'}, {method: :post, params: {gym_name: gym_search["name"], gym_address: gym_search["formatted_address"]}} %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    <% else %>
+      <%= form_with(model: @gym, local: true) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <%= f.label :name %>
+        <%= f.text_field :name, value: @gym_name, readonly: true, placeholder: "例）Nobolog 東京店", class: 'form-control' %>
+
+        <%= f.label :prefecture %>
+        <%= f.text_field :prefecture, value: @gym_prefecture, readonly: true, placeholder: "例）東京都", class: 'form-control' %>
+
+        <%= f.label :address %>
+        <%= f.text_field :address, value: @gym_address, readonly: true, placeholder: "例）東京都新宿区新宿1-2-3", class: 'form-control' %>
+
+        <span class="picture">
+          <%= f.label :picture %><span class="optional">任意</span>
+          <%= f.file_field :picture%>
+        </span>
+
+        <%= f.label :url %><span class="optional">任意</span>
+        <%= f.text_field :url, placeholder: "例）https://nobolog.com", class: 'form-control' %>
+
+        <%= f.label :business_hours %><span class="optional">任意</span>
+        <%= f.text_field :business_hours, placeholder: "例）9:00-22:00", class: 'form-control' %>
+
+        <%= f.label :price %><span class="optional">任意</span>
+        <%= f.text_area :price, placeholder: "例）10:00-18:00 1800円", class: 'form-control' %>
+
+        <%= f.submit "ジム登録", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Microposts", type: :request do
   let(:user) { FactoryBot.create(:user) }
-  let(:other_user) { FactoryBot.create(:other_user) }
+  let(:other_user) { FactoryBot.create(:user) }
 
   let!(:micropost) { FactoryBot.create(:micropost, :orange)}
   let!(:other_micropost) { FactoryBot.create(:micropost_n, user: other_user)}

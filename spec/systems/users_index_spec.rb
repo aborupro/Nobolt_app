@@ -2,21 +2,20 @@ require 'rails_helper'
 
 RSpec.describe "UsersIndex", type: :system do
 
-  let(:user) { FactoryBot.create(:user_lana) }
+  let(:user) { FactoryBot.create(:user) }
 
-  let!(:admin) { FactoryBot.create(:user) }
-  let!(:non_admin) { FactoryBot.create(:other_user) }
+  let!(:admin) { FactoryBot.create(:user, admin: true) }
+  let!(:non_admin) { FactoryBot.create(:user) }
 
   before do
     i = 100
     user = Array.new(i){{}}
     i.times do |n|
-      user[n] = FactoryBot.create(:user_n)
+      user[n] = FactoryBot.create(:user)
     end
   end
 
   describe "GET /users_index" do
-
     it "has index including pagination" do
       system_log_in_as(user)
       click_link "ユーザ一覧"
@@ -28,7 +27,7 @@ RSpec.describe "UsersIndex", type: :system do
     end
 
     context "index" do
-      it "logged in ad admin including pagination and delete links" do
+      it "logged in as admin including pagination and delete links" do
         system_log_in_as(admin)
         click_link "ユーザ一覧"
         expect(page).to have_current_path "/users"

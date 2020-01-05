@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "Relationships", type: :request do
 
-  let(:user_1) { FactoryBot.create(:user_n) }
-  let(:user_2) { FactoryBot.create(:user_n) }
+  let(:user_1) { FactoryBot.create(:user) }
+  let(:user_2) { FactoryBot.create(:user) }
   let!(:relationship_1) { Relationship.create(follower_id: user_1.id, followed_id: user_2.id) }
 
   let(:user) { FactoryBot.create(:user) }
-  let(:other_user) { FactoryBot.create(:other_user) }
+  let(:other_user) { FactoryBot.create(:user) }
 
   describe "/relationships when not logged in" do
     context "create" do
