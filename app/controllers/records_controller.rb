@@ -1,4 +1,5 @@
 class RecordsController < ApplicationController
+  before_action :logged_in_user, only: [:create]
   def new       
     if params[:prefecture_key]
       gyms = Gym.where(prefecture: "#{params[:prefecture_key]}")
@@ -23,12 +24,14 @@ class RecordsController < ApplicationController
   end
 
   def create
-    @gym = Gym.new(gym_params)
-    if @gym.save
-      flash[:info] = "#{@gym.name} を保存しました"
-      redirect_to users_url
+    record_gym = Gym.find_by(name: params[:record]["gym_name"])
+    @record = current_user.records.build(record_params)
+    @record.gym_id = record_gym.id
+    if @record.save
+      flash[:info] = "完登記録を保存しました"
+      render 'new'
     else
-      flash[:danger] = "#{@gym.name} を保存できませんでした"
+      flash[:danger] = "完登記録を保存できませんでした"
       render 'new'
     end
   end
@@ -54,5 +57,10 @@ class RecordsController < ApplicationController
       format.html { render 'new' }
       format.js
     end
+  end
+
+  private
+  def record_params
+    params.require(:record).permit(:grade, :problem_id, :strong_point, :picture)
   end
 end

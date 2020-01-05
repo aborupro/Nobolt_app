@@ -881,6 +881,886 @@
          "reference" : "ChIJk0dMVu-LGGARs40QwDH8srg",
          "types" : [ "point_of_interest", "store", "establishment" ],
          "user_ratings_total" : 77
+      },
+      {
+         "formatted_address" : "日本、〒220-0023 神奈川県横浜市西区平沼１丁目８−１",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.4590334,
+               "lng" : 139.6208863
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.46036112989271,
+                  "lng" : 139.6222910798928
+               },
+               "southwest" : {
+                  "lat" : 35.45766147010727,
+                  "lng" : 139.6195914201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "2bd4e3a0b6a8e591231bc18d4d2b5c52ff1bdc31",
+         "name" : "ボルダリングジムＢ−ＰＵＭＰ横浜店",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 4000,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/112939986400615261393\"\u003eA Google User\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAQVZ77NcAQBVqV_C1bGk5GvsW9aixSKyMEyoGUhSae9wiy7KcMMuJPFGeX7y6xdNIp7aJZBxCOtwN3QxT_EHayzr98Dvd3Xi4AkM33tC742rBQC-GRADbhTVIFq85YoEuEhDhPNpw4rk-xdmu4NQXzHNDGhQwpcUBK_20eUJf3Tpg1Kv6zSAGzQ",
+               "width" : 6000
+            }
+         ],
+         "place_id" : "ChIJszKvlW1cGGAR6oU5x0z0C3c",
+         "plus_code" : {
+            "compound_code" : "FJ5C+J9 横浜市、神奈川県",
+            "global_code" : "8Q7XFJ5C+J9"
+         },
+         "rating" : 4,
+         "reference" : "ChIJszKvlW1cGGAR6oU5x0z0C3c",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 109
+      },
+      {
+         "formatted_address" : "日本、〒230-0022 神奈川県横浜市鶴見区市場東中町１２−２ アルプス5 号館1階",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.5194011,
+               "lng" : 139.6835201
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.52070457989272,
+                  "lng" : 139.6848287798927
+               },
+               "southwest" : {
+                  "lat" : 35.51800492010727,
+                  "lng" : 139.6821291201072
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "decadecfb6bc6c408ece58ca87d1a32a66923c0c",
+         "name" : "Bouldering Gym Share ボルダリングジム シェア",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 2592,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/106615163267420543389\"\u003eBouldering Gym Share ボルダリングジム シェア\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAANKjXUH9KVsMSAR73oxtMKpck-q1R8U8Gp7fDcbVuPvS-UlKyMsCWoM5ocsv1KLO9keFzZentJnW3BNuKevfgoYJa43vXuiBehfGSi1r-hW7BmqfNuYl4-Gz-Vs8CSRkTEhDBf5_zc4KnPV9G9iP-Drt3GhTRWfe8uFib1m_EWTbCN-brk8WIsg",
+               "width" : 3888
+            }
+         ],
+         "place_id" : "ChIJYR-m1BteGGARznGfY97DMl4",
+         "plus_code" : {
+            "compound_code" : "GM9M+QC 横浜市、神奈川県",
+            "global_code" : "8Q7XGM9M+QC"
+         },
+         "rating" : 4.3,
+         "reference" : "ChIJYR-m1BteGGARznGfY97DMl4",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 52
+      },
+      {
+         "formatted_address" : "日本、〒221-0044 神奈川県横浜市神奈川区東神奈川２丁目５０−１",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.4774068,
+               "lng" : 139.6381228
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.47877507989272,
+                  "lng" : 139.6394400798928
+               },
+               "southwest" : {
+                  "lat" : 35.47607542010728,
+                  "lng" : 139.6367404201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "d065222a921d051870dd8003f02765776c394bcf",
+         "name" : "Junktion Climbing ジャンクション クライミング",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 1201,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/103509750932129991999\"\u003eA Google User\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAgbRgf0jNRFre40OwyZjaa3U2Lduq95SJJFRo8jYAYgn-ZozMOIqTrxjUFMsJEbauBmjooNfuyzwmmlOAWq8NTjIS5SPkN813L910hnZcQErn8mGvXQCZou-QIt_jiNPnEhDVuAbycb7D_ITo3C7xDDPoGhR0o5QXrcUSBVxonWBKWYvpNGqLlw",
+               "width" : 1800
+            }
+         ],
+         "place_id" : "ChIJBcMi3TpcGGARwQRhTe3jfhc",
+         "plus_code" : {
+            "compound_code" : "FJGQ+X6 横浜市、神奈川県",
+            "global_code" : "8Q7XFJGQ+X6"
+         },
+         "rating" : 4.8,
+         "reference" : "ChIJBcMi3TpcGGARwQRhTe3jfhc",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 11
+      },
+      {
+         "formatted_address" : "日本、〒224-0054 神奈川県横浜市都筑区佐江戸町４１７",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.51194,
+               "lng" : 139.560531
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.51326792989272,
+                  "lng" : 139.5616582298927
+               },
+               "southwest" : {
+                  "lat" : 35.51056827010728,
+                  "lng" : 139.5589585701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "dd536814ef03b5516e2045e3c1c21a490fcd877c",
+         "name" : "クライミングジムプロジェクト",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3342,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/116761106908916019344\"\u003eMachaki Sumii\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAA9y_4p-P7-eLHM5vTkL0FrPXxb63e_m_Xg_ua08ERGDFTryp62EpU90wCoijHBAw2d2i007k0IXnF6De-mBQjEA0Q5pZm9GFo5FBWQAsnmibWCG0Ua7he4_SBqgLenuKKEhB-5XBfun8bbARGffE5XURoGhSdEKEoKl2jrwGg8itSscbRgqBYrw",
+               "width" : 4788
+            }
+         ],
+         "place_id" : "ChIJISSYhWdYGGARfocK8KxXXrE",
+         "plus_code" : {
+            "compound_code" : "GH66+Q6 横浜市、神奈川県",
+            "global_code" : "8Q7XGH66+Q6"
+         },
+         "rating" : 4.4,
+         "reference" : "ChIJISSYhWdYGGARfocK8KxXXrE",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 33
+      },
+      {
+         "formatted_address" : "日本、〒223-0061 神奈川県横浜市港北区日吉７丁目１８−２１",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.5421703,
+               "lng" : 139.649878
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.54352207989271,
+                  "lng" : 139.6511288798928
+               },
+               "southwest" : {
+                  "lat" : 35.54082242010727,
+                  "lng" : 139.6484292201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "adaa89eed194bf7179d437aaaa54d69bb646f5e5",
+         "name" : "クライミングジム ビッグロック 日吉店",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3456,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/110262653106202088350\"\u003eメンタージャパン株式会社\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAASAiM2_ywHXQQC2ED2_hjap1uSxz7nwUiLFlUtYsRu3gIMlMpZ9cYNjUqG2G1k3EJhk6zWkceY8dm6W1XlrDqac-Afh49NlSPL3jLoYHL8bGDi8PJq8rE4YND0y3pl1EvEhBepfh-Ia-hrKpBJ7-X9xBlGhT0HC2B42pxbXhGjIQv9c04r5NJ-w",
+               "width" : 5184
+            }
+         ],
+         "place_id" : "ChIJq6pa5AlfGGARoeqjIQBKJm4",
+         "plus_code" : {
+            "compound_code" : "GJRX+VX 横浜市、神奈川県",
+            "global_code" : "8Q7XGJRX+VX"
+         },
+         "rating" : 4.4,
+         "reference" : "ChIJq6pa5AlfGGARoeqjIQBKJm4",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 72
+      },
+      {
+         "formatted_address" : "日本、〒230-0051 神奈川県横浜市鶴見区鶴見中央１丁目２９−３",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.5082343,
+               "lng" : 139.6790149
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.50958412989273,
+                  "lng" : 139.6803647298927
+               },
+               "southwest" : {
+                  "lat" : 35.50688447010729,
+                  "lng" : 139.6776650701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "661e883d66da577c4796f7d4bd223a6d948d0cee",
+         "name" : "ビッグロック横浜 京急鶴見店",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 4000,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/100966978502757992534\"\u003e小林薫\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAACrEQfUKvkkyl-qFYufs7JyasZgFibUVsv69hCnvVgN18DKBabW_ONaRt14sHQycp-IY3-47uRVZXBcO1f-Thq69HAOOXUEOuZqTMeHcPd7Pf2iJuPkv2MREg3xiVFy3KEhD39GSFd403kS5MzKsNCbdmGhRPXEn5Cis5_dYkOlB0zGHnqAQx6A",
+               "width" : 3000
+            }
+         ],
+         "place_id" : "ChIJf_HV0QheGGAReiDeEwzb20w",
+         "plus_code" : {
+            "compound_code" : "GM5H+7J 横浜市、神奈川県",
+            "global_code" : "8Q7XGM5H+7J"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJf_HV0QheGGAReiDeEwzb20w",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 24
+      },
+      {
+         "formatted_address" : "日本、〒212-0016 神奈川県川崎市幸区南幸町２−１９ 八洲ビル, 1階",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.531931,
+               "lng" : 139.6917677
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.53328067989273,
+                  "lng" : 139.6931631798927
+               },
+               "southwest" : {
+                  "lat" : 35.53058102010728,
+                  "lng" : 139.6904635201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "14702fa6b8cd1c9a8e772b49633bf06f6d42378a",
+         "name" : "川崎ボルダリングジムBOULCOM KAWASAKI（ボルコム川崎店）",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 2445,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/103175976364767649481\"\u003eA Google User\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAA76CMrwMJ0cmKtDJsaoEWyyS_FY7m37v5FDq0lrK05j-_Wk3bAlZxdWWMXS5cttYBSMNAHwq9oR2xXSOnFpimXEUdfqmnbD17xdaQglC6XCZPLPxN7DMLUnCj6HTvnw0BEhBVDVtHxSb5is51CjRJxua-GhRi_ca5-_2jkbRc_9mjlgJGVK6vtA",
+               "width" : 3264
+            }
+         ],
+         "place_id" : "ChIJ3bMfBp5gGGARsacgcFZE5Fc",
+         "plus_code" : {
+            "compound_code" : "GMJR+QP 川崎市、神奈川県",
+            "global_code" : "8Q7XGMJR+QP"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJ3bMfBp5gGGARsacgcFZE5Fc",
+         "types" : [ "spa", "gym", "health", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 63
+      },
+      {
+         "formatted_address" : "日本、〒224-0032 神奈川県横浜市都筑区茅ケ崎中央５３−１ スポーツオーソリティ内 コーナンモール 2階",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.5467016,
+               "lng" : 139.5762247
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.54805142989272,
+                  "lng" : 139.5775745298927
+               },
+               "southwest" : {
+                  "lat" : 35.54535177010727,
+                  "lng" : 139.5748748701072
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "607b50667fd1d1a07c2e68be0bcef80aa0379015",
+         "name" : "ロッククライミングジムZEN センター南店",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3417,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/111686415805435022256\"\u003eHiroyoshi Okada\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAXiB37V7ZGVXwWvK4coLfbi1x2JUNGtwScgOxjfCRYc_BI64HVoPhlrseTu7mzPoEmKXQ1WpX4_jsFpi0X7mCGhtzkaQKQVANRbfD75sU5w6XW-nQ-VgIbijeal9TgCutEhABL3AbgjEeQmq_RHA9S8otGhQjih10OGd7iFGqBSBw_MHW26Ppmw",
+               "width" : 4682
+            }
+         ],
+         "place_id" : "ChIJV_UjrjH2GGARORMSiYpH-Jw",
+         "plus_code" : {
+            "compound_code" : "GHWG+MF 横浜市、神奈川県",
+            "global_code" : "8Q7XGHWG+MF"
+         },
+         "rating" : 3.9,
+         "reference" : "ChIJV_UjrjH2GGARORMSiYpH-Jw",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 17
+      },
+      {
+         "formatted_address" : "日本、〒230-0033 神奈川県横浜市鶴見区朝日町１丁目３９",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.5024614,
+               "lng" : 139.6978794
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.50386747989272,
+                  "lng" : 139.6991733798927
+               },
+               "southwest" : {
+                  "lat" : 35.50116782010727,
+                  "lng" : 139.6964737201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "85e67b5336dbe2cf7fed7550aec643b4c6c3a74c",
+         "name" : "クライミングジムアラジン",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 800,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/107121799387420235959\"\u003eA Google User\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAofqn71lIOyQI1zJ6iMhSckrFNWRTrG0qoMvhl4EjCKNuPBOgQP5IPlIefuVTHFIfrK4gYZwezrMHRQf-YhzeX_RF5ip39j7Ekab9kTj-0LhpVnchtzuaF9rE7b1HgOwREhCaU8P1HemTLx_x9orN4aEDGhRQKUvSLHbXauI2TO9m5RlnpLxC_Q",
+               "width" : 1200
+            }
+         ],
+         "place_id" : "ChIJYfDmnVBnGGARwBprj62QerQ",
+         "plus_code" : {
+            "compound_code" : "GM2X+X5 横浜市、神奈川県",
+            "global_code" : "8Q7XGM2X+X5"
+         },
+         "rating" : 4.1,
+         "reference" : "ChIJYfDmnVBnGGARwBprj62QerQ",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 17
+      },
+      {
+         "formatted_address" : "日本、〒210-0003 神奈川県川崎市川崎区堀之内町９−８",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.532569,
+               "lng" : 139.70499
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.53391882989272,
+                  "lng" : 139.7063398298927
+               },
+               "southwest" : {
+                  "lat" : 35.53121917010728,
+                  "lng" : 139.7036401701072
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "8e330ee7ffcc2c61f669ec37d0092447d4f0cdfe",
+         "name" : "ボルダリングジム壁家-KABEYA-",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/110127933428672824762\"\u003ekyo ohtsuka\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAARrJOPZxBpeooasHxVW4zwVeE5qM8_gDr8PGpJKR3tEHtz2XdpR358XUi8TMLVJkWDq3PhBr8cIohxLdcQtqGO-3lg8FZNJEndl7S9HZ6XK83APRQor4JcXvz-s1WD7MTEhDtv05dRLhcK58P4t0628JkGhRFmRm19CvA6CAFuth1N1pbAeLkYw",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJffN4jL1gGGARcu0995i1ZV4",
+         "plus_code" : {
+            "compound_code" : "GPM3+2X 川崎市、神奈川県",
+            "global_code" : "8Q7XGPM3+2X"
+         },
+         "rating" : 4.3,
+         "reference" : "ChIJffN4jL1gGGARcu0995i1ZV4",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 40
+      },
+      {
+         "formatted_address" : "日本、〒242-0017 神奈川県大和市大和東３丁目２−１５",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.4713387,
+               "lng" : 139.4639532
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.47261362989272,
+                  "lng" : 139.4653120798927
+               },
+               "southwest" : {
+                  "lat" : 35.46991397010728,
+                  "lng" : 139.4626124201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "71f9ac10c0e60637b03c56190918a7d264a405b3",
+         "name" : "ボルダリングスペースHAT",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3456,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/107572078069703844133\"\u003eFLEX, Inc.\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAxbwANxz6pL3yVNIV_mdqGC9sv3335mQyKvoacqKUjyXqFbXh3SZlfyDswthEXUYY5GsRdj7r3vsIz2oVTyPnLjFKK8ev4FdBxo2M6L6BWfssAh2XAWkVpov-ye7Z6q09EhAYbTu3ZCOci0oBrOT6U0MPGhQNcf9_jd9XD9GEZJ8RmZX7IEedbg",
+               "width" : 5184
+            }
+         ],
+         "place_id" : "ChIJIfbyGGtWGGARnh_7Ew8VXww",
+         "plus_code" : {
+            "compound_code" : "FFC7+GH 大和市、神奈川県",
+            "global_code" : "8Q7XFFC7+GH"
+         },
+         "rating" : 3.4,
+         "reference" : "ChIJIfbyGGtWGGARnh_7Ew8VXww",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 19
+      },
+      {
+         "formatted_address" : "日本、〒223-0053 神奈川県横浜市港北区綱島西２丁目２−２２ パークノヴァ綱島202",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.5361018,
+               "lng" : 139.6334988
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.53751767989272,
+                  "lng" : 139.6349004798927
+               },
+               "southwest" : {
+                  "lat" : 35.53481802010728,
+                  "lng" : 139.6322008201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "2532611af695f5639c97e989b31221923e3eb1f7",
+         "name" : "ディーボルダリング横浜綱島",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3008,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/115450989986544402523\"\u003eA Google User\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAA84vDJd2OuV-fGGNepz3inxaDVHzv6rNGXGrAVQ_hQqR8FDjJoFJFUT59VSVeuHraBsHSi158LfYmDUeKmxIuwrvVInijGCSjln4ZdRS8-Z75Nsgx-fu9PhfOdBOVzB1QEhCXa9d7u_7ykZlZCMd_TpGXGhRlSr-WYxRYDKIXcrwumTCu2D35Lg",
+               "width" : 4512
+            }
+         ],
+         "place_id" : "ChIJ9QYp8ANfGGARNqagZ8mPKPg",
+         "plus_code" : {
+            "compound_code" : "GJPM+C9 横浜市、神奈川県",
+            "global_code" : "8Q7XGJPM+C9"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJ9QYp8ANfGGARNqagZ8mPKPg",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 96
+      },
+      {
+         "formatted_address" : "日本、〒231-0821 神奈川県横浜市中区１５ 中区本牧原15-6 グロブナースクエアB1",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.42383,
+               "lng" : 139.665604
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.42517982989273,
+                  "lng" : 139.6669538298927
+               },
+               "southwest" : {
+                  "lat" : 35.42248017010728,
+                  "lng" : 139.6642541701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "9ce809bec54f88ad9298e333cea1cc8b85cbe7bb",
+         "name" : "ボルダリングジム本牧all fours GYM",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/105874300612378436148\"\u003eBunny-la-ice\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAA9ICfb3iXRcizMJqo5Hpx2TR0-uupbvDWvmCs97R5gVrv3szXjbO7MtqCYGoqo-DpmUhW1qTUHpeNUQvba-tw3aEGtdjq1b3PumqQS-ZrWggaImUb_8_XP4Sbxdj7C4hhEhATwtii6MDvJYdwDeuuZbbjGhR1pfH5BJqg2Um3Xhq1TMt__BS9Mg",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJaR3Xn8xCGGAR0_zbclP9fUE",
+         "plus_code" : {
+            "compound_code" : "CMF8+G6 横浜市、神奈川県",
+            "global_code" : "8Q7XCMF8+G6"
+         },
+         "rating" : 4,
+         "reference" : "ChIJaR3Xn8xCGGAR0_zbclP9fUE",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 7
+      },
+      {
+         "formatted_address" : "日本、〒244-0801 神奈川県横浜市戸塚区品濃町５５４−５",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.4314218,
+               "lng" : 139.56311
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.43277162989271,
+                  "lng" : 139.5644598298927
+               },
+               "southwest" : {
+                  "lat" : 35.43007197010727,
+                  "lng" : 139.5617601701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "3b88b10cd694801766ac79fe527c1eafd06d4f46",
+         "name" : "ボルダリング・ジム ＳＰＥＥＤＹ",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 349,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/114879794972213490758\"\u003eボルダリング・ジム ＳＰＥＥＤＹ\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAZQ_00zXtqFbI5yyfz1TRwvL2ikHX75itJeYHHUJwjkoCo3YAfMGfg26ZA_AJohU67uPnFQ7DXD97ah64_OJkD9pimDYagT-X8nFeMky9tUY4fF5kc-z7AdqN2YeyFy-VEhABUGsBwnop0dPsAEbmcRi7GhTlsgKNE4Cm5xXEZmdCW070WPtRDA",
+               "width" : 523
+            }
+         ],
+         "place_id" : "ChIJUa7AcU5aGGAR9hw46c4Cn4s",
+         "plus_code" : {
+            "compound_code" : "CHJ7+H6 横浜市、神奈川県",
+            "global_code" : "8Q7XCHJ7+H6"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJUa7AcU5aGGAR9hw46c4Cn4s",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 9
+      },
+      {
+         "formatted_address" : "日本、〒214-0012 神奈川県川崎市多摩区中野島２丁目９−３０",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.625277,
+               "lng" : 139.549503
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.62659597989272,
+                  "lng" : 139.5508403298927
+               },
+               "southwest" : {
+                  "lat" : 35.62389632010728,
+                  "lng" : 139.5481406701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "9cb0ffb496aacd91f4ff7384f991d5105696b230",
+         "name" : "クライミングジムＰＵＭＰ２川崎店",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3024,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/105216966614448860977\"\u003eF iida\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAuRIEP8dNOgE4L2LEvtB4tGWxUAXDfGhFoCzwg6_2_ia0d0k6C2YxHrkAewW76fvJLy5-eWh_1bXG9Gndi9CEcK7YSdDkapRg9Cc-xDC193ucxtpoEOOetvDqHXEtwQB5EhAhVVfZabqHRFjkBBvzo4V9GhTCWXVYN827x7J8uEJjVrIfwvf9tw",
+               "width" : 4032
+            }
+         ],
+         "place_id" : "ChIJs0B7QO3wGGARQsCdg16dkB0",
+         "plus_code" : {
+            "compound_code" : "JGGX+4R 川崎市、神奈川県",
+            "global_code" : "8Q7XJGGX+4R"
+         },
+         "rating" : 4.1,
+         "reference" : "ChIJs0B7QO3wGGARQsCdg16dkB0",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 91
+      },
+      {
+         "formatted_address" : "日本、〒244-0816 神奈川県横浜市戸塚区上倉田町４７９−２ 地下1階 東横ビル上倉田",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.3985952,
+               "lng" : 139.536307
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.39989692989273,
+                  "lng" : 139.5376511298927
+               },
+               "southwest" : {
+                  "lat" : 35.39719727010728,
+                  "lng" : 139.5349514701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "6952b9bc5c15f96b2d300e7ac119eda905d206a7",
+         "name" : "ボルダリングクライミングジム RISE",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3456,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/100729158689086759402\"\u003eのせたけ\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAApXGFVUMh7Z-wbG_OXhmiTlJ-2RcykVsGvighx6AMhtlCCzQ6YP0kZwBQdHCgHg712OTyrN5IknANio9BXrezLQPqPuRSx8G5ADmTXwgqZ0jT1bkUL4lycYQSE7L7oeBiEhDAXE4R03RbDDbfgEUPQvEcGhTJJ_gCZLkyd_xMDyOsPj71HZIZbw",
+               "width" : 4608
+            }
+         ],
+         "place_id" : "ChIJqZsR-ppaGGARplJBXsjWLLU",
+         "plus_code" : {
+            "compound_code" : "9GXP+CG 横浜市、神奈川県",
+            "global_code" : "8Q7X9GXP+CG"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJqZsR-ppaGGARplJBXsjWLLU",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 47
+      },
+      {
+         "formatted_address" : "日本、〒252-0234 神奈川県相模原市中央区共和３丁目１０−２０",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.5607184,
+               "lng" : 139.4019465
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.56192487989273,
+                  "lng" : 139.4033416298927
+               },
+               "southwest" : {
+                  "lat" : 35.55922522010728,
+                  "lng" : 139.4006419701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "0c0f50fc89ff1f0168c4fb89b9f21ed3b84798a6",
+         "name" : "クライミングパーク ストーン・マジック",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3894,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/101804369333965452007\"\u003eA Google User\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAC0fC6qI8penAN2XvYQQuIJpst4MD8QmRMn3GVf-KxeiDmGwUPbGK6OCs6LIxhj1GhFMe4O9n4SdRMkPe6ytQCUnw1vFYaOsqPSYnSmcDrGzP-5Xinwea_DAHGt2EZzI7EhCmvnc57odYpC4ULEJ3QY_dGhRAuR2qnB-A8c0I3tQ9UInu_WNtXA",
+               "width" : 2920
+            }
+         ],
+         "place_id" : "ChIJCfPQPrT9GGARlWM9CWIIK0Y",
+         "plus_code" : {
+            "compound_code" : "HC62+7Q 相模原市、神奈川県",
+            "global_code" : "8Q7XHC62+7Q"
+         },
+         "rating" : 4.2,
+         "reference" : "ChIJCfPQPrT9GGARlWM9CWIIK0Y",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 79
+      },
+      {
+         "formatted_address" : "日本、〒224-0061 神奈川県横浜市都筑区大丸２３−７",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.5416784,
+               "lng" : 139.554504
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.54312642989272,
+                  "lng" : 139.5560017298927
+               },
+               "southwest" : {
+                  "lat" : 35.54042677010727,
+                  "lng" : 139.5533020701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "613c9172145ad4492a5a2a74c391cbd3dab04431",
+         "name" : "グリムロック・クライミングジム",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 1153,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/108595539964317892545\"\u003eグリムロック・クライミングジム\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAA1Si9Zkkv_L5gvrmb7Uy2uPw-uTeO-CCRQWnLxlQoZLGODJW8a7HFXy6LU8bSYizPhVVJnuCPwHMtvDE5h2TNPDRlFLF22nYCJOjt6zAFIVghgN9vJo7yJPdxJrdUoydwEhDcnmbWI7Z4HREOc_sll09DGhS0WnKjWIKWTvTYn0zkw6ORbOS5kA",
+               "width" : 2048
+            }
+         ],
+         "place_id" : "ChIJ0YcKo8b3GGAR3Ph_o7XZ-Z8",
+         "plus_code" : {
+            "compound_code" : "GHR3+MR 横浜市、神奈川県",
+            "global_code" : "8Q7XGHR3+MR"
+         },
+         "rating" : 4.6,
+         "reference" : "ChIJ0YcKo8b3GGAR3Ph_o7XZ-Z8",
+         "types" : [ "point_of_interest", "establishment" ],
+         "user_ratings_total" : 17
+      },
+      {
+         "formatted_address" : "日本、〒224-0003 神奈川県横浜市都筑区中川中央１丁目２５−１",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.5528918,
+               "lng" : 139.5793603
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.55424162989272,
+                  "lng" : 139.5807101298927
+               },
+               "southwest" : {
+                  "lat" : 35.55154197010727,
+                  "lng" : 139.5780104701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "59437a9ba6128711cea0a535331b4250f638add1",
+         "name" : "クライミングバム",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3760,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/115855996577329357211\"\u003eA Google User\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAf8aViwaNmg8H_60ytWhTCqJAuFJC-jQrK67SlOU2j1fi74WaCG0WjOUW9bD3LtDzhhD3Xrm3yGx7V5xfjq-8idIOzao32SZa100qLk-Fed83_o-GvV4XctoEaKZW3X0gEhDd3EE2_xzmhxlqemiXhTQmGhR_6nqD30iTab2FNvBPQWGRokdomQ",
+               "width" : 5312
+            }
+         ],
+         "place_id" : "ChIJ5atj5iL3GGARz1pFaN5bW4o",
+         "plus_code" : {
+            "compound_code" : "HH3H+5P 横浜市、神奈川県",
+            "global_code" : "8Q7XHH3H+5P"
+         },
+         "rating" : 4.4,
+         "reference" : "ChIJ5atj5iL3GGARz1pFaN5bW4o",
+         "types" : [ "gym", "health", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 16
+      },
+      {
+         "formatted_address" : "日本、〒252-0807 神奈川県藤沢市下土棚１７０８−１",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.40712500000001,
+               "lng" : 139.452677
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.40856592989273,
+                  "lng" : 139.4540255298927
+               },
+               "southwest" : {
+                  "lat" : 35.40586627010728,
+                  "lng" : 139.4513258701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+         "id" : "d8e2fd83d8ca56c1b3c14131daf669118a5859ae",
+         "name" : "Ｊ-ＷＡＬＬ",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3000,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/111153251347423670183\"\u003e有限会社ジェイウォール\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAZkE37iSW-8vOnda597J2qZPosR-OkXDN556vTafh95yatYmHGJ2zAeXM5ma94kUu174KDvLb96JYOZ6p3ElICmf4gdOsqHh9rAO-cM3kPvDsk-Ui69uFktQmc9RayxJLEhBgiM9SHmYJW83WORL43j6lGhSSW_G6n2Cv_sfEo43AXcAsR4ZnhA",
+               "width" : 4000
+            }
+         ],
+         "place_id" : "ChIJUYJIP1FRGGARjO2LNtUwn_U",
+         "plus_code" : {
+            "compound_code" : "CF43+V3 藤沢市、神奈川県",
+            "global_code" : "8Q7XCF43+V3"
+         },
+         "rating" : 4.8,
+         "reference" : "ChIJUYJIP1FRGGARjO2LNtUwn_U",
+         "types" : [ "amusement_park", "health", "point_of_interest", "establishment" ],
+         "user_ratings_total" : 17
       }
    ],
    "status" : "OK"
