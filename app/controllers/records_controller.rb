@@ -1,6 +1,7 @@
 class RecordsController < ApplicationController
   before_action :logged_in_user, only: [:create]
-  before_action :set_value, only: [:new, :search]
+  before_action :set_value,      only: [:new, :search]
+  before_action :correct_user,   only: :destroy
 
   def new
     respond_to do |format|
@@ -28,6 +29,12 @@ class RecordsController < ApplicationController
     @selected_gym_name = record_gym.name
     @record = Record.new
     render 'new'
+  end
+
+  def destroy
+    @record.destroy
+    flash[:success] = "記録を削除しました。"
+    redirect_to request.referrer || root_url
   end
 
   def search
@@ -58,5 +65,10 @@ class RecordsController < ApplicationController
     @gym_name.sort!
     @selected_gym_name ||= ''
     @record = Record.new
+  end
+
+  def correct_user
+    @record = current_user.records.find_by(id: params[:id])
+    redirect_to root_url if @record.nil?
   end
 end

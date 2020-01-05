@@ -162,6 +162,45 @@ aside {
   margin: 0;
 }
 
+/* records */
+
+.records {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .content {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: #D3D3D3;
+    display: block;
+    margin-left: 60px;
+  }
+  .avater {
+    img {
+      float: left;
+      width: 60px;
+      height: 60px;
+      border: 2px solid #eee;
+      border-radius: 50%;
+      margin: 0;
+      margin-right: 10px;
+    }
+  }
+}
+
 /* microposts */
 
 .microposts {

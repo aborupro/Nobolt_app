@@ -89,6 +89,14 @@ class User < ApplicationRecord
                      OR user_id = :user_id", user_id: id)
   end
 
+  # ユーザーの完登記録のlogを返す
+  def log
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE follower_id = :user_id"
+    Record.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
+  end
+
   # ユーザーをフォローする
   def follow(other_user)
     following << other_user

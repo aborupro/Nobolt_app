@@ -1,13 +1,13 @@
 <li id="record-<%= record.id %>" class="record">
   <%= link_to image_tag("/assets/kaburikko1"), record.user, class: "avater"%>
   <span class="user"><%= link_to record.user.name, record.user %></span>
-  <span class="content">
+  <div class="content">
     <%= record.gym.name %>
     <%= record.grade %>
     <%= record.problem_id %>
-    <%= good if record.strong_point %>
+    <%= "good" if record.strong_point == "1" %>
     <%= image_tag record.picture.url if record.picture? %>
-  </span>
+  </div>
   <span class="timestamp">
     <%= record.created_at %>
     <% if current_user?(record.user) %>
