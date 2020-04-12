@@ -7,8 +7,6 @@ class StaticPagesController < ApplicationController
       @feed_items = current_user.feed.paginate(page: params[:page])
       # カレントユーザがフォローしているユーザとカレントユーザの記録を返す
       @following_log_items  = current_user.following_log.paginate(page: params[:page])
-      # 全ユーザの記録を返す
-      @all_log_items = Record.all
     end
   end
 

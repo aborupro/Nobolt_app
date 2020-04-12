@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post   '/gyms_choose',    to: 'gyms#choose'
   get    '/records',        to: 'records#new'
   post   '/records',        to: 'records#create'
+  get    '/records_index',  to: 'records#index'
   get    '/records_search', to: 'records#new'
   post   '/records_search', to: 'records#search'
   resources :users do

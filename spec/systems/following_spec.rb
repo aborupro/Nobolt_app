@@ -42,8 +42,8 @@ RSpec.describe "Logins", type: :system do
 
   it "has log_item on Home page" do
     visit root_path
-    user_1.log.paginate(page: 1).each do |log_item|
-      expect(page).to have_content CGI.escapeHTML(log_item.content)
+    user_1.following_log.paginate(page: 1).each do |following_log_item|
+      expect(page).to have_content CGI.escapeHTML(following_log_item.content)
     end
   end
 end

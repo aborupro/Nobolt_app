@@ -1,0 +1,12 @@
+<% provide(:title, '完登記録(全ユーザ)') %>
+<h1>完登記録(全ユーザ)</h1>
+
+<% if @records.any? %>
+  <%= will_paginate %>
+
+  <ol class="records">
+    <%= render @records %>
+  </ol>
+
+  <%= will_paginate %>
+<% end %>
