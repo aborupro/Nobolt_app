@@ -90,7 +90,7 @@ class User < ApplicationRecord
   end
 
   # フォローしているユーザーと自分の記録を返す
-  def log
+  def following_log
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
     Record.where("user_id IN (#{following_ids})
