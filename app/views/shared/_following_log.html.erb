@@ -1,4 +1,5 @@
 <% if @following_log_items.any? %>
+  <%= will_paginate @following_log_items %>
   <ol class="records">
     <%= render @following_log_items %>
   </ol>
