@@ -15,9 +15,9 @@ class RecordsController < ApplicationController
     @record = current_user.records.build(record_params)
     @record.gym_id = record_gym.id
     if @record.save
-      flash[:info] = "完登記録を保存しました"
+      flash[:info] = "記録を保存しました"
     else
-      flash[:danger] = "完登記録を保存できませんでした"
+      flash[:danger] = "記録を保存できませんでした"
     end
     gyms = Gym.where(prefecture: "#{record_gym.prefecture}")
     @selected_prefecture = record_gym.prefecture

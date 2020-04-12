@@ -7,11 +7,11 @@ RSpec.describe "Records", type: :system do
   let!(:gym_2) { FactoryBot.create(:gym, :prefecture_kanagawa) }
 
   describe "record" do
-    it "registers a new gym" do
+    it "registers a valid gym" do
       system_log_in_as(user)
-      click_link "完登記録"
+      click_link "記録する"
       expect(page).to have_current_path "/records"
-      expect(page).to have_title full_title("完登記録")
+      expect(page).to have_title full_title("記録する")
       expect {
         # 新規ジム登録ページに遷移
         click_on '新規ジム登録'
@@ -36,11 +36,11 @@ RSpec.describe "Records", type: :system do
       expect(page).to have_select('prefecture_key', selected: @gym_prefecture)
     end
 
-    it "registers a new record" do
+    it "registers a valid record" do
       system_log_in_as(user)
-      click_link "完登記録"
+      click_link "記録する"
       expect(page).to have_current_path "/records"
-      expect(page).to have_title full_title("完登記録")
+      expect(page).to have_title full_title("記録する")
       expect {
         select gym_2.prefecture, from: 'ジム検索'
         select gym_2.name, from: 'ジム名'
@@ -49,7 +49,7 @@ RSpec.describe "Records", type: :system do
         check '1度目のトライでクリアした場合にチェック'
         click_button '登録'
       }.to change(Record, :count).by(1)
-      expect(page).to have_content '完登記録を保存しました'
+      expect(page).to have_content '記録を保存しました'
       # 登録したジム内容を再度確認できる
       expect(page).to have_select('record_gym_name', selected: gym_2.name)
       expect(page).to have_select('prefecture_key', selected: gym_2.prefecture)

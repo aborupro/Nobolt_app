@@ -4,7 +4,7 @@ ja:
       user: ユーザ
       micropost: 投稿
       gym: ジム
-      record: 完登記録
+      record: 記録する
     attributes:
       user:
         name: 名前

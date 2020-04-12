@@ -89,7 +89,7 @@ class User < ApplicationRecord
                      OR user_id = :user_id", user_id: id)
   end
 
-  # ユーザーの完登記録のlogを返す
+  # フォローしているユーザーと自分の記録を返す
   def log
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"

@@ -6,7 +6,14 @@
     <ul class="navbar-nav ml-auto">
     <% if logged_in? %>
       <li class="nav-item"><%= link_to "ユーザ一覧", users_path, class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "完登記録", records_path, class: "nav-link" %></li>
+      <li class="nav-item"><%= link_to "記録する", records_path, class: "nav-link" %></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">完登記録</a>
+        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
+          <%= link_to "フォローユーザ", root_path, class: "dropdown-item" %>
+          <%= link_to "全ユーザ", edit_user_path(current_user), class: "dropdown-item" %>
+        </div>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">アカウント</a>
         <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
