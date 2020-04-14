@@ -2,17 +2,17 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <img class="avater" src="/assets/kaburikko1">
+      <img src="/assets/kaburikko1">
       <h1><%= @user.name %></h1>
       <span><%= link_to "マイページ", @user %></span>
       <span><b>投稿数:</b> <%= @user.microposts.count %></span>
-    </section>
-    <section class="stats">
       <%= render 'shared/stats' %>
+    </section>
+    <section>
       <% if @users.any? %>
-        <div class="user_avatars">
+        <div class="avater">
           <% @users.each do |user| %>
-            <%= link_to image_tag("/assets/kaburikko1"), user, class: "avater_home" %>
+            <%= link_to image_tag("/assets/kaburikko1"), user%>
           <% end %>
         </div>
       <% end %>
@@ -21,10 +21,11 @@
   <div class="col-md-8">
     <h3><%= @title %></h3>
     <% if @users.any? %>
-      <ul class="users follow">
+      <%= will_paginate @users %>
+      <ul class="users follow avater">
         <%= render @users %>
       </ul>
-      <%= will_paginate %>
+      <%= will_paginate @users %>
     <% end %>
   </div>
 </div>
