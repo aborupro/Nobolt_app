@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_action :logged_in_user, only: [:index, :create]
+  before_action :logged_in_user, only: [:index, :create, :destroy]
   before_action :set_value,      only: [:new, :search]
   before_action :correct_user,   only: :destroy
 
