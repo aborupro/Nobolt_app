@@ -19,8 +19,8 @@ RSpec.describe "Records", type: :request do
                                         problem_id: "problem_id 1",
                                         picture: "MyString",
                                         gym_name: Gym.first.name
-                                        } 
-                                      }
+                                      } 
+          }
         }.to_not change(Record, :count)
         follow_redirect!
         expect(request.fullpath).to eq '/login'
