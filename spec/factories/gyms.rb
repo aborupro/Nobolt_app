@@ -8,8 +8,4 @@ FactoryBot.define do
     address { "MyString" }
     price { "MyString" }
   end
-  
-  trait :prefecture_kanagawa do
-    prefecture { "神奈川県" }
-  end
 end
