@@ -1,13 +1,15 @@
 class RecordsController < ApplicationController
   before_action :logged_in_user, only: [:index, :create, :destroy]
-  before_action :set_value,      only: [:new, :search]
   before_action :correct_user,   only: :destroy
+  before_action :set_value,      only: [:new, :search]
+  after_action  :set_value,      only: :create
 
   def index
     @records = Record.paginate(page: params[:page])
   end
 
   def new
+    @record = Record.new
     respond_to do |format|
       format.html
       format.js
@@ -15,23 +17,13 @@ class RecordsController < ApplicationController
   end
 
   def create
-    record_gym = Gym.find_by(name: params[:record]["gym_name"])
     @record = current_user.records.build(record_params)
-    @record.gym_id = record_gym.id
-    if @record.save
-      flash[:info] = "記録を保存しました"
-    else
-      flash[:danger] = "記録を保存できませんでした"
+    if params[:record]["gym_name"].present?
+      gym_name = Gym.find_by(name: params[:record]["gym_name"])
+      @record.gym_id = gym_name.id
     end
-    gyms = Gym.where(prefecture: "#{record_gym.prefecture}")
-    @selected_prefecture = record_gym.prefecture
-    @gym_name = []
-    gyms.each do |gym|
-      @gym_name.push(gym.name)
-    end
-    @gym_name.sort!
-    @selected_gym_name = record_gym.name
-    @record = Record.new
+    flash.now[:info] = "記録を保存しました" if @record.save
+    set_value
     render 'new'
   end
 
@@ -42,6 +34,7 @@ class RecordsController < ApplicationController
   end
 
   def search
+    @record = Record.new
     respond_to do |format|
       format.html { render 'new' }
       format.js
@@ -55,20 +48,20 @@ class RecordsController < ApplicationController
 
   def set_value
     if params[:prefecture_key]
-      gyms = Gym.where(prefecture: "#{params[:prefecture_key]}")
       @selected_prefecture = params[:prefecture_key]
     else
-      gyms = Gym.all
       @selected_prefecture = "東京都"
     end
-
+    
+    gyms = Gym.where(prefecture: @selected_prefecture)
     @gym_name = []
+
     gyms.each do |gym|
       @gym_name.push(gym.name)
     end
+    
     @gym_name.sort!
     @selected_gym_name ||= ''
-    @record = Record.new
   end
 
   def correct_user

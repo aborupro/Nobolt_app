@@ -65,7 +65,6 @@ class GymsController < ApplicationController
 
       render("records/new")
     else
-      # flash[:danger] = "#{@gym.name} を保存できませんでした"
       render 'new'
     end
   end
