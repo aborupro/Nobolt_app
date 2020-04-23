@@ -15,8 +15,6 @@ Rails.application.routes.draw do
   post   '/gyms_search',    to: 'gyms#search'
   get    '/gyms_choose',    to: 'gyms#choose'
   post   '/gyms_choose',    to: 'gyms#choose'
-  get    '/records',        to: 'records#new'
-  post   '/records',        to: 'records#create'
   get    '/records_index',  to: 'records#index'
   get    '/records_search', to: 'records#new'
   post   '/records_search', to: 'records#search'
@@ -30,5 +28,5 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
-  resources :records,             only: [:destroy]
+  resources :records,             only: [:new, :create, :destroy]
 end

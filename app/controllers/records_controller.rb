@@ -10,10 +10,7 @@ class RecordsController < ApplicationController
 
   def new
     @record = Record.new
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    render "new"
   end
 
   def create
@@ -47,13 +44,16 @@ class RecordsController < ApplicationController
   end
 
   def set_value
-    if Record.find_by(user_id: current_user.id).present?
-      latest_record = Record.find_by(user_id: current_user.id)
-      @gym_name = Gym.find(latest_record.gym_id).name
+    if params[:from_list_gym_name].present?
+      @gym_name = params[:from_list_gym_name]
     else
-      @gym_name = []
+      if Record.find_by(user_id: current_user.id).present?
+        latest_record = Record.find_by(user_id: current_user.id)
+        @gym_name = Gym.find(latest_record.gym_id).name
+      else
+        @gym_name = []
+      end
     end
-    
   end
 
   def correct_user

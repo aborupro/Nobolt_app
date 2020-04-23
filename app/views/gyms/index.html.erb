@@ -1,0 +1,10 @@
+<% provide(:title, 'ジム選択') %>
+<h1>ジム選択</h1>
+
+<%= will_paginate gyms%>
+
+<ul class="gym_list">
+  <%= render @gyms %>
+</ul>
+
+<%= will_paginate @gyms%>
