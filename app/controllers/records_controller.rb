@@ -47,21 +47,13 @@ class RecordsController < ApplicationController
   end
 
   def set_value
-    if params[:prefecture_key]
-      @selected_prefecture = params[:prefecture_key]
+    if Record.find_by(user_id: current_user.id).present?
+      latest_record = Record.find_by(user_id: current_user.id)
+      @gym_name = Gym.find(latest_record.gym_id).name
     else
-      @selected_prefecture = "東京都"
+      @gym_name = []
     end
     
-    gyms = Gym.where(prefecture: @selected_prefecture)
-    @gym_name = []
-
-    gyms.each do |gym|
-      @gym_name.push(gym.name)
-    end
-    
-    @gym_name.sort!
-    @selected_gym_name ||= ''
   end
 
   def correct_user
