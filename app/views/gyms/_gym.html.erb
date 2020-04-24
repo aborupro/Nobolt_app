@@ -1,5 +1,11 @@
-<div class="gym-list">
-  <%= link_to "ジム選択", controller: 'records', action: 'new', from_list_gym_name: "test_gym_name", class: "nav-link" do %>
-    
+<div class="gym_list">
+  <%= link_to controller: 'records', action: 'new', selection_gym_name: gym.name do %>
+    <%= image_tag gym.picture.url if gym.picture? %>
+    <%= gym.name %>
+    <%= gym.prefecture %>
+    <%= gym.url if gym.url %>
+    <%= gym.business_hours if gym.business_hours %>
+    <%= gym.address if gym.address %>
+    <%= gym.price if gym.price %>
   <% end %>
 </div>

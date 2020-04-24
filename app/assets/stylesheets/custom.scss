@@ -334,3 +334,20 @@ iframe {
   height: 500;
   width: 900;
 }
+
+/* gym index */
+
+.gym_list_box {
+  padding: 50px 10px;
+  overflow: overlay;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 96vh;
+  .gym_list {
+    height: 350px;
+    width: 250px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px $black;
+    margin: 30px 10px;
+  }
+}

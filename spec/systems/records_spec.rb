@@ -15,7 +15,7 @@ RSpec.describe "Records", type: :system do
       expect {
         # 新規ジム登録ページに遷移
         click_on '新規ジム登録'
-        expect(current_path).to eq gyms_path
+        expect(current_path).to eq new_gym_path
         expect(page).to have_title full_title("新規ジム登録")
         # 大阪のジムを検索
         fill_in 'ジム検索', with: '大阪'

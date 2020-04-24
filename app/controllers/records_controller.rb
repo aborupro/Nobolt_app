@@ -44,8 +44,8 @@ class RecordsController < ApplicationController
   end
 
   def set_value
-    if params[:from_list_gym_name].present?
-      @gym_name = params[:from_list_gym_name]
+    if params[:selection_gym_name].present?
+      @gym_name = params[:selection_gym_name]
     else
       if Record.find_by(user_id: current_user.id).present?
         latest_record = Record.find_by(user_id: current_user.id)

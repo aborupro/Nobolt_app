@@ -9,13 +9,11 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  get    '/gyms',    to: 'gyms#new'
   post   '/gyms',    to: 'gyms#create'
   get    '/gyms_search',    to: 'gyms#search'
   post   '/gyms_search',    to: 'gyms#search'
   get    '/gyms_choose',    to: 'gyms#choose'
   post   '/gyms_choose',    to: 'gyms#choose'
-  get    '/records_index',  to: 'records#index'
   get    '/records_search', to: 'records#new'
   post   '/records_search', to: 'records#search'
   resources :users do
@@ -28,5 +26,6 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
-  resources :records,             only: [:new, :create, :destroy]
+  resources :records,             only: [:index, :new, :create, :destroy]
+  resources :gyms,                only: [:index, :new]
 end

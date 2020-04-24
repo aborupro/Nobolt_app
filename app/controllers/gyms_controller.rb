@@ -1,8 +1,9 @@
 class GymsController < ApplicationController
   def index
-    if params[:name]
-      @gyms = Gym.all
-    end
+    # if params[:name]
+    #   @gyms = Gym.all
+    # end
+    @gyms = Gym.paginate(page: params[:page])
   end
 
   def show
@@ -73,7 +74,7 @@ class GymsController < ApplicationController
     @gym.destroy
 
     respond_to do |format|
-      format.html { redirect_to gyms_path, notice: "#{@gym.name} を削除しました" }
+      format.html { redirect_to new_gym_path, notice: "#{@gym.name} を削除しました" }
     end
   end
 
