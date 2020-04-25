@@ -19,6 +19,8 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap4'
 gem 'google_places'
 gem 'jp_prefecture'
+gem 'slim-rails'
+gem 'html2slim'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

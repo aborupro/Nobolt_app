@@ -1,0 +1,10 @@
+.user_item
+  = link_to image_tag("/assets/kaburikko1"), current_user, class: "avater_home"
+  .user_basic_info
+    h1
+      = current_user.name
+    span
+      = link_to "マイページ", current_user
+    span
+      | 投稿数 
+      = current_user.records.count

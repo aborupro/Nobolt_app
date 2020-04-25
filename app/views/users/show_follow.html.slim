@@ -1,0 +1,27 @@
+- provide(:title, @title)
+.row
+  aside.col-md-4
+    section.user_info
+      img[src="/assets/kaburikko1"]
+      h1
+        = @user.name
+      span
+        = link_to "マイページ", @user
+      span
+        b
+          | 投稿数:
+        = @user.microposts.count
+      = render 'shared/stats'
+    section
+      - if @users.any?
+        .avater
+          - @users.each do |user|
+            = link_to image_tag("/assets/kaburikko1"), user
+  .col-md-8
+    h3
+      = @title
+    - if @users.any?
+      = will_paginate @users
+      ul.users.follow.avater
+        = render @users
+      = will_paginate @users

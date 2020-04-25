@@ -1,0 +1,11 @@
+h1
+  | Nobolog
+p
+  | こんにちは 
+  = @user.name
+  | さん,
+p
+  | Nobologへようこそ！
+  br
+  |  下記リンクをクリックすると、メールアドレスの確認が完了します。 
+= link_to "メールアドレス認証", edit_account_activation_url(@user.activation_token, email: @user.email)

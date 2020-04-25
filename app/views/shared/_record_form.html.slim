@@ -1,0 +1,20 @@
+= form_with(model: @record, local: true) do |f|
+  = f.label :gym_name
+  = f.text_field :gym_name, value: @gym_name, readonly: true, placeholder: "例）Nobolog 東京店", class: 'form-control'
+  p
+    | 別のジムで記録する場合はこちら⇨
+    = link_to "新規ジム登録", new_gym_path
+  = f.label :grade
+  = f.select :grade, ['10級', '9級', '8級', '7級', '6級', '5級', '4級', '3級', '2級', '1級', '初段', '二段', '三段', '四級', '五段', '六段' ]
+  = f.label :problem_id
+  = f.text_field :problem_id, placeholder: "例）1番、スラブの四角、100°の棒など", class: 'form-control'
+  = f.label :strong_point
+  .custom-control.custom-switch
+    = f.check_box :strong_point, class:"custom-control-input", id:"customSwitch1"
+    = f.label :strong_point, "1度目のトライでクリアした場合にチェック", class:"custom-control-label", for:"customSwitch1"
+  span.picture
+    = f.label :picture
+    span.optional
+      | 任意
+    = f.file_field :picture
+  = f.submit "登録", class: "btn btn-primary"
