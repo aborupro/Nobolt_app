@@ -2,15 +2,15 @@ require 'rails_helper'
 
 RSpec.describe "Records", type: :system do
   include ApplicationHelper
-  let!(:user) { FactoryBot.create(:user, :with_microposts) }
-  let!(:gym_1) { FactoryBot.create(:gym, :prefecture_kanagawa) }
-  let!(:gym_2) { FactoryBot.create(:gym, :prefecture_kanagawa) }
+  let!(:user) { FactoryBot.create(:user, :with_records) }
+  let!(:gym_1) { FactoryBot.create(:gym) }
+  let!(:gym_2) { FactoryBot.create(:gym) }
 
   describe "record" do
     it "registers a valid gym" do
       system_log_in_as(user)
       click_link "記録する"
-      expect(page).to have_current_path "/records"
+      expect(page).to have_current_path "/records/new"
       expect(page).to have_title full_title("記録する")
       expect {
         # 新規ジム登録ページに遷移
@@ -27,23 +27,19 @@ RSpec.describe "Records", type: :system do
         end
         expect(page).to have_title full_title("新規ジム登録")
         @gym_name = find_by_id('gym_name').value
-        @gym_prefecture = find_by_id('gym_prefecture').value
         # 一番はじめにヒットした大阪のジムを登録
         click_button 'ジム登録'
       }.to change(Gym, :count).by(1)
       expect(page).to have_content 'を保存しました'
-      expect(page).to have_select('record_gym_name', selected: @gym_name)
-      expect(page).to have_select('prefecture_key', selected: @gym_prefecture)
+      expect(page).to have_field 'ジム名', with: @gym_name
     end
 
-    it "registers a valid record" do
+    it "registers a valid record at the gym user recorded last time" do
       system_log_in_as(user)
       click_link "記録する"
-      expect(page).to have_current_path "/records"
+      expect(page).to have_current_path "/records/new"
       expect(page).to have_title full_title("記録する")
       expect {
-        select gym_2.prefecture, from: 'ジム検索'
-        select gym_2.name, from: 'ジム名'
         select '3級', from: '級'
         fill_in '課題の種類（番号、形、色など課題を特定できる情報）', with: '100°四角'
         check '1度目のトライでクリアした場合にチェック'
@@ -51,8 +47,7 @@ RSpec.describe "Records", type: :system do
       }.to change(Record, :count).by(1)
       expect(page).to have_content '記録を保存しました'
       # 登録したジム内容を再度確認できる
-      expect(page).to have_select('record_gym_name', selected: gym_2.name)
-      expect(page).to have_select('prefecture_key', selected: gym_2.prefecture)
+      expect(page).to have_field 'ジム名', with: Gym.find(Record.find_by(user_id: user.id).gym_id).name
     end
   end
 end
