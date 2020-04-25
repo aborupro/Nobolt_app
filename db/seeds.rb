@@ -52,7 +52,7 @@ gyms["results"].each do |gym|
 
   Gym.create!(
     name:  gym['name'],
-    prefecture: @seed_gym_prefecture,
+    prefecture_code: (JpPrefecture::Prefecture.find name: @seed_gym_prefecture).code,
     address: gym['formatted_address'],
     url: "https://nobolog.com",
     business_hours: "9:00-22:00",

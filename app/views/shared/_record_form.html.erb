@@ -1,5 +1,4 @@
 <%= form_with(model: @record, local: true) do |f| %>
-  <%= @tt%>
   
   <%= f.label :gym_name %>
   <%= f.text_field :gym_name, value: @gym_name, readonly: true, placeholder: "例）Nobolog 東京店", class: 'form-control' %>

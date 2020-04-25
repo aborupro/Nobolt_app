@@ -51,12 +51,13 @@ class GymsController < ApplicationController
 
   def create
     @gym = Gym.new(gym_params)
+    # @gym.prefecture_code = (JpPrefecture::Prefecture.find name: @gym.prefecture).code
     if @gym.save
-      flash[:info] = "#{@gym.name} を保存しました"
-      @selected_prefecture = @gym.prefecture
+      flash.now[:info] = "#{@gym.name} を保存しました"
+      @selected_prefecture = (JpPrefecture::Prefecture.find @gym.prefecture_code).name
       @selected_gym_name = @gym.name
 
-      gyms = Gym.where(prefecture: @selected_prefecture)
+      gyms = Gym.where(prefecture_code: @gym.prefecture_code)
       @gym_name = []
       gyms.each do |gym|
         @gym_name.push(gym.name)
@@ -86,7 +87,7 @@ class GymsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gym_params
-      params.require(:gym).permit(:name, :prefecture, :address, :picture, :url, :business_hours, :price)
+      params.require(:gym).permit(:name, :prefecture_code, :address, :picture, :url, :business_hours, :price)
     end
 
 end

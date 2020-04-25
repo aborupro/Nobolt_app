@@ -2,6 +2,8 @@
   <%= f.label :name %>
   <%= f.text_field :name, value: @gym_name, readonly: true, placeholder: "例）Nobolog 東京店", class: 'form-control' %>
 
+  <%= f.hidden_field :prefecture_code, value: (JpPrefecture::Prefecture.find name: @gym_prefecture).code, class: 'form-control' %>
+
   <%= f.label :prefecture %>
   <%= f.text_field :prefecture, value: @gym_prefecture, readonly: true, placeholder: "例）東京都", class: 'form-control' %>
 
