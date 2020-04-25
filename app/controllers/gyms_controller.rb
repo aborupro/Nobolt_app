@@ -1,8 +1,5 @@
 class GymsController < ApplicationController
   def index
-    # if params[:name]
-    #   @gyms = Gym.all
-    # end
     @gyms = Gym.paginate(page: params[:page])
   end
 
