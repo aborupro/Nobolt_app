@@ -27,7 +27,7 @@ RSpec.describe "UsersProfile", type: :system do
         expect(user.records.length).to eq 100
         expect(current_path).to eq '/users/1'
         expect(page).to have_title full_title("マイページ")
-        expect(page).to have_selector 'h1', text: user.name
+        expect(page).to have_selector '.user_info', text: user.name
         expect(page).to have_selector 'h1 img'
         expect(page).to have_content user.records.count.to_s
         expect(page).to have_css '.pagination', count: 1
