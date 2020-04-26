@@ -4,8 +4,11 @@ class Gym < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   mount_uploader :picture, PictureUploader
   validate  :picture_size
-  validates :prefecture_code, presence: true
+  validates :url, format: /\A#{URI::regexp(%w(http https))}\z/, allow_blank: true
+  validate :business_hours
   validates :address, presence: true
+  validate :price
+  validates :prefecture_code, presence: true
 
   include JpPrefecture
   jp_prefecture :prefecture_code

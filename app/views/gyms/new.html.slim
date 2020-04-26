@@ -29,6 +29,9 @@
                   = button_to "選択", {controller: 'gyms', action: 'choose'}, {method: :post, params: {gym_name: gym_search["name"], gym_address: gym_search["formatted_address"]}}
     - else
       = render 'shared/new_gym_form'
+      p
+        | 別のジムを登録する場合はこちら⇨
+        = link_to "新規ジム登録", new_gym_path
     p
       | 記録するページに戻りたい場合はこちら⇨
       = link_to "記録する", new_record_path

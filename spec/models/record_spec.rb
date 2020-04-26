@@ -19,31 +19,31 @@ RSpec.describe Record, type: :model do
     end
 
     context "cannot save" do
-      it "is invalid with blank grade" do
+      it "is invalid without a grade" do
         record.grade = nil
         record.valid?
         expect(record.errors[:grade]).to include('を入力してください')
       end
   
-      it "is invalid with blank strong_point" do
+      it "is invalid without a strong_point" do
         record.strong_point = nil
         record.valid?
         expect(record.errors[:strong_point]).to include('を入力してください')
       end
     
-      it "is invalid with blank problem_id" do
+      it "is invalid without a problem_id" do
         record.problem_id = nil
         record.valid?
         expect(record.errors[:problem_id]).to include('を入力してください')
       end
     
-      it "is invalid with blank user_id" do
+      it "is invalid without a user_id" do
         record.user_id = nil
         record.valid?
         expect(record.errors[:user_id]).to include('を入力してください')
       end
     
-      it "is invalid with blank gym_id" do
+      it "is invalid without a gym_id" do
         record.gym_id = nil
         record.valid?
         expect(record.errors[:gym_id]).to include('を入力してください')

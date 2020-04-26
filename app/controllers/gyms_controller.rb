@@ -2,7 +2,6 @@ class GymsController < ApplicationController
   def index
     @q = Gym.ransack(params[:q])
     @gyms = @q.result.page(params[:page]).order('name ASC')
-    # @gyms = Gym.paginate(page: params[:page])
   end
 
   def show
@@ -50,7 +49,6 @@ class GymsController < ApplicationController
 
   def create
     @gym = Gym.new(gym_params)
-    # @gym.prefecture_code = (JpPrefecture::Prefecture.find name: @gym.prefecture).code
     if @gym.save
       flash.now[:info] = "#{@gym.name} を保存しました"
       @selected_prefecture = (JpPrefecture::Prefecture.find @gym.prefecture_code).name
@@ -66,6 +64,9 @@ class GymsController < ApplicationController
 
       render("records/new")
     else
+      @gym_name = params[:gym][:name]
+      @gym_address = params[:gym][:address]
+      @gym_prefecture = (JpPrefecture::Prefecture.find params[:gym][:prefecture_code]).name
       render 'new'
     end
   end
