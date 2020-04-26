@@ -44,6 +44,15 @@ RSpec.describe "Records", type: :request do
         follow_redirect!
         expect(request.fullpath).to eq '/'
       end
+
+      it "destroys own record" do
+        log_in_as(user)
+        expect{
+          delete record_path(record)
+        }.to change(Record, :count).by(-1)
+        follow_redirect!
+        expect(request.fullpath).to eq '/'
+      end
     end
   end
 end

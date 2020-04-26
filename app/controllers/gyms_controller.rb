@@ -1,6 +1,6 @@
 class GymsController < ApplicationController
-  before_action :logged_in_user, only: :create
-  before_action :admin_user,     only: :destroy
+  before_action :logged_in_user, only: [:index, :create, :destroy]
+  before_action :admin_user, only: :destroy
   def index
     @q = Gym.ransack(params[:q])
     @gyms = @q.result.page(params[:page]).order('name ASC')
@@ -75,10 +75,8 @@ class GymsController < ApplicationController
 
   def destroy
     @gym.destroy
-
-    respond_to do |format|
-      format.html { redirect_to new_gym_path, notice: "#{@gym.name} を削除しました" }
-    end
+    flash[:success] = "ジムを削除しました"
+    redirect_to request.referrer || root_url
   end
 
   private
@@ -90,6 +88,12 @@ class GymsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def gym_params
       params.require(:gym).permit(:name, :prefecture_code, :address, :picture, :url, :business_hours, :price)
+    end
+
+    # 管理者かどうか確認
+    def admin_user
+      @gym = Gym.find(params[:id])
+      redirect_to(gyms_url) unless current_user.admin?
     end
 
 end
