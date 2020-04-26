@@ -26,7 +26,7 @@ class RecordsController < ApplicationController
 
   def destroy
     @record.destroy
-    flash[:success] = "記録を削除しました。"
+    flash[:success] = "記録を削除しました"
     redirect_to request.referrer || root_url
   end
 
@@ -51,7 +51,8 @@ class RecordsController < ApplicationController
         latest_record = Record.find_by(user_id: current_user.id)
         @gym_name = Gym.find(latest_record.gym_id).name
       else
-        @gym_name = []
+        flash[:info] = "まずは、ジムを選択してください"
+        redirect_to gyms_path
       end
     end
   end
