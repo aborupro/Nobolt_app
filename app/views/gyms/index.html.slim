@@ -1,6 +1,7 @@
 - provide(:title, 'ジム選択')
 h1
   | ジム選択
+= render 'select'
 = will_paginate @gyms
 ul.gym_list_box
   = render @gyms

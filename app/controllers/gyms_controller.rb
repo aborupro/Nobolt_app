@@ -1,6 +1,8 @@
 class GymsController < ApplicationController
   def index
-    @gyms = Gym.paginate(page: params[:page])
+    @q = Gym.ransack(params[:q])
+    @gyms = @q.result.page(params[:page]).order('name ASC')
+    # @gyms = Gym.paginate(page: params[:page])
   end
 
   def show
