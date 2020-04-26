@@ -9,9 +9,9 @@ RSpec.describe "Records", type: :system do
   describe "record" do
     it "registers a valid gym" do
       system_log_in_as(user)
-      click_link "記録する"
-      expect(page).to have_current_path "/records/new"
-      expect(page).to have_title full_title("記録する")
+      click_link "ジム選択"
+      expect(page).to have_current_path "/gyms"
+      expect(page).to have_title full_title("ジム選択")
       expect {
         # 新規ジム登録ページに遷移
         click_on '新規ジム登録'

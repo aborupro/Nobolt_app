@@ -2,6 +2,9 @@
 h1
   | ジム選択
 = render 'select'
+p
+  | 新しくジムを登録する場合はこちら⇨
+  = link_to "新規ジム登録", new_gym_path
 = will_paginate @gyms
 ul.gym_list_box
   = render @gyms
