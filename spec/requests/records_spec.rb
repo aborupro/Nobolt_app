@@ -36,7 +36,7 @@ RSpec.describe "Records", type: :request do
         expect(request.fullpath).to eq '/login'
       end
   
-      it "does not destroy a record for wrong record" do
+      it "does not destroy other user's record" do
         log_in_as(user)
         expect{
           delete record_path(other_record)

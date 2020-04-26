@@ -1,4 +1,6 @@
 class GymsController < ApplicationController
+  before_action :logged_in_user, only: :create
+  before_action :admin_user,     only: :destroy
   def index
     @q = Gym.ransack(params[:q])
     @gyms = @q.result.page(params[:page]).order('name ASC')
