@@ -4,6 +4,7 @@ RSpec.describe "UsersEdits", type: :request do
   
   let!(:user) { FactoryBot.create(:user) }
   let!(:other_user) { FactoryBot.create(:user) }
+  let!(:admin_user) { FactoryBot.create(:user, admin: true) }
 
   def patch_invalid_information
     patch user_path(user), params: { 
@@ -29,7 +30,7 @@ RSpec.describe "UsersEdits", type: :request do
 
   describe "GET /users/:id/edit" do
 
-    context "successful & unsuccessful edit" do
+    context "edit" do
       it "is unsuccessful edit" do
         log_in_as(user)
         get edit_user_path(user)
@@ -62,25 +63,10 @@ RSpec.describe "UsersEdits", type: :request do
         expect(user.name).to eq "Foo Bar"
         expect(user.email).to eq "foo@bar.com"
       end
-    end
-    
-    context "redirect" do
+
       it "edit when not logged in" do
         get edit_user_path(user)
         expect(flash[:danger]).to_not be_empty
-        follow_redirect!
-        expect(request.fullpath).to eq login_path
-      end
-
-      it "update when not logged in" do
-        patch_valid_information
-        expect(flash[:danger]).to_not be_empty
-        follow_redirect!
-        expect(request.fullpath).to eq login_path
-      end
-
-      it "index when not logged in" do
-        get users_path
         follow_redirect!
         expect(request.fullpath).to eq login_path
       end
@@ -93,6 +79,28 @@ RSpec.describe "UsersEdits", type: :request do
         expect(request.fullpath).to eq root_path
       end
 
+      it "doesn't allow the admin attribute to be edited via the web" do
+        log_in_as(other_user)
+        expect(other_user.admin?).to be_falsey
+        patch user_path(other_user), params: { 
+          user: { 
+            password: other_user.password,
+            password_confirmation: other_user.password,
+            admin: true
+          }
+        }
+        expect(other_user.reload.admin?).to be_falsey
+      end
+    end
+    
+    context "update" do
+      it "update when not logged in" do
+        patch_valid_information
+        expect(flash[:danger]).to_not be_empty
+        follow_redirect!
+        expect(request.fullpath).to eq login_path
+      end
+
       it "update when not logged in as wrong user" do
         log_in_as(other_user)
         patch_valid_information
@@ -100,7 +108,17 @@ RSpec.describe "UsersEdits", type: :request do
         follow_redirect!
         expect(request.fullpath).to eq root_path
       end
-      
+    end
+
+    context "index" do
+      it "index when not logged in" do
+        get users_path
+        follow_redirect!
+        expect(request.fullpath).to eq login_path
+      end
+    end
+
+    context "destroy" do
       it "destroy when not logged in" do
         expect {
           delete user_path(user)
@@ -117,19 +135,15 @@ RSpec.describe "UsersEdits", type: :request do
         follow_redirect!
         expect(request.fullpath).to eq root_path
       end
-    end
-    
-    it "doesn't allow the admin attribute to be edited via the web" do
-      log_in_as(other_user)
-      expect(other_user.admin?).to be_falsey
-      patch user_path(other_user), params: { 
-        user: { 
-          password: other_user.password,
-          password_confirmation: other_user.password,
-          admin: true
-        }
-      }
-      expect(other_user.reload.admin?).to be_falsey
+
+      it "destroy when logged in as an admin-user" do
+        log_in_as(admin_user)
+        expect {
+          delete user_path(user)
+        }.to change(User, :count).by(-1)
+        follow_redirect!
+        expect(request.fullpath).to eq users_path
+      end
     end
   end
 end
