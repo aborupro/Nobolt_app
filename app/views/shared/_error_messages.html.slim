@@ -5,7 +5,7 @@
       | 個のエラーがあります 
     ul
 
-    div[clas="text-danger"]
+    .text-danger
       - object.errors.full_messages.each do |msg|
         li
           = msg
