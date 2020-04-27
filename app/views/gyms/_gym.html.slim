@@ -1,5 +1,6 @@
 .gym_list
   = link_to controller: 'records', action: 'new', selection_gym_name: gym.name do
+    .gym_panel
     = image_tag gym.picture.url if gym.picture?
     = gym.name
     = (JpPrefecture::Prefecture.find gym.prefecture_code).name

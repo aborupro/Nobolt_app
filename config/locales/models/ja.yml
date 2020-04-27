@@ -16,7 +16,7 @@ ja:
         user_id: ユーザID
         content: 内容
       gym:
-        name: ジム
+        name: ジム名
         prefecture: 都道府県
         picture: 画像
         url: ジムのURL
