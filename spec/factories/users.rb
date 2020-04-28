@@ -14,5 +14,10 @@ FactoryBot.define do
     trait :with_records do
       after(:create) { |user| create_list(:record, 100, user: user) }
     end
+
+    trait :with_5_records do
+      after(:create) { |user| create_list(:record, 5, user: user) }
+    end
+
   end
 end
