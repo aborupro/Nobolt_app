@@ -1,0 +1,24 @@
+- provide(:title, 'ランキング')
+/ = @ranks_table
+table.table.table-hover.table-bordered
+    thead.thead-light
+      tr.text-center
+        th = "順位"
+        th = "ユーザー名"
+        th = "スコア"
+    tbody
+      - @ranks.each_with_index do |rank,i|
+        tr
+          td.text-center
+            / １位〜３位の場合は、順位に王冠を表示する
+            / - if rank.rank_number != 1 && rank.rank_number != 2 && rank.rank_number != 3
+            = rank.rank_number
+            / = rank_image(rank.rank_number)
+          .form-inline
+            - user = User.find(rank.user.id)
+            td.text-center
+               = link_to(user_path(user)) do
+                / = image_tag avatar_url(user).to_s
+                = user.name
+          td.text-right
+            = rank.score.to_s(:delimited)

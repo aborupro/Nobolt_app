@@ -1,4 +1,5 @@
 require "json"
+
 User.create!(name:  "壁崎 登る",
   email: "example@nobolog.com",
   password:              "foobar",
@@ -20,6 +21,7 @@ User.create!(name:  name,
 end
 
 users_6 = User.order(:created_at).take(6)
+users_100 = User.take(100)
 50.times do
   content = "#{rand(1..9)}級をクリアした！！"
   users_6.each { |user| user.microposts.create!(content: content) }
@@ -53,6 +55,7 @@ end
 
 f = File.open("app/assets/data/bouldering_gyms.json")
 gyms = JSON.load(f)
+
 gyms["results"].each do |gym|
 
   regions.each do |region|
@@ -69,12 +72,12 @@ gyms["results"].each do |gym|
     price: "1800円"
   )
 
-  record_gym = Gym.find_by(name: gym['name'])
+  @record_gym = Gym.find_by(name: gym['name'])
 
-  10.times do
+  5.times do
     users_6.each do |user|
       user.records.create!(
-        gym_id: record_gym.id,
+        gym_id: @record_gym.id,
         grade_id: rand(1..16),
         challenge: "#{rand(1..13)}番",
         strong_point: "#{rand(0..1)}"
@@ -83,3 +86,12 @@ gyms["results"].each do |gym|
   end
 end
 f.close
+
+users_100.each do |user|
+  user.records.create!(
+    gym_id: @record_gym.id,
+    grade_id: rand(1..16),
+    challenge: "#{rand(1..13)}番",
+    strong_point: "#{rand(0..1)}"
+  )
+end
