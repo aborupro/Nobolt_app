@@ -6,8 +6,8 @@
     = link_to "ジム選択", gyms_path
   = f.label :grade
   = f.select :grade, ['10級', '9級', '8級', '7級', '6級', '5級', '4級', '3級', '2級', '1級', '初段', '二段', '三段', '四級', '五段', '六段' ]
-  = f.label :problem_id
-  = f.text_field :problem_id, placeholder: "例）1番、スラブの四角、100°の棒など", class: 'form-control'
+  = f.label :challenge
+  = f.text_field :challenge, placeholder: "例）1番、スラブの四角、100°の棒など", class: 'form-control'
   = f.label :strong_point
   .custom-control.custom-switch
     = f.check_box :strong_point, class:"custom-control-input", id:"customSwitch1"

@@ -41,6 +41,16 @@ regions = ["北海道","青森県","岩手県","宮城県","秋田県","山形�
   "熊本県","大分県","宮崎県","鹿児島県","沖縄県"
 ]
 
+grades = ['10級', '9級', '8級', '7級', '6級', '5級', '4級', '3級', '2級', '1級',
+  '初段', '二段', '三段', '四級', '五段', '六段' 
+]
+
+grades.each do |grade|
+  Grade.create!(
+    name: grade
+  )
+end
+
 f = File.open("app/assets/data/bouldering_gyms.json")
 gyms = JSON.load(f)
 gyms["results"].each do |gym|
@@ -65,8 +75,8 @@ gyms["results"].each do |gym|
     users_6.each do |user|
       user.records.create!(
         gym_id: record_gym.id,
-        grade: "#{rand(1..10)}級",
-        problem_id: "#{rand(1..13)}番",
+        grade_id: rand(1..16),
+        challenge: "#{rand(1..13)}番",
         strong_point: "#{rand(0..1)}"
       )
     end

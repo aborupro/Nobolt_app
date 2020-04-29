@@ -19,6 +19,10 @@ class RecordsController < ApplicationController
       gym_name = Gym.find_by(name: params[:record]["gym_name"])
       @record.gym_id = gym_name.id
     end
+    if params[:record]["grade"].present?
+      grade = Grade.find_by(name: params[:record]["grade"])
+      @record.grade_id = grade.id
+    end
     flash.now[:info] = "記録を保存しました" if @record.save
     set_value
     render 'new'
@@ -40,7 +44,7 @@ class RecordsController < ApplicationController
 
   private
   def record_params
-    params.require(:record).permit(:grade, :problem_id, :strong_point, :picture)
+    params.require(:record).permit(:challenge, :strong_point, :picture)
   end
 
   def set_value

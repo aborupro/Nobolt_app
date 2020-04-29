@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :grade do
-    name "MyString"
+    sequence(:name) { |n| "grade#{n}" }
   end
 end

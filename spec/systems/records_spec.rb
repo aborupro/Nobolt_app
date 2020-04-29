@@ -7,6 +7,7 @@ RSpec.describe "Records", type: :system do
   let(:no_record_user) { FactoryBot.create(:user) }
   let!(:gym_1) { FactoryBot.create(:gym) }
   let!(:gym_2) { FactoryBot.create(:gym) }
+  let!(:grade) { FactoryBot.create(:grade, name: "3級") }
 
   describe "record" do
     it "posts a valid record at the gym recorded last time" do

@@ -12,17 +12,17 @@ RSpec.describe Record, type: :model do
         expect(record).to be_valid
       end
 
-      it "is valid with a problem_id that has less than 50 characters" do
-        record.problem_id = "a" * 50
+      it "is valid with a challenge that has less than 50 characters" do
+        record.challenge = "a" * 50
         expect(record).to be_valid
       end
     end
 
     context "cannot save" do
-      it "is invalid without a grade" do
-        record.grade = nil
+      it "is invalid without a grade_id" do
+        record.grade_id = nil
         record.valid?
-        expect(record.errors[:grade]).to include('を入力してください')
+        expect(record.errors[:grade_id]).to include('を入力してください')
       end
   
       it "is invalid without a strong_point" do
@@ -31,10 +31,10 @@ RSpec.describe Record, type: :model do
         expect(record.errors[:strong_point]).to include('を入力してください')
       end
     
-      it "is invalid without a problem_id" do
-        record.problem_id = nil
+      it "is invalid without a challenge" do
+        record.challenge = nil
         record.valid?
-        expect(record.errors[:problem_id]).to include('を入力してください')
+        expect(record.errors[:challenge]).to include('を入力してください')
       end
     
       it "is invalid without a user_id" do
@@ -49,10 +49,10 @@ RSpec.describe Record, type: :model do
         expect(record.errors[:gym_id]).to include('を入力してください')
       end
   
-      it "is invalid with a problem_id that has more than 51 characters" do
-        record.problem_id = "a" * 51
+      it "is invalid with a challenge that has more than 51 characters" do
+        record.challenge = "a" * 51
         record.valid?
-        expect(record.errors[:problem_id]).to include('は50文字以内で入力してください')
+        expect(record.errors[:challenge]).to include('は50文字以内で入力してください')
       end
 
       it "is invalid with a picture over 5MB" do

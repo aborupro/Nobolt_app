@@ -4,8 +4,8 @@ span.user
   = link_to record.user.name, record.user
 .content
   = record.gym.name
-  = record.grade
-  = record.problem_id
+  = record.grade.name
+  = record.challenge
   = "good" if record.strong_point == "1"
   = image_tag record.picture.url if record.picture?
 span.timestamp

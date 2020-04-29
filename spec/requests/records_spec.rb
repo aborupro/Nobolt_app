@@ -4,21 +4,22 @@ RSpec.describe "Records", type: :request do
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:user) }
 
+  let!(:gym) { FactoryBot.create(:gym) }
+  let!(:grade) { FactoryBot.create(:grade) }
+
   let!(:record) { FactoryBot.create(:record, user: user) }
   let!(:other_record) { FactoryBot.create(:record, user: other_user) }
-
-  let!(:gym) { FactoryBot.create(:gym) }
 
   describe "GET /records" do
     context "create" do
       it "does not create a record when not logged in" do
         expect{
           post records_path, params: {record: { 
-                                        grade: "grade 1",
+                                        grade_id: grade.id,
                                         strong_point: "MyString",
-                                        problem_id: "problem_id 1",
+                                        challenge: "challenge 1",
                                         picture: "MyString",
-                                        gym_name: Gym.first.name
+                                        gym_name: gym.name
                                       } 
           }
         }.to_not change(Record, :count)

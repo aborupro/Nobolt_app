@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :record do
-    sequence(:grade) { |n| "grade #{n}" }
     strong_point { "MyString" }
-    sequence(:problem_id) { |n| "problem_id #{n}" }
+    sequence(:challenge) { |n| "challenge #{n}" }
     picture { "MyString" }
     association :user
     association :gym
+    association :grade
 
     trait :with_picture_under_5MB do
       picture { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/factories/boulder1.jpg'), 'image/jpg') }
