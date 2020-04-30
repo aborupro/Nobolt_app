@@ -1,5 +1,8 @@
 require "json"
 
+time_from = Time.parse('2018-1-1')
+time_to   = Time.current
+
 User.create!(name:  "壁崎 登る",
   email: "example@nobolog.com",
   password:              "foobar",
@@ -80,7 +83,8 @@ gyms["results"].each do |gym|
         gym_id: @record_gym.id,
         grade_id: rand(1..16),
         challenge: "#{rand(1..13)}番",
-        strong_point: "#{rand(0..1)}"
+        strong_point: "#{rand(0..1)}",
+        created_at: Random.rand(time_from .. time_to)
       )
     end
   end
@@ -92,6 +96,7 @@ users_100.each do |user|
     gym_id: @record_gym.id,
     grade_id: rand(1..16),
     challenge: "#{rand(1..13)}番",
-    strong_point: "#{rand(0..1)}"
+    strong_point: "#{rand(0..1)}",
+    created_at: Random.rand(time_from .. time_to)
   )
 end

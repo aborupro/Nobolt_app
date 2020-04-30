@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   post   '/gyms_choose',    to: 'gyms#choose'
   get    '/records_search', to: 'records#new'
   post   '/records_search', to: 'records#search'
-  get    '/rankings'      , to: 'rankings#monthly'
+  get    '/rankings'      , to: 'rankings#rank'
+  post   '/rankings'      , to: 'rankings#select'
   resources :users do
     member do
       get :following, :followers
