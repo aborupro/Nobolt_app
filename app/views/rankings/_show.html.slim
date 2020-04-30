@@ -3,10 +3,11 @@
     - if @my_rank == 0
        = 'あなたはこの期間、このジムで実績がありません'
     - else
-      = "あなたの順位は #{@ranks.size}人中"
+      = "あなたの順位は #{@total_user}人中"
       strong
         = " #{@my_rank}位 "
       = "です"
+= will_paginate @ranks
 table.table.table-hover.table-bordered
     thead.thead-light
       tr.text-center
@@ -29,3 +30,4 @@ table.table.table-hover.table-bordered
                 = user.name
           td.text-right
             = rank.score.to_s(:delimited)
+= will_paginate @ranks
