@@ -2,4 +2,6 @@
   = f.label :month, '集計期間'
   = f.select :month,
     @month_choice, selected: @selected_month
-  = f.submit "選択", class: "btn btn-primary"
+  = f.label :gym, 'ジム'
+  = f.select :gym,
+    @gym_choice, selected: @selected_gym
