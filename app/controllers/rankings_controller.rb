@@ -2,15 +2,7 @@ class RankingsController < ApplicationController
   before_action :logged_in_user
 
   def rank
-    set_value  
-  end
-
-  def select
     set_value
-    respond_to do |format|
-      format.html { render 'rank' }
-      format.js
-    end
   end
 
   private
@@ -27,9 +19,11 @@ class RankingsController < ApplicationController
     if params[:month].present?
       if params[:month] != all_term
         @target_month = Date.strptime(params[:month], '%Y年%m月').all_month
+
       else
         @target_month = Record.last[:created_at].to_date.beginning_of_month..Date.today
       end
+      @selected_month = params[:month]
     else
       @target_month = Time.current.all_month
       @selected_month = Time.current.strftime("%Y年%m月")
@@ -37,6 +31,7 @@ class RankingsController < ApplicationController
 
     if params[:gym].present? && params[:gym] != all_gym
       @target_gym = Gym.find_by(name: params[:gym]).id
+      @selected_gym = params[:gym]
     else
       @target_gym = Gym.pluck("id")
       @selected_gym = all_gym
@@ -49,6 +44,7 @@ class RankingsController < ApplicationController
                    .where(created_at: @target_month).where(gym_id: @target_gym)
                    .group("user_id")
                    .order("score DESC")
+    
     @my_rank = 0
     @ranks.each do |rank|
       if rank.user_id == current_user.id
@@ -56,5 +52,7 @@ class RankingsController < ApplicationController
         break
       end
     end
+    @total_user = @ranks.size
+    @ranks = @ranks.all.page(params[:page])
   end
 end

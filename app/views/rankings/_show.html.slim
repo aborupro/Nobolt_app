@@ -1,4 +1,8 @@
 .text-center
+    | 集計期間：#{@selected_month}
+    .br
+    |　ジム：#{@selected_gym}
+    .br
     / もし期間中に自分の実績があれば、順位を表示する
     - if @my_rank == 0
        = 'あなたはこの期間、このジムで実績がありません'
