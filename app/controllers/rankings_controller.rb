@@ -1,4 +1,6 @@
 class RankingsController < ApplicationController
+  before_action :logged_in_user
+
   def rank
     set_value  
   end
@@ -15,7 +17,7 @@ class RankingsController < ApplicationController
 
   def set_value
     all_term = "全期間"
-    all_gym = "すべて"
+    all_gym = "すべてのジム"
 
     @month_choice = [all_term] + (Record.last[:created_at].to_date.beginning_of_month..Date.today)
     .select{|date| date.day == 1 }.map { |item| item.strftime("%Y年%m月")}.reverse
@@ -23,7 +25,7 @@ class RankingsController < ApplicationController
     @gym_choice = [all_gym] + Gym.pluck("name")
 
     if params[:month].present?
-      if params[:month] != "全期間"
+      if params[:month] != all_term
         @target_month = Date.strptime(params[:month], '%Y年%m月').all_month
       else
         @target_month = Record.last[:created_at].to_date.beginning_of_month..Date.today
@@ -33,7 +35,7 @@ class RankingsController < ApplicationController
       @selected_month = Time.current.strftime("%Y年%m月")
     end
 
-    if params[:gym].present? && params[:gym] != "すべて"
+    if params[:gym].present? && params[:gym] != all_gym
       @target_gym = Gym.find_by(name: params[:gym]).id
     else
       @target_gym = Gym.pluck("id")
@@ -46,6 +48,13 @@ class RankingsController < ApplicationController
                            ,RANK () OVER (ORDER BY (sum(grade_id) + sum(strong_point)) * 10 DESC) as rank_number")
                    .where(created_at: @target_month).where(gym_id: @target_gym)
                    .group("user_id")
-                   .order("score DESC") 
+                   .order("score DESC")
+    @my_rank = 0
+    @ranks.each do |rank|
+      if rank.user_id == current_user.id
+        @my_rank = rank.rank_number
+        break
+      end
+    end
   end
 end

@@ -1,3 +1,12 @@
+.text-center
+    / もし期間中に自分の実績があれば、順位を表示する
+    - if @my_rank == 0
+       = 'あなたはこの期間、このジムで実績がありません'
+    - else
+      = "あなたの順位は #{@ranks.size}人中"
+      strong
+        = " #{@my_rank}位 "
+      = "です"
 table.table.table-hover.table-bordered
     thead.thead-light
       tr.text-center
