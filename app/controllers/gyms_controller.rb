@@ -1,8 +1,9 @@
 class GymsController < ApplicationController
+  before_action :logged_in_user, only: [:index, :create, :destroy]
+  before_action :admin_user, only: :destroy
   def index
-    if params[:name]
-      @gyms = Gym.all
-    end
+    @q = Gym.ransack(params[:q])
+    @gyms = @q.result.page(params[:page]).order('name ASC')
   end
 
   def show
@@ -51,11 +52,11 @@ class GymsController < ApplicationController
   def create
     @gym = Gym.new(gym_params)
     if @gym.save
-      flash[:info] = "#{@gym.name} を保存しました"
-      @selected_prefecture = @gym.prefecture
+      flash.now[:info] = "#{@gym.name} を保存しました"
+      @selected_prefecture = (JpPrefecture::Prefecture.find @gym.prefecture_code).name
       @selected_gym_name = @gym.name
 
-      gyms = Gym.where(prefecture: @selected_prefecture)
+      gyms = Gym.where(prefecture_code: @gym.prefecture_code)
       @gym_name = []
       gyms.each do |gym|
         @gym_name.push(gym.name)
@@ -65,17 +66,17 @@ class GymsController < ApplicationController
 
       render("records/new")
     else
-      flash[:danger] = "#{@gym.name} を保存できませんでした"
+      @gym_name = params[:gym][:name]
+      @gym_address = params[:gym][:address]
+      @gym_prefecture = (JpPrefecture::Prefecture.find params[:gym][:prefecture_code]).name
       render 'new'
     end
   end
 
   def destroy
     @gym.destroy
-
-    respond_to do |format|
-      format.html { redirect_to place_index_path, notice: "#{@place.name} の位置情報を削除しました" }
-    end
+    flash[:success] = "ジムを削除しました"
+    redirect_to request.referrer || root_url
   end
 
   private
@@ -86,7 +87,13 @@ class GymsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gym_params
-      params.require(:gym).permit(:name, :prefecture, :address, :picture, :url, :business_hours, :price)
+      params.require(:gym).permit(:name, :prefecture_code, :address, :picture, :url, :business_hours, :price)
+    end
+
+    # 管理者かどうか確認
+    def admin_user
+      @gym = Gym.find(params[:id])
+      redirect_to(gyms_url) unless current_user.admin?
     end
 
 end

@@ -1,4 +1,8 @@
 require "json"
+
+time_from = Time.parse('2018-1-1')
+time_to   = Time.current
+
 User.create!(name:  "壁崎 登る",
   email: "example@nobolog.com",
   password:              "foobar",
@@ -7,7 +11,7 @@ User.create!(name:  "壁崎 登る",
   activated: true,
   activated_at: Time.zone.now)
 
-99.times do |n|
+149.times do |n|
 name  = Faker::Name.name
 email = "example-#{n+1}@nobolog.com"
 password = "password"
@@ -20,6 +24,7 @@ User.create!(name:  name,
 end
 
 users_6 = User.order(:created_at).take(6)
+users_150 = User.all
 50.times do
   content = "#{rand(1..9)}級をクリアした！！"
   users_6.each { |user| user.microposts.create!(content: content) }
@@ -41,8 +46,19 @@ regions = ["北海道","青森県","岩手県","宮城県","秋田県","山形�
   "熊本県","大分県","宮崎県","鹿児島県","沖縄県"
 ]
 
+grades = ['10級', '9級', '8級', '7級', '6級', '5級', '4級', '3級', '2級', '1級',
+  '初段', '二段', '三段', '四級', '五段', '六段' 
+]
+
+grades.each do |grade|
+  Grade.create!(
+    name: grade
+  )
+end
+
 f = File.open("app/assets/data/bouldering_gyms.json")
 gyms = JSON.load(f)
+
 gyms["results"].each do |gym|
 
   regions.each do |region|
@@ -52,24 +68,35 @@ gyms["results"].each do |gym|
 
   Gym.create!(
     name:  gym['name'],
-    prefecture: @seed_gym_prefecture,
+    prefecture_code: (JpPrefecture::Prefecture.find name: @seed_gym_prefecture).code,
     address: gym['formatted_address'],
     url: "https://nobolog.com",
     business_hours: "9:00-22:00",
     price: "1800円"
   )
 
-  record_gym = Gym.find_by(name: gym['name'])
+  @record_gym = Gym.find_by(name: gym['name'])
 
-  10.times do
+  5.times do
     users_6.each do |user|
       user.records.create!(
-        gym_id: record_gym.id,
-        grade: "#{rand(1..10)}級",
-        problem_id: "#{rand(1..13)}番",
-        strong_point: "#{rand(0..1)}"
+        gym_id: @record_gym.id,
+        grade_id: rand(1..16),
+        challenge: "#{rand(1..13)}番",
+        strong_point: "#{rand(0..1)}",
+        created_at: Random.rand(time_from .. time_to)
       )
     end
   end
 end
 f.close
+
+users_150.each do |user|
+  user.records.create!(
+    gym_id: @record_gym.id,
+    grade_id: rand(1..16),
+    challenge: "#{rand(1..13)}番",
+    strong_point: "#{rand(0..1)}",
+    created_at: Random.rand(time_from .. time_to)
+  )
+end

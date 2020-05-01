@@ -1,15 +1,19 @@
 FactoryBot.define do
   factory :gym do
     sequence(:name) { |n| "Gym_#{n}" }
-    prefecture { "東京都" }
+    prefecture_code { 13 }
     picture { "sample_picture" }
-    url { "MyString" }
+    url { "https://nobolog.com" }
     business_hours { "MyString" }
     address { "MyString" }
     price { "MyString" }
-  end
-  
-  trait :prefecture_kanagawa do
-    prefecture { "神奈川県" }
+
+    trait :with_picture_under_5MB do
+      picture { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/factories/boulder1.jpg'), 'image/jpg') }
+    end
+
+    trait :with_picture_over_5MB do
+      picture { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/factories/over5MB.jpeg'), 'image/jpeg') }
+    end
   end
 end

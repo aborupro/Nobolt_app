@@ -33,10 +33,17 @@ RSpec.describe "Logins", type: :system do
     end
   end
 
-  it "has feed on Home page" do
+  # it "has feed on Home page" do
+  #   visit root_path
+  #   user_1.feed.paginate(page: 1).each do |micropost|
+  #     expect(page).to have_content CGI.escapeHTML(micropost.content)
+  #   end
+  # end
+
+  it "has log_item on Home page" do
     visit root_path
-    user_1.feed.paginate(page: 1).each do |micropost|
-      expect(page).to have_content CGI.escapeHTML(micropost.content)
+    user_1.following_log.paginate(page: 1).each do |following_log_item|
+      expect(page).to have_content CGI.escapeHTML(following_log_item.content)
     end
   end
 end

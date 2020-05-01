@@ -1,0 +1,7 @@
+- provide(:title, 'ユーザ一覧')
+h1
+  | ユーザ一覧
+= will_paginate
+ul.users.user_info
+  = render @users
+= will_paginate

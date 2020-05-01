@@ -1,0 +1,37 @@
+- provide(:title, '新規ジム登録')
+.row
+  .col-md-6.col-md-offset-3.center
+    h1
+      | 新規ジム登録
+    = render 'shared/error_messages', object: @gym
+    - if !@gym_name
+      = form_with(url: gyms_search_path, method: :post, local: true) do |search_f|
+        = search_f.label :search, 'ジム検索'
+        = search_f.text_field :search, value: @keyword, placeholder: "例）Nobolog", class: "form-control"
+        = search_f.submit '検索'
+      - if @gyms
+        table
+          thead
+            tr
+              th
+                | ジム名
+              th
+                | 住所
+              th[colspan="1"]
+          tbody
+            - @gyms.each do |gym_search|
+              tr
+                td
+                  = gym_search["name"]
+                td
+                  = gym_search["formatted_address"]
+                td
+                  = button_to "選択", {controller: 'gyms', action: 'choose'}, {method: :post, params: {gym_name: gym_search["name"], gym_address: gym_search["formatted_address"]}}
+    - else
+      = render 'shared/new_gym_form'
+      p
+        | 別のジムを登録する場合はこちら⇨
+        = link_to "新規ジム登録", new_gym_path
+    p
+      | 記録するページに戻りたい場合はこちら⇨
+      = link_to "記録する", new_record_path

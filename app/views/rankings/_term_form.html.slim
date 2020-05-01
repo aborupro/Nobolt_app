@@ -1,0 +1,8 @@
+= form_with(url: rankings_path, method: :get, local: true) do |f|
+  = f.label :month, '集計期間'
+  = f.select :month,
+    @month_choice, selected: @selected_month
+  = f.label :gym, 'ジム'
+  = f.select :gym,
+    @gym_choice, selected: @selected_gym
+  = f.submit "集計", class: "btn btn-primary"

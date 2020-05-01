@@ -1,0 +1,8 @@
+- provide(:title, '記録する')
+.row
+  .col-md-6.col-md-offset-3.center
+    h1
+      | 記録する
+    = render 'shared/error_messages', object: @record
+    #shared_record_form
+      = render 'shared/record_form'

@@ -1,0 +1,13 @@
+- if logged_in?
+  .row.login_home
+    .col-sd-6
+      h3
+        | 完登記録(フォローユーザ)
+      = render 'shared/following_log'
+- else
+  .cover
+    .text-center
+      h1
+        | Nobolog
+      p
+        | 記録に残して、さらなる高みへ

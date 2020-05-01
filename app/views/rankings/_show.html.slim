@@ -1,0 +1,38 @@
+.text-center
+    | 集計期間：#{@selected_month}
+    .br
+    |　ジム：#{@selected_gym}
+    .br
+    / もし期間中に自分の実績があれば、順位を表示する
+    - if @my_rank == 0
+       = 'あなたはこの期間、このジムで実績がありません'
+    - else
+      = "あなたの順位は #{@total_user}人中"
+      strong
+        = " #{@my_rank}位 "
+      = "です"
+= will_paginate @ranks
+table.table.table-hover.table-bordered
+    thead.thead-light
+      tr.text-center
+        th = "順位"
+        th = "ユーザー名"
+        th = "スコア"
+    tbody
+      - @ranks.each_with_index do |rank,i|
+        - user = User.find(rank.user.id)
+        tr
+          / .form-inline
+          <td id="rank-number-#{user.id}", class=text-center>
+            / １位〜３位の場合は、順位に王冠を表示する
+            / - if rank.rank_number != 1 && rank.rank_number != 2 && rank.rank_number != 3
+            = rank.rank_number
+            / = rank_image(rank.rank_number)
+          <td id="user-name-#{user.id}", class=text-center>
+            = link_to(user_path(user)) do
+              / = image_tag avatar_url(user).to_s
+              = user.name
+          <td id="score-#{user.id}", class=text-right>
+            = rank.score.to_s(:delimited)
+            | pt
+= will_paginate @ranks

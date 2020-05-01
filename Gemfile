@@ -18,6 +18,10 @@ gem 'mini_magick'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap4'
 gem 'google_places'
+gem 'jp_prefecture'
+gem 'slim-rails'
+gem 'html2slim'
+gem 'ransack'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -26,13 +30,14 @@ gem 'rails-i18n'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.6'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~>3.8.0'
   gem "factory_bot_rails", "~> 4.10.0"
   gem 'rails-controller-testing'
   gem 'faker'
+  gem 'bullet'
 end
 
 group :development do

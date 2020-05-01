@@ -1,0 +1,26 @@
+= form_with(model: @gym, local: true) do |f|
+  = f.label :name
+  = f.text_field :name, value: @gym_name, readonly: true, placeholder: "例）Nobolog 東京店", class: 'form-control'
+  = f.hidden_field :prefecture_code, value: (JpPrefecture::Prefecture.find name: @gym_prefecture).code, class: 'form-control'
+  = f.label :prefecture
+  = f.text_field :prefecture, value: @gym_prefecture, readonly: true, placeholder: "例）東京都", class: 'form-control'
+  = f.label :address
+  = f.text_field :address, value: @gym_address, readonly: true, placeholder: "例）東京都新宿区新宿1-2-3", class: 'form-control'
+  span.picture
+    = f.label :picture
+    span.optional
+      | 任意
+    = f.file_field :picture
+  = f.label :url
+  span.optional
+    | 任意
+  = f.text_field :url, placeholder: "例）https://nobolog.com", class: 'form-control'
+  = f.label :business_hours
+  span.optional
+    | 任意
+  = f.text_field :business_hours, placeholder: "例）9:00-22:00", class: 'form-control'
+  = f.label :price
+  span.optional
+    | 任意
+  = f.text_area :price, placeholder: "例）10:00-18:00 1800円", class: 'form-control'
+  = f.submit "ジム登録", class: "btn btn-primary"
