@@ -5,7 +5,7 @@ class RecordsController < ApplicationController
   after_action  :set_value,      only: :create
 
   def index
-    @records = Record.paginate(page: params[:page])
+    @records = Record.includes(:grade, :gym, :user).paginate(page: params[:page])
   end
 
   def new

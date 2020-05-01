@@ -93,7 +93,7 @@ class User < ApplicationRecord
   def following_log
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
-    Record.where("user_id IN (#{following_ids})
+    Record.includes(:grade, :user, :gym).references(:user).where("user_id IN (#{following_ids})
                      OR user_id = :user_id", user_id: id)
   end
 
