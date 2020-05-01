@@ -1,0 +1,32 @@
+- provide(:title, 'ジム編集')
+.row
+  .col-md-6.col-md-offset-3.center
+    h1
+      | ジム編集
+    = form_with(model: @gym, local: true) do |f|
+      = render 'shared/error_messages', object: f.object
+      = f.label :name
+      = f.text_field :name, readonly: true, class: 'form-control'
+      = f.hidden_field :prefecture_code, value: @gym.prefecture_code, class: 'form-control'
+      = f.label :prefecture
+      = f.text_field :prefecture, value: (JpPrefecture::Prefecture.find @gym.prefecture_code).name, readonly: true, class: 'form-control'
+      = f.label :address
+      = f.text_field :address, value: @gym.address, readonly: true, class: 'form-control'
+      span.picture
+        = f.label :picture
+        span.optional
+          | 任意
+        = f.file_field :picture
+      = f.label :url
+      span.optional
+        | 任意
+      = f.text_field :url, class: 'form-control'
+      = f.label :business_hours
+      span.optional
+        | 任意
+      = f.text_field :business_hours, class: 'form-control'
+      = f.label :price
+      span.optional
+        | 任意
+      = f.text_area :price, class: 'form-control'
+      = f.submit "更新", class: "btn btn-primary"

@@ -28,5 +28,5 @@ Rails.application.routes.draw do
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
   resources :records,             only: [:index, :new, :create, :destroy]
-  resources :gyms,                only: [:index, :new, :create, :destroy]
+  resources :gyms,                only: [:index, :new, :create, :edit, :update, :destroy]
 end

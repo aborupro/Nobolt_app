@@ -1,5 +1,5 @@
 class GymsController < ApplicationController
-  before_action :logged_in_user, only: [:index, :create, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :create, :destroy]
   before_action :admin_user, only: :destroy
   def index
     @q = Gym.ransack(params[:q])
@@ -70,6 +70,20 @@ class GymsController < ApplicationController
       @gym_address = params[:gym][:address]
       @gym_prefecture = (JpPrefecture::Prefecture.find params[:gym][:prefecture_code]).name
       render 'new'
+    end
+  end
+
+  def edit
+    @gym = Gym.find(params[:id])
+  end
+
+  def update
+    @gym = Gym.find(params[:id])
+    if @gym.update_attributes(gym_params)
+      flash[:success] = "ジムの編集に成功しました"
+      redirect_to request.referrer || root_url
+    else
+      render 'edit'
     end
   end
 
