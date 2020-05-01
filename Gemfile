@@ -37,6 +37,7 @@ group :development, :test do
   gem "factory_bot_rails", "~> 4.10.0"
   gem 'rails-controller-testing'
   gem 'faker'
+  gem 'bullet'
 end
 
 group :development do
