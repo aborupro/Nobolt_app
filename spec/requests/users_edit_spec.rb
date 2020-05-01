@@ -6,17 +6,6 @@ RSpec.describe "UsersEdits", type: :request do
   let!(:other_user) { FactoryBot.create(:user) }
   let!(:admin_user) { FactoryBot.create(:user, admin: true) }
 
-  def patch_invalid_information
-    patch user_path(user), params: { 
-      user: { 
-        name:  "",
-        email: "foo@invalid",
-        password: "foo",
-        password_confirmation: "bar" 
-      }
-    }
-  end
-
   def patch_valid_information
     patch user_path(user), params: { 
       user: { 
@@ -24,6 +13,17 @@ RSpec.describe "UsersEdits", type: :request do
         email: "foo@bar.com",
         password: "",
         password_confirmation: "" 
+      }
+    }
+  end
+
+  def patch_invalid_information
+    patch user_path(user), params: { 
+      user: { 
+        name:  "",
+        email: "foo@invalid",
+        password: "foo",
+        password_confirmation: "bar" 
       }
     }
   end
