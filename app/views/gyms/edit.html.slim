@@ -30,3 +30,5 @@
         | 任意
       = f.text_area :price, class: 'form-control'
       = f.submit "更新", class: "btn btn-primary"
+    = link_to controller: 'records', action: 'new', selection_gym_name: @gym.name do
+      | このジムで記録する
