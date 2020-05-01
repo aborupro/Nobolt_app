@@ -9,7 +9,7 @@ class RankingsController < ApplicationController
 
   def set_value
     all_term = "全期間"
-    all_gym = "すべてのジム"
+    all_gym = "全てのジム"
 
     @month_choice = [all_term] + (Record.last[:created_at].to_date.beginning_of_month..Date.today)
     .select{|date| date.day == 1 }.map { |item| item.strftime("%Y年%m月")}.reverse
@@ -21,7 +21,7 @@ class RankingsController < ApplicationController
         @target_month = Date.strptime(params[:month], '%Y年%m月').all_month
 
       else
-        @target_month = Record.last[:created_at].to_date.beginning_of_month..Date.today
+        @target_month = Record.last[:created_at].to_date.beginning_of_month..Date.today.end_of_month
       end
       @selected_month = params[:month]
     else
@@ -53,6 +53,6 @@ class RankingsController < ApplicationController
       end
     end
     @total_user = @ranks.size
-    @ranks = @ranks.all.page(params[:page])
+    @ranks = @ranks.all.paginate(page: params[:page], per_page: 100)
   end
 end

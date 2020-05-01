@@ -11,7 +11,7 @@ User.create!(name:  "壁崎 登る",
   activated: true,
   activated_at: Time.zone.now)
 
-99.times do |n|
+149.times do |n|
 name  = Faker::Name.name
 email = "example-#{n+1}@nobolog.com"
 password = "password"
@@ -24,7 +24,7 @@ User.create!(name:  name,
 end
 
 users_6 = User.order(:created_at).take(6)
-users_100 = User.take(100)
+users_150 = User.all
 50.times do
   content = "#{rand(1..9)}級をクリアした！！"
   users_6.each { |user| user.microposts.create!(content: content) }
@@ -91,7 +91,7 @@ gyms["results"].each do |gym|
 end
 f.close
 
-users_100.each do |user|
+users_150.each do |user|
   user.records.create!(
     gym_id: @record_gym.id,
     grade_id: rand(1..16),

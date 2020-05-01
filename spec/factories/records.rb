@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :record do
-    strong_point { "MyString" }
+    strong_point { "1" }
     sequence(:challenge) { |n| "challenge #{n}" }
     picture { "MyString" }
     association :user
