@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Rankings", type: :system do
+RSpec.describe "RankingsRanking", type: :system do
   include ApplicationHelper
   let!(:grade_10) { Grade.create(name: "10級" ) }
   let!(:grade_9) { Grade.create(name: "9級" ) }

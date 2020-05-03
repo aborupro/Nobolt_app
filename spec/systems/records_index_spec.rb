@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Records", type: :system do
+RSpec.describe "RecordsIndex", type: :system do
   include ApplicationHelper
   let!(:user) { FactoryBot.create(:user, :with_records) }
   let!(:user_1) { FactoryBot.create(:user, :with_5_records) }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "UsersIndex", type: :system do
+RSpec.describe "UsersHome", type: :system do
   include ApplicationHelper
 
   let(:user) { FactoryBot.create(:user) }
