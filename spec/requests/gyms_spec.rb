@@ -50,7 +50,7 @@ RSpec.describe "Gyms", type: :request do
           delete gym_path(gym)
         }.to change(Gym, :count).by(-1)
         follow_redirect!
-        expect(request.fullpath).to eq '/'
+        expect(request.fullpath).to eq '/gyms'
       end
     end
   end

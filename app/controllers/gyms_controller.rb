@@ -1,13 +1,9 @@
 class GymsController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :create, :destroy]
+  before_action :logged_in_user
   before_action :admin_user, only: :destroy
   def index
     @q = Gym.ransack(params[:q])
     @gyms = @q.result.page(params[:page]).order('name ASC')
-  end
-
-  def show
-    @gym = Gym.find(params[:id])
   end
 
   def new
@@ -80,17 +76,15 @@ class GymsController < ApplicationController
   def update
     @gym = Gym.find(params[:id])
     if @gym.update_attributes(gym_params)
-      flash[:success] = "ジムの編集に成功しました"
-      redirect_to request.referrer || root_url
-    else
-      render 'edit'
+      flash.now[:success] = "ジムの編集に成功しました"
     end
+    render 'edit'
   end
 
   def destroy
     @gym.destroy
     flash[:success] = "ジムを削除しました"
-    redirect_to request.referrer || root_url
+    redirect_to gyms_path
   end
 
   private
