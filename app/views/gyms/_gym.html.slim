@@ -8,5 +8,6 @@
     = gym.business_hours if gym.business_hours
     = gym.address if gym.address
     = gym.price if gym.price
+  = link_to "編集", edit_gym_path(gym)
   - if current_user.admin?
     = link_to "削除", gym, method: :delete, data: { confirm: "本当に削除しますか?" }
