@@ -94,14 +94,14 @@ RSpec.describe "UsersEdits", type: :request do
     end
     
     context "update" do
-      it "update when not logged in" do
+      it "when not logged in" do
         patch_valid_information
         expect(flash[:danger]).to_not be_empty
         follow_redirect!
         expect(request.fullpath).to eq login_path
       end
 
-      it "update when not logged in as wrong user" do
+      it "when logged in as wrong user" do
         log_in_as(other_user)
         patch_valid_information
         expect(flash[:danger]).to be_falsey
@@ -111,7 +111,7 @@ RSpec.describe "UsersEdits", type: :request do
     end
 
     context "index" do
-      it "index when not logged in" do
+      it "when not logged in" do
         get users_path
         follow_redirect!
         expect(request.fullpath).to eq login_path
@@ -119,7 +119,7 @@ RSpec.describe "UsersEdits", type: :request do
     end
 
     context "destroy" do
-      it "destroy when not logged in" do
+      it "when not logged in" do
         expect {
           delete user_path(user)
         }.to_not change(User, :count)
