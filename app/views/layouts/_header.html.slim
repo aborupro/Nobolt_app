@@ -6,6 +6,8 @@ header.container-fluid
         ul.navbar-nav.ml-auto
           - if logged_in?
             li.nav-item
+              = link_to "グラフ", graphs_path, class: "nav-link"
+            li.nav-item
               = link_to "ランキング", rankings_path, class: "nav-link"
             li.nav-item
               = link_to "ジム選択", gyms_path, class: "nav-link"

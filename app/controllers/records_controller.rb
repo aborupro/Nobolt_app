@@ -47,7 +47,7 @@ class RecordsController < ApplicationController
   end
 
   def graph
-    save
+    
   end
 
   private

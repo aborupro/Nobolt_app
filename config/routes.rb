@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get    '/records_search', to: 'records#new'
   post   '/records_search', to: 'records#search'
   get    '/rankings'      , to: 'records#rank'
+  get    '/graphs'        , to: 'records#graph'
   resources :users do
     member do
       get :following, :followers
