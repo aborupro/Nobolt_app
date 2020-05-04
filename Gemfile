@@ -31,8 +31,6 @@ gem "bootswatch", github: "thomaspark/bootswatch"
 gem 'rails-i18n'
 
 group :development, :test do
-  # Use sqlite3 as the database for Active Record
-  # gem 'sqlite3', '~> 1.3.6'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~>3.8.0'
@@ -62,7 +60,6 @@ group :test do
 end
 
 group :production do
-  # gem 'pg', '0.20.0'
   gem 'fog'
 end
 

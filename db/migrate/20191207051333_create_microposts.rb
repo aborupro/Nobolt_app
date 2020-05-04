@@ -4,7 +4,7 @@ class CreateMicroposts < ActiveRecord::Migration[5.2]
       t.text :content
       t.references :user, foreign_key: true
 
-      t.timestamps
+      t.timestamps precision: 6
     end
     add_index :microposts, [:user_id, :created_at]
   end

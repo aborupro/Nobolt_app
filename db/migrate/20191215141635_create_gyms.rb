@@ -9,7 +9,7 @@ class CreateGyms < ActiveRecord::Migration[5.2]
       t.string :address
       t.text :price
 
-      t.timestamps
+      t.timestamps precision: 6
     end
   end
 end

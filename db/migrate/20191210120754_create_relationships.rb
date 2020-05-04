@@ -4,7 +4,7 @@ class CreateRelationships < ActiveRecord::Migration[5.0]
       t.integer :follower_id
       t.integer :followed_id
 
-      t.timestamps
+      t.timestamps precision: 6
     end
     add_index :relationships, :follower_id
     add_index :relationships, :followed_id
