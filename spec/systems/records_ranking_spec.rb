@@ -36,16 +36,26 @@ RSpec.describe "RankingsRanking", type: :system do
       expect(page).to have_select('ジム', selected: '全てのジム', options: ["全てのジム"] + Gym.pluck("name"))
       select gym.name, from: 'ジム'
       click_button '集計'
+      save_and_open_page
       expect(page).to have_content "あなたの順位は 3人中 2位 です"
-      expect(find('#rank-number-4')).to have_content "1"
-      expect(find('#user-name-4')).to have_content user_4.name
-      expect(find('#score-4')).to have_content "100pt"
-      expect(find('#rank-number-5')).to have_content "2"
-      expect(find('#user-name-5')).to have_content user_5.name
-      expect(find('#score-5')).to have_content "50pt"
-      expect(find('#rank-number-6')).to have_content "3"
-      expect(find('#user-name-6')).to have_content user_6.name
-      expect(find('#score-6')).to have_content "40pt"
+      rank_number_4 = '#rank-number-' + "#{user_4.id}"
+      user_name_4   = '#user-name-'   + "#{user_4.id}"
+      score_4       = '#score-'       + "#{user_4.id}"
+      rank_number_5 = '#rank-number-' + "#{user_5.id}"
+      user_name_5   = '#user-name-'   + "#{user_5.id}"
+      score_5       = '#score-'       + "#{user_5.id}"
+      rank_number_6 = '#rank-number-' + "#{user_6.id}"
+      user_name_6   = '#user-name-'   + "#{user_6.id}"
+      score_6       = '#score-'       + "#{user_6.id}"
+      expect(find(rank_number_4)).to have_content "1"
+      expect(find(user_name_4)).to have_content user_4.name
+      expect(find(score_4)).to have_content "100pt"
+      expect(find(rank_number_5)).to have_content "2"
+      expect(find(user_name_5)).to have_content user_5.name
+      expect(find(score_5)).to have_content "50pt"
+      expect(find(rank_number_6)).to have_content "3"
+      expect(find(user_name_6)).to have_content user_6.name
+      expect(find(score_6)).to have_content "40pt"
     end
 
     it "doesn't have score in the gym that the user didn't record in" do

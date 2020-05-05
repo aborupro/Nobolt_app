@@ -43,20 +43,24 @@ RSpec.describe "RecordsIndex", type: :system do
 
       it "has delete link in own record" do
         visit root_path
-        expect(find('#record-100')).to have_selector 'a', text: '削除'
+        user_record_id = '#record-' + "#{Record.find_by(user_id: user.id).id}"
+        expect(find(user_record_id)).to have_selector 'a', text: '削除'
       end
 
       it "has no delete link in follow users' records" do
         visit root_path
-        expect(find('#record-101')).to_not have_selector 'a', text: '削除'
-        expect(find('#record-106')).to_not have_selector 'a', text: '削除'
+        user_1_record_id = '#record-' + "#{Record.find_by(user_id: user_1.id).id}"
+        user_2_record_id = '#record-' + "#{Record.find_by(user_id: user_2.id).id}"
+        expect(find(user_1_record_id)).to_not have_selector 'a', text: '削除'
+        expect(find(user_2_record_id)).to_not have_selector 'a', text: '削除'
       end
 
       it "deletes own record" do
         visit root_path
-        expect(find('#record-100')).to have_selector 'a', text: '削除'
+        user_record_id = '#record-' + "#{Record.find_by(user_id: user.id).id}"
+        expect(find(user_record_id)).to have_selector 'a', text: '削除'
         expect{
-          within '#record-100' do
+          within user_record_id do
             click_on '削除'
           end
         }.to change(Record, :count).by(-1)
@@ -82,21 +86,26 @@ RSpec.describe "RecordsIndex", type: :system do
 
       it "has delete link in own record" do
         visit records_path
-        expect(find('#record-100')).to have_selector 'a', text: '削除'
+        user_record_id = '#record-' + "#{Record.find_by(user_id: user.id).id}"
+        expect(find(user_record_id)).to have_selector 'a', text: '削除'
       end
 
       it "has no delete link in follow & unfollow users' records" do
         visit records_path
-        expect(find('#record-101')).to_not have_selector 'a', text: '削除'
-        expect(find('#record-106')).to_not have_selector 'a', text: '削除'
-        expect(find('#record-111')).to_not have_selector 'a', text: '削除'
+        user_1_record_id = '#record-' + "#{Record.find_by(user_id: user_1.id).id}"
+        user_2_record_id = '#record-' + "#{Record.find_by(user_id: user_2.id).id}"
+        user_3_record_id = '#record-' + "#{Record.find_by(user_id: user_3.id).id}"
+        expect(find(user_1_record_id)).to_not have_selector 'a', text: '削除'
+        expect(find(user_2_record_id)).to_not have_selector 'a', text: '削除'
+        expect(find(user_3_record_id)).to_not have_selector 'a', text: '削除'
       end
 
       it "deletes own record" do
         visit records_path
-        expect(find('#record-100')).to have_selector 'a', text: '削除'
+        user_record_id = '#record-' + "#{Record.find_by(user_id: user.id).id}"
+        expect(find(user_record_id)).to have_selector 'a', text: '削除'
         expect{
-          within '#record-100' do
+          within user_record_id do
             click_on '削除'
           end
         }.to change(Record, :count).by(-1)
