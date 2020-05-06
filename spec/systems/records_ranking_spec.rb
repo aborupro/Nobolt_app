@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "RankingsRanking", type: :system do
   include ApplicationHelper
-  let!(:grade_10) { Grade.create(name: "10級" ) }
-  let!(:grade_9) { Grade.create(name: "9級" ) }
+  let!(:grade_10) { Grade.create(name: "10級", grade_point: 1 ) }
+  let!(:grade_9) { Grade.create(name: "9級", grade_point: 2 ) }
   let!(:gym) { FactoryBot.create(:gym) }
   let!(:other_gym) { FactoryBot.create(:gym) }
 
@@ -36,7 +36,6 @@ RSpec.describe "RankingsRanking", type: :system do
       expect(page).to have_select('ジム', selected: '全てのジム', options: ["全てのジム"] + Gym.pluck("name"))
       select gym.name, from: 'ジム'
       click_button '集計'
-      save_and_open_page
       expect(page).to have_content "あなたの順位は 3人中 2位 です"
       rank_number_4 = '#rank-number-' + "#{user_4.id}"
       user_name_4   = '#user-name-'   + "#{user_4.id}"

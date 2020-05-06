@@ -80,14 +80,17 @@ class RecordsController < ApplicationController
 
     if params[:month].present?
       if params[:month] != all_term
-        @target_month = Date.strptime(params[:month], '%Y年%m月').all_month
+        @begin_time = Date.strptime(params[:month], '%Y年%m月').beginning_of_month
+        @end_time = Date.strptime(params[:month], '%Y年%m月').end_of_month
 
       else
-        @target_month = Record.last[:created_at].to_date.beginning_of_month..Date.today.end_of_month
+        @begin_time = Record.last[:created_at].to_date.beginning_of_month
+        @end_time = Date.today.end_of_month
       end
       @selected_month = params[:month]
     else
-      @target_month = Time.current.all_month
+      @begin_time = Time.current.beginning_of_month
+      @end_time = Time.current.end_of_month
       @selected_month = Time.current.strftime("%Y年%m月")
     end
 
@@ -99,23 +102,42 @@ class RecordsController < ApplicationController
       @selected_gym = all_gym
     end
 
-    @ranks = Record.unscope(:order)
-                   .select("user_id
-                           ,(sum(grade_id) + sum(strong_point)) * 10 as score
-                           ,RANK () OVER (ORDER BY (sum(grade_id) + sum(strong_point)) * 10 DESC) as rank_number")
-                   .where(created_at: @target_month).where(gym_id: @target_gym)
-                   .group("user_id")
-                   .order("score DESC")
+    query = ActiveRecord::Base.sanitize_sql_array(['
+      select user_id,
+             score,
+             (select (COUNT(*) + 1)
+             from (select r.user_id,
+                           (sum(g.grade_point) + sum(r.strong_point)) * 10 as score
+                   from records as r
+                   inner join grades as g
+                           on r.grade_id = g.id
+                           where (r.gym_id in (:gym_ids)) and (r.created_at between :begin_times and :end_times)
+                   group by r.user_id
+                   order by score DESC) as s1
+             where s2.score < s1.score) as rank_number
+      from
+      (select r.user_id,
+              (sum(g.grade_point) + sum(r.strong_point)) * 10 as score
+      from records as r
+      inner join grades as g
+              on r.grade_id = g.id
+      where (r.gym_id in (:gym_ids)) and (r.created_at between :begin_times and :end_times)
+      group by r.user_id
+      order by score DESC) as s2;
+      ', gym_ids: @target_gym, begin_times: @begin_time, end_times: @end_time])
+
+    @ranks = ActiveRecord::Base.connection.select_all(query)
     
     @my_rank = 0
-    @ranks.each do |rank|
-      if rank.user_id == current_user.id
-        @my_rank = rank.rank_number
+    @ranks.each_with_index do |rank, i|
+      if rank["user_id"] == current_user.id
+        # @my_rank = rank.rank_number
+        @my_rank = rank["rank_number"]
         break
       end
     end
-    @total_user = @ranks.size
-    @ranks = @ranks.all.paginate(page: params[:page], per_page: 100)
+    @total_user = @ranks.count
+    @ranks = @ranks.to_a.paginate(page: params[:page], per_page: 100)
   end
 
   def correct_user
