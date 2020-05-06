@@ -25,6 +25,12 @@ RSpec.describe Grade, type: :model do
         other_grade.valid?
         expect(other_grade.errors[:name]).to include('はすでに存在します')
       end
+
+      it "is invalid with a blank grade_point" do
+        grade.grade_point = " "
+        grade.valid?
+        expect(grade.errors[:grade_point]).to include('を入力してください')
+      end
     end
   end
 end
