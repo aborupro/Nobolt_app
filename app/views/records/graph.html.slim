@@ -1,0 +1,56 @@
+/ table.table.table-hover.table-bordered
+/     thead.thead-light
+/       tr.text-center
+/         th = "スコア"
+/         th = "日時"
+/     tbody
+/       - @graph_value.each_with_index do |g, i|
+/         tr
+/           td
+/             = g.score
+/           td
+/             = g.day
+/ = @chart
+/ / = @graph_value.all.pluck
+- provide(:title, 'グラフ')
+- @page_title = "#{@from}〜#{@to}"
+
+ul.nav.nav-tabs.col-md-3.justify-content-around
+  li.nav-item
+    = link_to "日", graphs_path(term: "day",from_to: @from_to ), class: "nav-link", id: "day"
+  li.nav-item
+    = link_to "週", graphs_path(term: "week",from_to: @from_to ), class: "nav-link", id: "week"
+  li.nav-item
+    = link_to "月", graphs_path(term: "month",from_to: @from_to ), class: "nav-link", id: "month"
+
+input.term type="hidden" value=@selected_term
+
+javascript:
+  term = $('.term').val();
+  $(`#${term}`).addClass("active")
+  $("#hoge").css("color","red")
+
+h4.text-center
+  = "グラフ（#{@selected_term_jp}別）"
+
+.col-md-6.mx-auto
+  .form-inline.mb-3.justify-content-around
+    = link_to "", graphs_path(pre_preview: @from_to, term: @selected_term), class: "fa fa-chevron-left mr-3"
+    span.ml-2.mr-2.lead
+      strong
+        = @page_title
+    = link_to "", graphs_path(next_preview: @from_to, term: @selected_term), class: "fa fa-chevron-right ml-3"
+/ = form_with(url: graphs_path, method: :get, local: true) do |f|
+/   = f.label :term, '日/週/月'
+/   = f.select :term,
+/     @term_choice, selected: @selected_term
+/   = f.label :from_to, '期間'
+/   = f.select :from_to,
+/     @from_to_choice, from_to: @selected_from_to
+/   = f.submit "集計", class: "btn btn-primary"
+
+= @from
+br
+= @to
+
+= column_chart @chart

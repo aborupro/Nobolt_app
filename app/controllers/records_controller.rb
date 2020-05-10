@@ -47,7 +47,140 @@ class RecordsController < ApplicationController
   end
 
   def graph
+    # @term_choice = %w[日 週 月]
+    # @from_to_choice = "#"
+
+    @count = 0
+
+    if params[:term].present?
+      @selected_term = params[:term]
+    else
+      @selected_term = "day"
+    end
+
+    if params[:pre_preview].present?
+      case @selected_term
+      when "month" then
+        @from_to = Date.parse(params[:pre_preview]) << 6
+      when "week" then
+        @from_to = Date.parse(params[:pre_preview]) - 7 * 8
+      when "day" then
+        @from_to = Date.parse(params[:pre_preview]) - 7
+      end
+    elsif params[:next_preview].present?
+      case @selected_term
+      when "month" then
+        @from_to = Date.parse(params[:pre_preview]) >> 6
+      when "week" then
+        @from_to = Date.parse(params[:pre_preview]) + 7 * 8
+      when "day" then
+        @from_to = Date.parse(params[:pre_preview]) + 7
+      end
+    else
+      if params[:from_to].present?
+        @from_to = Date.parse(params[:from_to])
+      else
+        @from_to = Time.current.to_date
+      end
+    end
     
+    case @selected_term
+    when "month" then
+      @selected_term_jp = "月"
+      if @from_to.strftime("%m").to_i < 7
+        # 1/1~6/30
+        @from = @from_to.beginning_of_year.to_date
+        @to = @from.since(5.month).end_of_month.to_date
+      else
+        # 7/1~12/31
+        @from = @from_to.end_of_year.ago(5.months).beginning_of_month.to_date
+        @to = @from_to.end_of_year.to_date
+      end
+      # @from = Date.today.beginning_of_month
+      # @to = Date.today.end_of_month
+    when "week" then
+      @selected_term_jp = "週"
+      # if Date.today.strftime("%m").to_i.even?
+      #   @from = 0.month.ago.beginning_of_month.to_date
+      #   @to = 1.month.since.end_of_month.to_date
+      # else
+      #   @from = 0.month.ago.beginning_of_month.to_date
+      #   @to = 1.month.since.end_of_month.to_date
+      # end
+
+      # @from = 7.week.ago.beginning_of_week.to_date
+      # @to = 0.week.ago.end_of_week.to_date
+
+      @from = @from_to.ago(7.weeks).beginning_of_week.to_date
+      @to = @from_to.end_of_week.to_date
+    when "day" then
+      @selected_term_jp = "日"
+      # @from = 0.day.ago.beginning_of_week.to_date - 1
+      # @to = 0.day.ago.end_of_week.to_date - 1
+
+      @from = @from_to.beginning_of_week.to_date - 1
+      @to = @from_to.end_of_week.to_date - 1
+    end
+
+    # @graph_value = Record.joins(:grade)
+    #                      .unscope(:order)
+    #                      .select("(sum(grade_point) + sum(strong_point))*10 as score
+    #                              ,date_format(records.created_at ,'%Y-%m-%d') as day")
+    #                      .where("records.user_id = ?", current_user.id)
+    #                      .where("records.created_at between ? and ?", @from, @to)
+    #                      .group("day")
+    #                      .order("day")
+
+    @chart = []
+
+    case @selected_term
+    when "month" then
+    when "week" then
+      @graph_value = Record.joins(:grade)
+                         .unscope(:order)
+                         .select("(sum(grade_point) + sum(strong_point))*10 as score
+                                 ,date_format(records.created_at ,'%Y-%U weeks') as week")
+                         .where("records.user_id = ?", current_user.id)
+                         .where("records.created_at between ? and ?", @from, @to)
+                         .group("week")
+                         .order("week")
+      
+      8.times do |i|
+        t = (@from + i).strftime("%Y-%m-%d")
+        temp_score = 0
+        @graph_value.each do |g|
+          temp_score = g.score.to_i if t == g.day
+        end
+        @chart.append([t + "(#{%w(日 月 火 水 木 金 土)[i]})", temp_score])
+      end
+    when "day" then
+      @graph_value = Record.joins(:grade)
+                         .unscope(:order)
+                         .select("(sum(grade_point) + sum(strong_point))*10 as score
+                                 ,date_format(records.created_at ,'%Y-%m-%d') as day")
+                         .where("records.user_id = ?", current_user.id)
+                         .where("records.created_at between ? and ?", @from, @to)
+                         .group("day")
+                         .order("day")
+
+      7.times do |i|
+        t = (@from + i).strftime("%Y-%m-%d")
+        temp_score = 0
+        @graph_value.each do |g|
+          temp_score = g.score.to_i if t == g.day
+        end
+        @chart.append([t + "(#{%w(日 月 火 水 木 金 土)[i]})", temp_score])
+      end
+    end
+
+    # 7.times do |i|
+    #   t = (Time.current.beginning_of_week.to_date - 1 + i).strftime("%Y-%m-%d")
+    #   temp_score = 0
+    #   @graph_value.each do |g|
+    #     temp_score = g.score.to_i if t == g.day
+    #   end
+    #   @chart.append([t + "(#{%w(日 月 火 水 木 金 土)[i]})", temp_score])
+    # end
   end
 
   private
@@ -127,7 +260,7 @@ class RecordsController < ApplicationController
       ', gym_ids: @target_gym, begin_times: @begin_time, end_times: @end_time])
 
     @ranks = ActiveRecord::Base.connection.select_all(query)
-    
+
     @my_rank = 0
     @ranks.each_with_index do |rank, i|
       if rank["user_id"] == current_user.id
