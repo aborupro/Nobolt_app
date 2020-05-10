@@ -24,6 +24,7 @@ gem 'html2slim'
 gem 'ransack'
 gem 'chartkick'
 gem 'mysql2'
+gem 'font-awesome-sass'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
