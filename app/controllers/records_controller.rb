@@ -47,19 +47,19 @@ class RecordsController < ApplicationController
   end
 
   def graph
-    # @term_choice = %w[日 週 月]
-    # @from_to_choice = "#"
-
     @count = 0
     @chart_pre = true
     @chart_next = true
+    @chart = []
 
+    # 集計単位を判別
     if params[:term].present?
       @selected_term = params[:term]
     else
       @selected_term = "day"
     end
 
+    # 集計の基準日を計算
     if params[:pre_preview].present?
       case @selected_term
       when "month" then
@@ -86,6 +86,7 @@ class RecordsController < ApplicationController
       end
     end
     
+    # グラフの値を計算
     case @selected_term
     when "month" then
       @selected_term_jp = "月"
@@ -102,6 +103,17 @@ class RecordsController < ApplicationController
       @chart_pre = false if @from < Record.where(user_id: current_user.id).last.created_at.to_date
       # 次の日付が未来だったら、右矢印を非活性状態にする
       @chart_next = false if @to > Date.today
+
+      set_graph('%Y/%m')
+      
+      6.times do |i|
+        t = (@from >> i).strftime('%Y/%m')
+        temp_score = 0
+        @graph_value.each do |g|
+          temp_score = g.score.to_i if t == g.date
+        end
+        @chart.append([t, temp_score])
+      end
     when "week" then
       @selected_term_jp = "週"
 
@@ -111,32 +123,7 @@ class RecordsController < ApplicationController
       @chart_pre = false if @from < Record.where(user_id: current_user.id).last.created_at.to_date
       # 次の日付が未来だったら、右矢印を非活性状態にする
       @chart_next = false if @to > Date.today
-    when "day" then
-      @selected_term_jp = "日"
 
-      @from = @from_to.beginning_of_week.to_date - 1
-      @to = @from_to.end_of_week.to_date - 1
-      # 前の日付が記録を始めた時期より前だったら、右矢印を非活性状態にする
-      @chart_pre = false if @from < Record.where(user_id: current_user.id).last.created_at.to_date
-      # 次の日付が未来だったら、右矢印を非活性状態にする
-      @chart_next = false if @to > Date.today
-    end
-
-    @chart = []
-
-    case @selected_term
-    when "month" then
-      set_graph('%Y/%m')
-      
-      6.times do |i|
-        t = @from >> i
-        temp_score = 0
-        @graph_value.each do |g|
-          temp_score = g.score.to_i if t.strftime('%Y/%m') == g.date
-        end
-        @chart.append(["#{t.strftime('%Y/%m')}", temp_score])
-      end
-    when "week" then
       set_graph('%Y/%U weeks')
       
       8.times do |i|
@@ -148,6 +135,15 @@ class RecordsController < ApplicationController
         @chart.append(["#{t.strftime('%Y/%m/%d週')}", temp_score])
       end
     when "day" then
+      @selected_term_jp = "日"
+
+      @from = @from_to.beginning_of_week.to_date - 1
+      @to = @from_to.end_of_week.to_date - 1
+      # 前の日付が記録を始めた時期より前だったら、右矢印を非活性状態にする
+      @chart_pre = false if @from < Record.where(user_id: current_user.id).last.created_at.to_date
+      # 次の日付が未来だったら、右矢印を非活性状態にする
+      @chart_next = false if @to > Date.today
+
       set_graph('%Y/%m/%d')
 
       7.times do |i|
