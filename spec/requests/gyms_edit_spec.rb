@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "GymsEdits", type: :request do
+RSpec.describe "GymsEdit", type: :request do
 
   let!(:gym) { FactoryBot.create(:gym) }
   let!(:other_gym) { FactoryBot.create(:gym) }
@@ -33,10 +33,10 @@ RSpec.describe "GymsEdits", type: :request do
       it "can update" do
         log_in_as(user)
         get edit_gym_path(gym)
-        expect(request.fullpath).to eq "/gyms/1"
+        expect(request.fullpath).to eq edit_gym_path(gym)
         patch_valid_information
         expect(flash[:success]).to be_truthy
-        expect(request.path).to eq "/gyms/1"
+        expect(request.path).to eq edit_gym_path(gym)
         gym.reload
         expect(gym.picture.identifier).to eq "boulder1.jpg"
         expect(gym.url).to eq "https://new_nobolog.com"
@@ -48,10 +48,10 @@ RSpec.describe "GymsEdits", type: :request do
         get edit_gym_path(gym)
         log_in_as(user)
         follow_redirect!
-        expect(request.fullpath).to eq "/gyms/1"
+        expect(request.fullpath).to eq edit_gym_path(gym)
         patch_valid_information
         expect(flash[:success]).to be_truthy
-        expect(request.fullpath).to eq "/gyms/1"
+        expect(request.fullpath).to eq edit_gym_path(gym)
         gym.reload
         expect(gym.picture.identifier).to eq "boulder1.jpg"
         expect(gym.url).to eq "https://new_nobolog.com"
@@ -64,9 +64,9 @@ RSpec.describe "GymsEdits", type: :request do
       it "cannot update" do
         log_in_as(user)
         get edit_gym_path(gym)
-        expect(request.fullpath).to eq "/gyms/1"
+        expect(request.fullpath).to eq edit_gym_path(gym)
         patch_invalid_information
-        expect(request.fullpath).to eq "/gyms/1"
+        expect(request.fullpath).to eq edit_gym_path(gym)
         gym.reload
         expect(gym.url).to eq "https://nobolog.com"
         expect(gym.business_hours).to eq "9:00-23:00"

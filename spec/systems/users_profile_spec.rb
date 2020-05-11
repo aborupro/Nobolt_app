@@ -25,7 +25,7 @@ RSpec.describe "UsersProfile", type: :system do
       it "shows profile display" do
         visit user_path(user)
         expect(user.records.length).to eq 100
-        expect(current_path).to eq '/users/1'
+        expect(current_path).to eq user_path(user)
         expect(page).to have_title full_title("マイページ")
         expect(page).to have_selector '.user_info', text: user.name
         expect(page).to have_selector 'h1 img'
@@ -41,7 +41,7 @@ RSpec.describe "UsersProfile", type: :system do
 
     it "shows follow and follower count" do
       visit user_path(user)
-      expect(current_path).to eq '/users/1'
+      expect(current_path).to eq user_path(user)
       expect(page).to have_content user.active_relationships.count.to_s
       expect(page).to have_content user.passive_relationships.count.to_s
     end

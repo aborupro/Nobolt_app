@@ -51,7 +51,7 @@ RSpec.describe "UsersSignups", type: :request do
       get edit_account_activation_path(user.activation_token, email: user.email)
       expect(user.reload.activated?).to be_truthy
       follow_redirect!
-      expect(request.fullpath).to eq "/users/1"
+      expect(request.fullpath).to eq user_path(user)
       expect(is_logged_in?).to be_truthy
     end
   end

@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :email
 
-      t.timestamps
+      t.timestamps precision: 6
     end
   end
 end

@@ -8,7 +8,7 @@ class CreateRecords < ActiveRecord::Migration[5.2]
       t.references :user, foreign_key: true
       t.references :gym, foreign_key: true
 
-      t.timestamps
+      t.timestamps precision: 6
     end
     add_index :records, [:user_id, :gym_id, :created_at]
   end

@@ -79,8 +79,9 @@ RSpec.describe "Records", type: :system do
       expect(page).to have_current_path "/records"
       visit root_path
       expect(page).to have_selector 'a', text: '削除'
+      delete_record = '#record-' + "#{Record.find_by(user_id: user.id).id}"
       expect{
-        within '#record-101' do
+        within delete_record do
           click_on '削除'
         end
       }.to change(Record, :count).by(-1)

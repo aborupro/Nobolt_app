@@ -34,18 +34,18 @@ RSpec.describe "UsersEdits", type: :request do
       it "is unsuccessful edit" do
         log_in_as(user)
         get edit_user_path(user)
-        expect(request.fullpath).to eq "/users/1/edit"
+        expect(request.fullpath).to eq edit_user_path(user)
         patch_invalid_information
-        expect(request.fullpath).to eq "/users/1"
+        expect(request.fullpath).to eq user_path(user)
       end
   
       it "is successful edit" do
         log_in_as(user)
         get edit_user_path(user)
-        expect(request.fullpath).to eq "/users/1/edit"
+        expect(request.fullpath).to eq edit_user_path(user)
         patch_valid_information
         expect(flash[:success]).to be_truthy
-        expect(request.fullpath).to eq "/users/1"
+        expect(request.fullpath).to eq user_path(user)
         user.reload
         expect(user.name).to eq "Foo Bar"
         expect(user.email).to eq "foo@bar.com"
@@ -58,7 +58,7 @@ RSpec.describe "UsersEdits", type: :request do
         expect(request.fullpath).to eq edit_user_path(user)
         patch_valid_information
         expect(flash[:success]).to be_truthy
-        expect(request.fullpath).to eq "/users/1"
+        expect(request.fullpath).to eq user_path(user)
         user.reload
         expect(user.name).to eq "Foo Bar"
         expect(user.email).to eq "foo@bar.com"

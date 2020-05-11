@@ -10,44 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_004124) do
+ActiveRecord::Schema.define(version: 2020_05_06_022455) do
 
-  create_table "grades", force: :cascade do |t|
+  create_table "grades", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "grade_point"
   end
 
-  create_table "gyms", force: :cascade do |t|
+  create_table "gyms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "picture"
     t.string "url"
     t.string "business_hours"
     t.string "address"
     t.text "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.integer "prefecture_code"
   end
 
-  create_table "microposts", force: :cascade do |t|
+  create_table "microposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "picture"
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
-  create_table "records", force: :cascade do |t|
+  create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "strong_point"
     t.string "picture"
-    t.integer "user_id"
-    t.integer "gym_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "grade_id"
+    t.bigint "user_id"
+    t.bigint "gym_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "grade_id"
     t.string "challenge"
     t.index ["grade_id"], name: "index_records_on_grade_id"
     t.index ["gym_id"], name: "index_records_on_gym_id"
@@ -55,21 +56,21 @@ ActiveRecord::Schema.define(version: 2020_04_29_004124) do
     t.index ["user_id"], name: "index_records_on_user_id"
   end
 
-  create_table "relationships", force: :cascade do |t|
+  create_table "relationships", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
     t.string "remember_digest"
     t.boolean "admin", default: false
@@ -81,4 +82,8 @@ ActiveRecord::Schema.define(version: 2020_04_29_004124) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "microposts", "users"
+  add_foreign_key "records", "grades"
+  add_foreign_key "records", "gyms"
+  add_foreign_key "records", "users"
 end

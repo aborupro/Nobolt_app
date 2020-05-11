@@ -43,7 +43,7 @@ RSpec.describe "UsersLogins", type: :request do
         expect(flash[:danger]).to be_falsey
         expect(is_logged_in?).to be_truthy
         follow_redirect!
-        expect(request.fullpath).to eq "/users/1"
+        expect(request.fullpath).to eq user_path(user)
         delete logout_path
         expect(is_logged_in?).to be_falsey
         follow_redirect!
