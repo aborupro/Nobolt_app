@@ -51,6 +51,7 @@ class RecordsController < ApplicationController
     # @from_to_choice = "#"
 
     @count = 0
+    @chart_next = true
 
     if params[:term].present?
       @selected_term = params[:term]
@@ -96,16 +97,22 @@ class RecordsController < ApplicationController
         @from = @from_to.end_of_year.ago(5.months).beginning_of_month.to_date
         @to = @from_to.end_of_year.to_date
       end
+      # 次の日付が未来だったら、右矢印を非活性状態にする
+      @chart_next = false if (@from_to >> 6) > Date.today
     when "week" then
       @selected_term_jp = "週"
 
       @from = @from_to.ago(7.weeks).beginning_of_week.to_date - 1
       @to = @from_to.end_of_week.to_date - 1
+      # 次の日付が未来だったら、右矢印を非活性状態にする
+      @chart_next = false if (@from_to + 7 * 8) > Date.today
     when "day" then
       @selected_term_jp = "日"
 
       @from = @from_to.beginning_of_week.to_date - 1
       @to = @from_to.end_of_week.to_date - 1
+      # 次の日付が未来だったら、右矢印を非活性状態にする
+      @chart_next = false if (@from_to + 7) > Date.today
     end
 
     @chart = []

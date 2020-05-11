@@ -25,6 +25,9 @@ h4.text-center
     span.ml-2.mr-2.lead
       strong
         = @page_title
-    = link_to "", graphs_path(next_preview: @from_to, term: @selected_term), class: "fa fa-chevron-right ml-3"
+    - if @chart_next
+      = link_to "", graphs_path(next_preview: @from_to, term: @selected_term), class: "fa fa-chevron-right ml-3"
+    - else
+      div.fa.fa-chevron-right.ml-3.gray
 
 = column_chart @chart
