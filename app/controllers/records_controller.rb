@@ -133,58 +133,94 @@ class RecordsController < ApplicationController
 
     @chart = []
 
+    # case @selected_term
+    # when "month" then
+    #   @graph_value = Record.joins(:grade)
+    #                      .unscope(:order)
+    #                      .select("(sum(grade_point) + sum(strong_point))*10 as score
+    #                              ,date_format(records.created_at ,'%Y/%m') as month")
+    #                      .where("records.user_id = ?", current_user.id)
+    #                      .where("records.created_at between ? and ?", @from, @to)
+    #                      .group("month")
+    #                      .order("month")
+      
+    #   6.times do |i|
+    #     t = @from >> i
+    #     temp_score = 0
+    #     @graph_value.each do |g|
+    #       temp_score = g.score.to_i if t == Date.strptime(g.month,'%Y/%m')
+    #     end
+    #     @chart.append(["#{t.strftime('%Y/%m')}", temp_score])
+    #   end
+    # when "week" then
+    #   @graph_value = Record.joins(:grade)
+    #                      .unscope(:order)
+    #                      .select("(sum(grade_point) + sum(strong_point))*10 as score
+    #                              ,date_format(records.created_at ,'%Y/%U weeks') as week")
+    #                      .where("records.user_id = ?", current_user.id)
+    #                      .where("records.created_at between ? and ?", @from, @to)
+    #                      .group("week")
+    #                      .order("week")
+      
+    #   8.times do |i|
+    #     t = @from + i*7
+    #     temp_score = 0
+    #     @graph_value.each do |g|
+    #       temp_score = g.score.to_i if t == Date.strptime(g.week,'%Y/%U weeks')
+    #     end
+    #     @chart.append(["#{t.strftime('%Y/%m/%d週')}", temp_score])
+    #   end
+    # when "day" then
+    #   @graph_value = Record.joins(:grade)
+    #                      .unscope(:order)
+    #                      .select("(sum(grade_point) + sum(strong_point))*10 as score
+    #                              ,date_format(records.created_at ,'%Y/%m/%d') as day")
+    #                      .where("records.user_id = ?", current_user.id)
+    #                      .where("records.created_at between ? and ?", @from, @to)
+    #                      .group("day")
+    #                      .order("day")
+
+    #   7.times do |i|
+    #     t = (@from + i).strftime("%Y/%m/%d")
+    #     temp_score = 0
+    #     @graph_value.each do |g|
+    #       temp_score = g.score.to_i if t == g.day
+    #     end
+    #     @chart.append([t + "(#{%w(日 月 火 水 木 金 土)[i]})", temp_score])
+    #   end
+    # end
+
     case @selected_term
     when "month" then
-      @graph_value = Record.joins(:grade)
-                         .unscope(:order)
-                         .select("(sum(grade_point) + sum(strong_point))*10 as score
-                                 ,date_format(records.created_at ,'%Y/%m') as month")
-                         .where("records.user_id = ?", current_user.id)
-                         .where("records.created_at between ? and ?", @from, @to)
-                         .group("month")
-                         .order("month")
+      set_graph('%Y/%m')
       
       6.times do |i|
         t = @from >> i
         temp_score = 0
         @graph_value.each do |g|
-          temp_score = g.score.to_i if t == Date.strptime(g.month,'%Y/%m')
+          temp_score = g.score.to_i if t == Date.strptime(g.date,'%Y/%m')
         end
         @chart.append(["#{t.strftime('%Y/%m')}", temp_score])
       end
     when "week" then
-      @graph_value = Record.joins(:grade)
-                         .unscope(:order)
-                         .select("(sum(grade_point) + sum(strong_point))*10 as score
-                                 ,date_format(records.created_at ,'%Y/%U weeks') as week")
-                         .where("records.user_id = ?", current_user.id)
-                         .where("records.created_at between ? and ?", @from, @to)
-                         .group("week")
-                         .order("week")
+      set_graph('%Y/%U weeks')
       
       8.times do |i|
         t = @from + i*7
         temp_score = 0
         @graph_value.each do |g|
-          temp_score = g.score.to_i if t == Date.strptime(g.week,'%Y/%U weeks')
+          temp_score = g.score.to_i if t == Date.strptime(g.date,'%Y/%U weeks')
         end
         @chart.append(["#{t.strftime('%Y/%m/%d週')}", temp_score])
       end
     when "day" then
-      @graph_value = Record.joins(:grade)
-                         .unscope(:order)
-                         .select("(sum(grade_point) + sum(strong_point))*10 as score
-                                 ,date_format(records.created_at ,'%Y/%m/%d') as day")
-                         .where("records.user_id = ?", current_user.id)
-                         .where("records.created_at between ? and ?", @from, @to)
-                         .group("day")
-                         .order("day")
+      set_graph('%Y/%m/%d')
 
       7.times do |i|
         t = (@from + i).strftime("%Y/%m/%d")
         temp_score = 0
         @graph_value.each do |g|
-          temp_score = g.score.to_i if t == g.day
+          temp_score = g.score.to_i if t == g.date
         end
         @chart.append([t + "(#{%w(日 月 火 水 木 金 土)[i]})", temp_score])
       end
@@ -206,6 +242,17 @@ class RecordsController < ApplicationController
   private
   def record_params
     params.require(:record).permit(:challenge, :strong_point, :picture)
+  end
+
+  def set_graph(time_format)
+    @graph_value = Record.joins(:grade)
+                         .unscope(:order)
+                         .select("(sum(grade_point) + sum(strong_point))*10 as score
+                                 ,date_format(records.created_at ,'#{time_format}') as date")
+                         .where("records.user_id = ?", current_user.id)
+                         .where("records.created_at between ? and ?", @from, @to)
+                         .group("date")
+                         .order("date")
   end
 
   def set_value
