@@ -15,7 +15,7 @@
 - provide(:title, 'グラフ')
 - @page_title = "#{@from}〜#{@to}"
 
-ul.nav.nav-tabs.col-md-3.justify-content-around
+ul.nav.nav-tabs.mx-auto.justify-content-around.form-inline
   li.nav-item
     = link_to "日", graphs_path(term: "day",from_to: @from_to ), class: "nav-link", id: "day"
   li.nav-item
