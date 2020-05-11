@@ -1,17 +1,3 @@
-/ table.table.table-hover.table-bordered
-/     thead.thead-light
-/       tr.text-center
-/         th = "スコア"
-/         th = "日時"
-/     tbody
-/       - @graph_value.each_with_index do |g, i|
-/         tr
-/           td
-/             = g.score
-/           td
-/             = g.day
-/ = @chart
-/ / = @graph_value.all.pluck
 - provide(:title, 'グラフ')
 - @page_title = "#{@from}〜#{@to}"
 
@@ -31,7 +17,7 @@ javascript:
   $("#hoge").css("color","red")
 
 h4.text-center
-  = "グラフ（#{@selected_term_jp}別）"
+  = "#{current_user.name}さんのグラフ（#{@selected_term_jp}別）"
 
 .col-md-6.mx-auto
   .form-inline.mb-3.justify-content-around
@@ -40,17 +26,5 @@ h4.text-center
       strong
         = @page_title
     = link_to "", graphs_path(next_preview: @from_to, term: @selected_term), class: "fa fa-chevron-right ml-3"
-/ = form_with(url: graphs_path, method: :get, local: true) do |f|
-/   = f.label :term, '日/週/月'
-/   = f.select :term,
-/     @term_choice, selected: @selected_term
-/   = f.label :from_to, '期間'
-/   = f.select :from_to,
-/     @from_to_choice, from_to: @selected_from_to
-/   = f.submit "集計", class: "btn btn-primary"
-
-= @from
-br
-= @to
 
 = column_chart @chart
