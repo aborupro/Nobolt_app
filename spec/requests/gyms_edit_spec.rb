@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "GymsEdits", type: :request do
+RSpec.describe "GymsEdit", type: :request do
 
   let!(:gym) { FactoryBot.create(:gym) }
   let!(:other_gym) { FactoryBot.create(:gym) }

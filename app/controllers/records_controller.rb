@@ -99,10 +99,6 @@ class RecordsController < ApplicationController
         @from = @from_to.end_of_year.ago(5.months).beginning_of_month.to_date
         @to = @from_to.end_of_year.to_date
       end
-      # 前の日付が記録を始めた時期より前だったら、右矢印を非活性状態にする
-      @chart_pre = false if @from < Record.where(user_id: current_user.id).last.created_at.to_date
-      # 次の日付が未来だったら、右矢印を非活性状態にする
-      @chart_next = false if @to > Date.today
 
       set_graph('%Y/%m')
       
@@ -119,10 +115,6 @@ class RecordsController < ApplicationController
 
       @from = @from_to.ago(7.weeks).beginning_of_week.to_date - 1
       @to = @from_to.end_of_week.to_date - 1
-      # 前の日付が記録を始めた時期より前だったら、右矢印を非活性状態にする
-      @chart_pre = false if @from < Record.where(user_id: current_user.id).last.created_at.to_date
-      # 次の日付が未来だったら、右矢印を非活性状態にする
-      @chart_next = false if @to > Date.today
 
       set_graph('%Y/%U weeks')
       
@@ -139,10 +131,6 @@ class RecordsController < ApplicationController
 
       @from = @from_to.beginning_of_week.to_date - 1
       @to = @from_to.end_of_week.to_date - 1
-      # 前の日付が記録を始めた時期より前だったら、右矢印を非活性状態にする
-      @chart_pre = false if @from < Record.where(user_id: current_user.id).last.created_at.to_date
-      # 次の日付が未来だったら、右矢印を非活性状態にする
-      @chart_next = false if @to > Date.today
 
       set_graph('%Y/%m/%d')
 
@@ -155,6 +143,11 @@ class RecordsController < ApplicationController
         @chart.append([t + "(#{%w(日 月 火 水 木 金 土)[i]})", temp_score])
       end
     end
+
+    # 前の日付が記録を始めた時期より前だったら、左矢印を非活性状態にする
+    @chart_pre = false if Record.where(user_id: current_user.id).blank? || @from < Record.where(user_id: current_user.id).last.created_at.to_date
+    # 次の日付が未来だったら、右矢印を非活性状態にする
+    @chart_next = false if @to > Date.today
 
     @from = @from.strftime("%Y/%m/%d")
     @to = @to.strftime("%Y/%m/%d")
