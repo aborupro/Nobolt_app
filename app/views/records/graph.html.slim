@@ -21,7 +21,10 @@ h4.text-center
 
 .col-md-6.mx-auto
   .form-inline.mb-3.justify-content-around
-    = link_to "", graphs_path(pre_preview: @from_to, term: @selected_term), class: "fa fa-chevron-left mr-3"
+    - if @chart_pre
+      = link_to "", graphs_path(pre_preview: @from_to, term: @selected_term), class: "fa fa-chevron-left mr-3"
+    - else
+      div.fa.fa-chevron-left.mr-3.gray
     span.ml-2.mr-2.lead
       strong
         = @page_title

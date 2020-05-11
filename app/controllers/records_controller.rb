@@ -51,6 +51,7 @@ class RecordsController < ApplicationController
     # @from_to_choice = "#"
 
     @count = 0
+    @chart_pre = true
     @chart_next = true
 
     if params[:term].present?
@@ -97,22 +98,28 @@ class RecordsController < ApplicationController
         @from = @from_to.end_of_year.ago(5.months).beginning_of_month.to_date
         @to = @from_to.end_of_year.to_date
       end
+      # 前の日付が記録を始めた時期より前だったら、右矢印を非活性状態にする
+      @chart_pre = false if @from < Record.where(user_id: current_user.id).last.created_at.to_date
       # 次の日付が未来だったら、右矢印を非活性状態にする
-      @chart_next = false if (@from_to >> 6) > Date.today
+      @chart_next = false if @to > Date.today
     when "week" then
       @selected_term_jp = "週"
 
       @from = @from_to.ago(7.weeks).beginning_of_week.to_date - 1
       @to = @from_to.end_of_week.to_date - 1
+      # 前の日付が記録を始めた時期より前だったら、右矢印を非活性状態にする
+      @chart_pre = false if @from < Record.where(user_id: current_user.id).last.created_at.to_date
       # 次の日付が未来だったら、右矢印を非活性状態にする
-      @chart_next = false if (@from_to + 7 * 8) > Date.today
+      @chart_next = false if @to > Date.today
     when "day" then
       @selected_term_jp = "日"
 
       @from = @from_to.beginning_of_week.to_date - 1
       @to = @from_to.end_of_week.to_date - 1
+      # 前の日付が記録を始めた時期より前だったら、右矢印を非活性状態にする
+      @chart_pre = false if @from < Record.where(user_id: current_user.id).last.created_at.to_date
       # 次の日付が未来だったら、右矢印を非活性状態にする
-      @chart_next = false if (@from_to + 7) > Date.today
+      @chart_next = false if @to > Date.today
     end
 
     @chart = []
@@ -125,7 +132,7 @@ class RecordsController < ApplicationController
         t = @from >> i
         temp_score = 0
         @graph_value.each do |g|
-          temp_score = g.score.to_i if t == Date.strptime(g.date,'%Y/%m')
+          temp_score = g.score.to_i if t.strftime('%Y/%m') == g.date
         end
         @chart.append(["#{t.strftime('%Y/%m')}", temp_score])
       end
@@ -136,7 +143,7 @@ class RecordsController < ApplicationController
         t = @from + i*7
         temp_score = 0
         @graph_value.each do |g|
-          temp_score = g.score.to_i if t == Date.strptime(g.date,'%Y/%U weeks')
+          temp_score = g.score.to_i if (t + 1).strftime('%Y/%U weeks') == g.date
         end
         @chart.append(["#{t.strftime('%Y/%m/%d週')}", temp_score])
       end
