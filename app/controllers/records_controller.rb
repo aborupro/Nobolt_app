@@ -135,6 +135,23 @@ class RecordsController < ApplicationController
 
     case @selected_term
     when "month" then
+      @graph_value = Record.joins(:grade)
+                         .unscope(:order)
+                         .select("(sum(grade_point) + sum(strong_point))*10 as score
+                                 ,date_format(records.created_at ,'%Y/%m') as month")
+                         .where("records.user_id = ?", current_user.id)
+                         .where("records.created_at between ? and ?", @from, @to)
+                         .group("month")
+                         .order("month")
+      
+      6.times do |i|
+        t = @from >> i
+        temp_score = 0
+        @graph_value.each do |g|
+          temp_score = g.score.to_i if t == Date.strptime(g.month,'%Y/%m')
+        end
+        @chart.append(["#{t.strftime('%Y/%m')}", temp_score])
+      end
     when "week" then
       @graph_value = Record.joins(:grade)
                          .unscope(:order)
