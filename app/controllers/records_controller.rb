@@ -47,6 +47,26 @@ class RecordsController < ApplicationController
   end
 
   def graph
+    set_graph_value
+  end
+
+  private
+  def record_params
+    params.require(:record).permit(:challenge, :strong_point, :picture)
+  end
+
+  def set_graph(time_format)
+    @graph_value = Record.joins(:grade)
+                         .unscope(:order)
+                         .select("(sum(grade_point) + sum(strong_point))*10 as score
+                                 ,date_format(records.created_at ,'#{time_format}') as date")
+                         .where("records.user_id = ?", current_user.id)
+                         .where("records.created_at between ? and ?", @from, @to)
+                         .group("date")
+                         .order("date")
+  end
+
+  def set_graph_value
     @count = 0
     @chart_pre = true
     @chart_next = true
@@ -151,22 +171,6 @@ class RecordsController < ApplicationController
 
     @from = @from.strftime("%Y/%m/%d")
     @to = @to.strftime("%Y/%m/%d")
-  end
-
-  private
-  def record_params
-    params.require(:record).permit(:challenge, :strong_point, :picture)
-  end
-
-  def set_graph(time_format)
-    @graph_value = Record.joins(:grade)
-                         .unscope(:order)
-                         .select("(sum(grade_point) + sum(strong_point))*10 as score
-                                 ,date_format(records.created_at ,'#{time_format}') as date")
-                         .where("records.user_id = ?", current_user.id)
-                         .where("records.created_at between ? and ?", @from, @to)
-                         .group("date")
-                         .order("date")
   end
 
   def set_value
