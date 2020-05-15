@@ -11,7 +11,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
   has_many :records, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :liked_posts, through: :likes, source: :record
+  has_many :liked_records, through: :likes, source: :record
   has_many :gyms, through: :records
   before_save :downcase_email
   before_create :create_activation_digest
@@ -35,6 +35,11 @@ class User < ApplicationRecord
     def new_token
       SecureRandom.urlsafe_base64
     end
+  end
+
+  # ユーザーが対象レコードをいいねしたか判定する
+  def already_liked?(record)
+    self.likes.exists?(record_id: record.id)
   end
 
   # 永続セッションのためにユーザーをデータベースに記憶する
@@ -95,7 +100,7 @@ class User < ApplicationRecord
   def following_record
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
-    Record.includes(:grade, :user, :gym).references(:user).where("user_id IN (#{following_ids})
+    Record.includes(:grade, :user, :gym, :likes).where("user_id IN (#{following_ids})
                      OR user_id = :user_id", user_id: id)
   end
 
