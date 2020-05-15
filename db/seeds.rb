@@ -30,13 +30,6 @@ users_150 = User.all
   users_6.each { |user| user.microposts.create!(content: content) }
 end
 
-users = User.all
-user  = users.first
-following = users[2..50]
-followers = users[3..40]
-following.each { |followed| user.follow(followed) }
-followers.each { |follower| follower.follow(user) }
-
 regions = ["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
   "茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県",
   "新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県",
@@ -115,4 +108,21 @@ users_150.each do |user|
     strong_point: "#{rand(0..1)}",
     created_at: Random.rand(time_from .. time_to)
   )
+end
+
+users = User.all
+user  = users.first
+
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
+
+like_users = users[0..30]
+like_users.each do |like_user|
+  array = (1..Record.count).to_a
+  array = array.sort_by{rand}[0..49]
+  array.each do |i|
+    like_user.likes.create(record_id: i)
+  end
 end
