@@ -138,8 +138,8 @@ class RecordsController < ApplicationController
     when "week" then
       @selected_term_jp = "週"
 
-      @from = @from_to.ago(7.weeks).beginning_of_week.to_date - 1
-      @to = @from_to.end_of_week.to_date - 1
+      @from = @from_to.ago(7.weeks).beginning_of_week(:sunday).to_date
+      @to = @from_to.end_of_week(:sunday).to_date
 
       set_graph('%Y/%U weeks')
       
@@ -154,8 +154,8 @@ class RecordsController < ApplicationController
     when "day" then
       @selected_term_jp = "日"
 
-      @from = @from_to.beginning_of_week.to_date - 1
-      @to = @from_to.end_of_week.to_date - 1
+      @from = @from_to.beginning_of_week(:sunday).to_date
+      @to = @from_to.end_of_week(:sunday).to_date
 
       set_graph('%Y/%m/%d')
 
@@ -170,9 +170,9 @@ class RecordsController < ApplicationController
     end
 
     # 前の日付が記録を始めた時期より前だったら、左矢印を非活性状態にする
-    @chart_pre = false if Record.where(user_id: current_user.id).blank? || @from < Record.where(user_id: current_user.id).last.created_at.to_date
+    @chart_pre = false if Record.where(user_id: current_user.id).blank? || @from <= Record.where(user_id: current_user.id).last.created_at.to_date
     # 次の日付が未来だったら、右矢印を非活性状態にする
-    @chart_next = false if @to > Date.today
+    @chart_next = false if @to >= Date.today
 
     @from = @from.strftime("%Y/%m/%d")
     @to = @to.strftime("%Y/%m/%d")
