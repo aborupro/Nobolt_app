@@ -57,6 +57,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'webdrivers'
   gem 'launchy', '~> 2.4.3'
+  gem 'rspec-retry'
   
 end
 
