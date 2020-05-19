@@ -4,6 +4,9 @@ RSpec.describe "UsersProfile", type: :system do
   include ApplicationHelper
 
   let!(:user) { FactoryBot.create(:user, :with_records) }
+  before do
+    system_log_in_as(user)
+  end
   # let!(:user) { FactoryBot.create(:user, :with_microposts) }
 
   # describe "GET /users/:id" do

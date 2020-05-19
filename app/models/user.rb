@@ -39,7 +39,7 @@ class User < ApplicationRecord
 
   # ユーザーが対象レコードをいいねしたか判定する
   def already_liked?(record)
-    self.likes.exists?(record_id: record.id)
+    likes.exists?(record_id: record.id)
   end
 
   # 永続セッションのためにユーザーをデータベースに記憶する
