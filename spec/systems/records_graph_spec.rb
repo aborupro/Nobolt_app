@@ -29,7 +29,7 @@ RSpec.describe "RecordsGraph", type: :system do
         expect(page).to have_current_path graphs_path
         expect(page).to have_title full_title("グラフ")
         expect(page).to have_content "#{user.name}さんのグラフ（日別）"
-        expect(page).to have_content "#{(Date.today.beginning_of_week - 1).strftime("%Y/%m/%d")}〜#{(Date.today.end_of_week - 1).strftime("%Y/%m/%d")}"
+        expect(page).to have_content "#{Date.today.beginning_of_week(:sunday).strftime("%Y/%m/%d")}〜#{Date.today.end_of_week(:sunday).strftime("%Y/%m/%d")}"
         expect(page).to have_css "a.fa-chevron-left"
         expect(page).to have_css "div.fa-chevron-right"
         expect(page).to have_css "div#chart-1"
@@ -37,7 +37,7 @@ RSpec.describe "RecordsGraph", type: :system do
         find("a.fa-chevron-left").click
         expect(page).to have_title full_title("グラフ")
         expect(page).to have_content "#{user.name}さんのグラフ（日別）"
-        expect(page).to have_content "#{(7.day.ago.to_date.beginning_of_week - 1).strftime("%Y/%m/%d")}〜#{(7.day.ago.to_date.end_of_week - 1).strftime("%Y/%m/%d")}"
+        expect(page).to have_content "#{7.day.ago.to_date.beginning_of_week(:sunday).strftime("%Y/%m/%d")}〜#{7.day.ago.to_date.end_of_week(:sunday).strftime("%Y/%m/%d")}"
         expect(page).to have_css "div.fa-chevron-left"
         expect(page).to have_css "a.fa-chevron-right"
         expect(page).to have_css "div#chart-1"
@@ -45,7 +45,7 @@ RSpec.describe "RecordsGraph", type: :system do
         find("a.fa-chevron-right").click
         expect(page).to have_title full_title("グラフ")
         expect(page).to have_content "#{user.name}さんのグラフ（日別）"
-        expect(page).to have_content "#{(Date.today.beginning_of_week - 1).strftime("%Y/%m/%d")}〜#{(Date.today.end_of_week - 1).strftime("%Y/%m/%d")}"
+        expect(page).to have_content "#{Date.today.beginning_of_week(:sunday).strftime("%Y/%m/%d")}〜#{Date.today.end_of_week(:sunday).strftime("%Y/%m/%d")}"
         expect(page).to have_css "a.fa-chevron-left"
         expect(page).to have_css "div.fa-chevron-right"
         expect(page).to have_css "div#chart-1"
@@ -60,7 +60,7 @@ RSpec.describe "RecordsGraph", type: :system do
         expect(page).to have_current_path graphs_path(from_to: Date.today.strftime("%Y-%m-%d"), term: "week")
         expect(page).to have_title full_title("グラフ")
         expect(page).to have_content "#{user.name}さんのグラフ（週別）"
-        expect(page).to have_content "#{(Date.today.ago(7.weeks).beginning_of_week.to_date - 1).strftime("%Y/%m/%d")}〜#{(Date.today.end_of_week.to_date - 1).strftime("%Y/%m/%d")}"
+        expect(page).to have_content "#{Date.today.ago(7.weeks).beginning_of_week(:sunday).to_date.strftime("%Y/%m/%d")}〜#{Date.today.end_of_week(:sunday).to_date.strftime("%Y/%m/%d")}"
         expect(page).to have_css "a.fa-chevron-left"
         expect(page).to have_css "div.fa-chevron-right"
         expect(page).to have_css "div#chart-1"
@@ -68,7 +68,7 @@ RSpec.describe "RecordsGraph", type: :system do
         find("a.fa-chevron-left").click
         expect(page).to have_title full_title("グラフ")
         expect(page).to have_content "#{user.name}さんのグラフ（週別）"
-        expect(page).to have_content "#{((Date.today - 7*8).ago(7.weeks).beginning_of_week.to_date - 1).strftime("%Y/%m/%d")}〜#{((Date.today - 7*8).end_of_week.to_date - 1).strftime("%Y/%m/%d")}"
+        expect(page).to have_content "#{(Date.today - 7*8).ago(7.weeks).beginning_of_week(:sunday).to_date.strftime("%Y/%m/%d")}〜#{(Date.today - 7*8).end_of_week(:sunday).to_date.strftime("%Y/%m/%d")}"
         expect(page).to have_css "div.fa-chevron-left"
         expect(page).to have_css "a.fa-chevron-right"
         expect(page).to have_css "div#chart-1"
@@ -76,7 +76,7 @@ RSpec.describe "RecordsGraph", type: :system do
         find("a.fa-chevron-right").click
         expect(page).to have_title full_title("グラフ")
         expect(page).to have_content "#{user.name}さんのグラフ（週別）"
-        expect(page).to have_content "#{(Date.today.ago(7.weeks).beginning_of_week.to_date - 1).strftime("%Y/%m/%d")}〜#{(Date.today.end_of_week.to_date - 1).strftime("%Y/%m/%d")}"
+        expect(page).to have_content "#{Date.today.ago(7.weeks).beginning_of_week(:sunday).to_date.strftime("%Y/%m/%d")}〜#{Date.today.end_of_week(:sunday).to_date.strftime("%Y/%m/%d")}"
         expect(page).to have_css "a.fa-chevron-left"
         expect(page).to have_css "div.fa-chevron-right"
         expect(page).to have_css "div#chart-1"

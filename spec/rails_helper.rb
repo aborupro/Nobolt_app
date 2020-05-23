@@ -1,5 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'rspec/retry'
 ENV['RAILS_ENV'] ||= 'test'
 
 require File.expand_path('../config/environment', __dir__)
@@ -74,4 +75,14 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.include ApplicationHelpers
   config.include LoginSupport
+
+  # 実行中にリトライのステータスを表示する
+  config.verbose_retry = true
+  # リトライの原因となった例外を表示する
+  config.display_try_failure_messages = true
+
+  # js: true のフィーチャスペックのみリトライを有効にする
+  config.around :each, :js do |ex|
+    ex.run_with_retry retry: 5
+  end
 end

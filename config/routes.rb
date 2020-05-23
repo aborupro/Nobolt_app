@@ -27,7 +27,9 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
-  resources :records,             only: [:index, :new, :create, :destroy]
+  resources :records,             only: [:index, :new, :create, :destroy] do
+    resources :likes, only: [:create, :destroy]
+  end
   resources :gyms,                only: [:index, :new, :create, :update, :destroy]
   get    '/gyms/:id', to: 'gyms#edit', as: 'edit_gym'
 end

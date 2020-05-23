@@ -10,5 +10,8 @@ span.user
   = image_tag record.picture.url if record.picture?
 span.timestamp
   = record.created_at
+  <div id="likes_buttons_#{record.id}">
+    = render partial: 'likes/like', locals: { record: record, likes: @likes}
+  </div>
   - if current_user?(record.user)
     = link_to "削除", record, method: :delete, data: { confirm: "本当に削除しますか?" }

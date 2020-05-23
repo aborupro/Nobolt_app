@@ -2,6 +2,8 @@ class Record < ApplicationRecord
   belongs_to :user
   belongs_to :gym
   belongs_to :grade
+  has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :user
   default_scope -> { order(created_at: :desc) }
   validates :grade_id, presence: true
   validates :strong_point, presence: true
