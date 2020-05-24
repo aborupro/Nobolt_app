@@ -1,5 +1,13 @@
 - provide(:title, "マイページ")
-.row
+.row.content_center
+  .col-sd-6
+    = render 'follow_form' if logged_in?
+    - if @user.records.any?
+      h3
+        | マイ完登記録 (
+        = @user.records.count
+        | )
+.row.content_center
   aside.col-md-4
     section.user_info
       h1
@@ -8,13 +16,45 @@
         = @user.name
     section.stats
       = render 'shared/stats'
-  .col-md-8
+.row.content_center
+  = link_to "解除", user_path(@user)
+
+.row.content_center
+  .col-md-6
+    table.table.table-hover.table-bordered
+      thead.thead-light
+        tr.text-center
+          th = "級"
+          th = "記録数"
+      tbody
+        - @grade_stats.each do |grade_stat|
+          tr
+            td.text-center
+              = link_to(user_path(@user, grade_select: grade_stat["grade_id"], gym_select: @gym_select)) do
+                = grade_stat["grade_name"]
+            td.text-center
+              = grade_stat["record_num"]
+  .col-md-6
+    table.table.table-hover.table-bordered
+      thead.thead-light
+        tr.text-center
+          th = "ジム"
+          th = "記録数"
+      tbody
+        - @gym_stats.each do |gym_stat|
+          tr
+            td.text-center
+              / = grade_stat
+              = link_to(user_path(@user,grade_select: @grade_select, gym_select: gym_stat["gym_id"])) do
+                = gym_stat["gym_name"]
+            td.text-center
+              = gym_stat["record_num"]
+
+
+.row.content_center
+  .col-sd-6
     = render 'follow_form' if logged_in?
     - if @user.records.any?
-      h3
-        | マイ完登記録 (
-        = @user.records.count
-        | )
       ol.records
         = render @records
       = will_paginate @records

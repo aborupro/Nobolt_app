@@ -63,8 +63,8 @@ class RecordsController < ApplicationController
   def set_graph(time_format)
     @graph_value = Record.joins(:grade)
                          .unscope(:order)
-                         .select("(sum(grade_point) + sum(strong_point))*10 as score
-                                 ,date_format(records.created_at ,'#{time_format}') as date")
+                         .select("(sum(grade_point) + sum(strong_point))*10 as score,
+                                 date_format(records.created_at ,'#{time_format}') as date")
                          .where("records.user_id = ?", current_user.id)
                          .where("records.created_at between ? and ?", @from, @to)
                          .group("date")
