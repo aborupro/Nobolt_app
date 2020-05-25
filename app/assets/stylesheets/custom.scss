@@ -358,27 +358,31 @@ iframe {
 
 // マイ完登記録
 
-.acd-check{
-  display: none;
-}
-.acd-label{
-  background: #333;
-  color: #fff;
+.table_detail tr:hover{
+  cursor:pointer;
+ }
+
+.record-num:after {
+  content: "";
+  position: absolute;
+  right: 32px;
+  top: 20px;
+  transition: all 0.2s ease-in-out;
   display: block;
-  margin-bottom: 1px;
-  padding: 10px;
+  width: 8px;
+  height: 8px;
+  border-top: solid 2px #000;
+  border-right: solid 2px #000;
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
 }
-.acd-content{
-  border: 1px solid #333;
-  height: 0;
-  opacity: 0;
-  padding: 0 10px;
-  transition: .5s;
-  visibility: hidden;
+
+.record-num.open:after {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 23px;
 }
-.acd-check:checked + .acd-label + .acd-content{
-  height: 40px;
-  opacity: 1;
-  padding: 10px;
-  visibility: visible;
+
+.record-num-column {
+  width: 125px;
 }

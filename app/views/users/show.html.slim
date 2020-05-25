@@ -22,34 +22,50 @@
 .row.content_center
   .col-md-6
     table.table.table-hover.table-bordered
-      thead.thead-light
-        tr.text-center
+      thead.thead-light.table_detail
+        tr.text-center.table-title
           th = "級"
-          th = "記録数"
+          th.record-num.record-num-column
+            = "記録数"
       tbody
+        - @grade_sum = 0
         - @grade_stats.each do |grade_stat|
-          tr
+          - @grade_sum += grade_stat["record_num"]
+          tr.hidden_row
             td.text-center
               = link_to(user_path(@user, grade_select: grade_stat["grade_id"], gym_select: @gym_select)) do
                 = grade_stat["grade_name"]
-            td.text-center
+            td.text-center.record-num-column
               = grade_stat["record_num"]
+        tr
+          td.text-center
+            | 合計
+          td.text-center.record-num-column
+            = @grade_sum
+
   .col-md-6
     table.table.table-hover.table-bordered
-      thead.thead-light
-        tr.text-center
+      thead.thead-light.table_detail
+        tr.text-center.table-title
           th = "ジム"
-          th = "記録数"
+          th.record-num.record-num-column
+            = "記録数"
       tbody
+        - @gym_sum = 0
         - @gym_stats.each do |gym_stat|
-          tr
+          - @gym_sum += gym_stat["record_num"]
+          tr.hidden_row
             td.text-center
               / = grade_stat
               = link_to(user_path(@user,grade_select: @grade_select, gym_select: gym_stat["gym_id"])) do
                 = gym_stat["gym_name"]
-            td.text-center
+            td.text-center.record-num-column
               = gym_stat["record_num"]
-
+        tr
+          td.text-center
+            | 合計
+          td.text-center.record-num-column
+            = @gym_sum
 
 .row.content_center
   .col-sd-6
