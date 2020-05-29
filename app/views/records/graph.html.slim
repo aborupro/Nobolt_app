@@ -9,12 +9,7 @@ ul.nav.nav-tabs.mx-auto.justify-content-around.form-inline
   li.nav-item
     = link_to "月", graphs_path(term: "month",from_to: @from_to ), class: "nav-link", id: "month"
 
-input.term type="hidden" value=@selected_term
-
-javascript:
-  term = $('.term').val();
-  $(`#${term}`).addClass("active")
-  $("#hoge").css("color","red")
+input#term type="hidden" value=@selected_term
 
 h4.text-center
   = "#{current_user.name}さんのグラフ（#{@selected_term_jp}別）"
