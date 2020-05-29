@@ -21,9 +21,9 @@
 
 .row.content_center
   .col-md-6
-    table.table.table-hover.table-bordered
+    table.table.table-hover.table-bordered#grade-table
       thead.thead-light.table_detail
-        tr.text-center.table-title
+        tr.text-center.table-title#grade-table-title
           th = "級"
           th.record-num.record-num-column
             = "記録数"
@@ -32,21 +32,21 @@
         - @grade_stats.each do |grade_stat|
           - @grade_sum += grade_stat["record_num"]
           tr.hidden_row
-            td.text-center
+            td.text-center id="grade_name_#{Grade.find_by(name: grade_stat["grade_name"]).id}"
               = link_to(user_path(@user, grade_select: grade_stat["grade_id"], gym_select: @gym_select)) do
                 = grade_stat["grade_name"]
-            td.text-center.record-num-column
+            td.text-center.record-num-column id="grade_num_#{Grade.find_by(name: grade_stat["grade_name"]).id}"
               = grade_stat["record_num"]
         tr
           td.text-center
             | 合計
-          td.text-center.record-num-column
+          td.text-center.record-num-column#grade_sum
             = @grade_sum
 
   .col-md-6
-    table.table.table-hover.table-bordered
+    table.table.table-hover.table-bordered#gym-table
       thead.thead-light.table_detail
-        tr.text-center.table-title
+        tr.text-center.table-title#gym-table-title
           th = "ジム"
           th.record-num.record-num-column
             = "記録数"
@@ -55,16 +55,15 @@
         - @gym_stats.each do |gym_stat|
           - @gym_sum += gym_stat["record_num"]
           tr.hidden_row
-            td.text-center
-              / = grade_stat
+            td.text-center id="gym_name_#{Gym.find_by(name: gym_stat["gym_name"]).id}"
               = link_to(user_path(@user,grade_select: @grade_select, gym_select: gym_stat["gym_id"])) do
                 = gym_stat["gym_name"]
-            td.text-center.record-num-column
+            td.text-center.record-num-column id="gym_num_#{Gym.find_by(name: gym_stat["gym_name"]).id}"
               = gym_stat["record_num"]
         tr
           td.text-center
             | 合計
-          td.text-center.record-num-column
+          td.text-center.record-num-column#gym_sum
             = @gym_sum
 
 .row.content_center

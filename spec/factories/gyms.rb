@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :gym do
-    sequence(:name) { |n| "Gym_#{n}" }
+    sequence(:name) { |n| "gym#{n}" }
     prefecture_code { 13 }
     picture { "sample_picture" }
     url { "https://nobolog.com" }
