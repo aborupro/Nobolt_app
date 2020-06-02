@@ -107,7 +107,7 @@ RSpec.describe "Records", type: :system do
         expect(page).to have_title full_title("ジム選択")
         expect(page).to have_content 'まずは、ジムを選択してください'
         within first('.gym_list') do
-          click_link 'Gym'
+          click_link 'gym'
         end
         expect(page).to have_title full_title("記録する")
         expect {
