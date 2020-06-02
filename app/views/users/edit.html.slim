@@ -13,11 +13,25 @@
       = f.password_field :password, class: 'form-control'
       = f.label :password_confirmation
       = f.password_field :password_confirmation, class: 'form-control'
+      span.picture
+        = f.label :picture
+        span.optional
+          | 任意
+        .row
+          aside.col-md-4.center
+            section.user_info
+              h1
+                img.hidden#avatar_img_prev[src="#"]
+                / - if @user.picture?
+                = image_tag @user.picture.url, class:'avatar_present_img'
+                / - else
+                / = image_tag @user.picture.url
+        = f.file_field :picture, id:'post_img'
       = f.submit "編集を保存する", class: "btn btn-primary"
-    .row
-      aside.col-md-4
-        section.user_info
-          h1
-            img.avater[src="/assets/climber1"]
-          p
-            = link_to "編集", "#"
+    / .row
+    /   aside.col-md-4
+    /     section.user_info
+    /       h1
+    /         = image_tag @user.picture.url
+    /       p
+    /         = link_to "編集", "#"

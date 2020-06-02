@@ -12,15 +12,15 @@ User.create!(name:  "壁崎 登る",
   activated_at: Time.zone.now)
 
 149.times do |n|
-name  = Faker::Name.name
-email = "example-#{n+1}@nobolog.com"
-password = "password"
-User.create!(name:  name,
-    email: email,
-    password:              password,
-    password_confirmation: password,
-    activated: true,
-    activated_at: Time.zone.now)
+  name  = Faker::Name.name
+  email = "example-#{n+1}@nobolog.com"
+  password = "password"
+  User.create!(name:  name,
+      email: email,
+      password:              password,
+      password_confirmation: password,
+      activated: true,
+      activated_at: Time.zone.now)
 end
 
 users_6 = User.order(:created_at).take(6)
