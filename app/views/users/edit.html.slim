@@ -22,16 +22,6 @@
             section.user_info
               h1
                 img.hidden#avatar_img_prev[src="#"]
-                / - if @user.picture?
                 = image_tag @user.picture.url, class:'avatar_present_img'
-                / - else
-                / = image_tag @user.picture.url
         = f.file_field :picture, id:'post_img'
       = f.submit "編集を保存する", class: "btn btn-primary"
-    / .row
-    /   aside.col-md-4
-    /     section.user_info
-    /       h1
-    /         = image_tag @user.picture.url
-    /       p
-    /         = link_to "編集", "#"
