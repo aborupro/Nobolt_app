@@ -11,6 +11,7 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認）
+        picture: 画像
       micropost:
         picture: 画像
         user_id: ユーザID
