@@ -1,5 +1,5 @@
-header.container-fluid
-  nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
+header.container-fluid#header
+  nav.navbar.navbar-expand-sm.navbar-dark.bg-primary
     .container
       = link_to "Nobolog", root_path, id: "logo", class: "navbar-brand header-logo"
       #navbarColor02.navbar-collapse.collapse[style=""]
@@ -29,9 +29,6 @@ header.container-fluid
                 .dropdown-divider
                 = link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item"
           - else
-            li.nav-item
-              a.nav-link[href="#"]
-                | お試し
             li.nav-item
               = link_to "ログイン", login_path, class: "nav-link"
             li.nav-item

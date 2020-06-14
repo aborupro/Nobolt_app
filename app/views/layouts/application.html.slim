@@ -11,7 +11,7 @@ html
     = render 'layouts/shim'
   body
     = render 'layouts/header'
-    .container-fluid
+    .container-fluid#content
       - flash.each do |message_type, message|
         = content_tag(:div, message, class: "flash_message alert alert-#{message_type}")
       = yield
