@@ -87,7 +87,7 @@ RSpec.describe "Records", type: :system do
         expect(page).to have_title full_title("ジム選択")
         expect(page).to have_content gym_1.name
         expect(page).to have_content gym_2.name
-        fill_in 'キーワード検索', with: gym_1.name
+        fill_in 'キーワードで検索', with: gym_1.name
         click_button "検索"
         expect(page).to have_content gym_1.name
         expect(page).to_not have_content gym_2.name
