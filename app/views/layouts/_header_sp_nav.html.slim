@@ -1,0 +1,32 @@
+- if logged_in?
+  li.nav-item
+    = link_to "グラフ", graphs_path, class: "nav-link"
+  li.nav-item
+    = link_to "ランキング", rankings_path, class: "nav-link"
+  li.nav-item
+    = link_to "ジム選択", gyms_path, class: "nav-link"
+  li.nav-item
+    = link_to "記録する", new_record_path, class: "nav-link"
+  li.nav-item.dropdown
+    a.nav-link.dropdown-toggle[data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true"]
+      | 完登記録
+    .dropdown-menu[x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);"]
+      = link_to "フォローユーザ", root_path, class: "dropdown-item"
+      = link_to "全ユーザ", records_path, class: "dropdown-item"
+  li.nav-item.dropdown
+    a.nav-link.dropdown-toggle[data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true"]
+      | アカウント
+    .dropdown-menu[x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);"]
+      = link_to "マイページ", current_user, class: "dropdown-item"
+      = link_to "プロフィール編集", edit_user_path(current_user), class: "dropdown-item"
+      = link_to "ユーザ一覧", users_path, class: "dropdown-item"
+      .dropdown-divider
+      = link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item"
+  li.nav-item.close
+    span
+      |  閉じる
+- else
+  li.nav-item
+    = link_to "ログイン", login_path, class: "nav-link"
+  li.nav-item
+    = link_to "新規登録", signup_path, class: "nav-link"
