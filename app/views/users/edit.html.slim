@@ -1,7 +1,7 @@
 - provide(:title, 'プロフィール編集')
 .row
-  .col-md-6.col-md-offset-3.center
-    h1
+  .col-9.col-sm-8.col-md-6.col-md-offset-3.center
+    h2.page-title
       | プロフィール編集
     = form_with(model: @user, local: true) do |f|
       = render 'shared/error_messages', object: f.object
@@ -17,11 +17,10 @@
         = f.label :picture
         span.optional
           | 任意
-        .row
-          aside.col-md-4.center
-            section.user_info
-              h1
-                img.hidden#avatar_img_prev[src="#"]
-                = image_tag @user.picture.url, class:'avatar_present_img'
+        .row.img_prev
+          section.user_info
+            h1
+              img.hidden#avatar_img_prev[src="#"]
+              = image_tag @user.picture.url, class:'avatar_present_img'
         = f.file_field :picture, id:'post_img'
       = f.submit "編集を保存する", class: "btn btn-primary"
