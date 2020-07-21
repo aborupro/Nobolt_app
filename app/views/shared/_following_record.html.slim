@@ -1,5 +1,7 @@
 - if @following_record_items.any?
-  = will_paginate @following_record_items
+  .content_center
+    = will_paginate @following_record_items
   ol.records
     = render @following_record_items
-  = will_paginate @following_record_items
+  .content_center
+    = will_paginate @following_record_items
