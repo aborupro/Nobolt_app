@@ -17,34 +17,34 @@
     section.stats
       = render 'shared/stats'
 .row.content_center
-  = link_to "解除", user_path(@user)
+  = link_to "絞り込みクリア", user_path(@user)
 
 .row.content_center
-  .col-md-6
-    table.table.table-hover.table-bordered#grade-table
-      thead.thead-light.table_detail
-        tr.text-center.table-title#grade-table-title
-          th = "級"
-          th.record-num.record-num-column
-            = "記録数"
-      tbody
-        - @grade_sum = 0
-        - @grade_stats.each do |grade_stat|
-          - @grade_sum += grade_stat["record_num"]
-          tr.hidden_row
-            td.text-center id="grade_name_#{Grade.find_by(name: grade_stat["grade_name"]).id}"
-              = link_to(user_path(@user, grade_select: grade_stat["grade_id"], gym_select: @gym_select)) do
-                = grade_stat["grade_name"]
-            td.text-center.record-num-column id="grade_num_#{Grade.find_by(name: grade_stat["grade_name"]).id}"
-              = grade_stat["record_num"]
-        tr
-          td.text-center
-            | 合計
-          td.text-center.record-num-column#grade_sum
-            = @grade_sum
+  / .col-6.col-sm-5.col-md-4.col-lg-3.col-xl-2
+  table.table.table-hover.table-bordered#grade-table.table-view
+    thead.thead-light.table_detail
+      tr.text-center.table-title#grade-table-title
+        th = "級"
+        th.record-num.record-num-column
+          = "記録数"
+    tbody
+      - @grade_sum = 0
+      - @grade_stats.each do |grade_stat|
+        - @grade_sum += grade_stat["record_num"]
+        tr.hidden_row
+          td.text-center id="grade_name_#{Grade.find_by(name: grade_stat["grade_name"]).id}"
+            = link_to(user_path(@user, grade_select: grade_stat["grade_id"], gym_select: @gym_select)) do
+              = grade_stat["grade_name"]
+          td.text-center.record-num-column id="grade_num_#{Grade.find_by(name: grade_stat["grade_name"]).id}"
+            = grade_stat["record_num"]
+      tr
+        td.text-center
+          | 合計
+        td.text-center.record-num-column#grade_sum
+          = @grade_sum
 
-  .col-md-6
-    table.table.table-hover.table-bordered#gym-table
+  .col-10.col-sm-9.col-md-8.col-lg-7.col-xl-6
+    table.table.table-hover.table-bordered#gym-table.table-view
       thead.thead-light.table_detail
         tr.text-center.table-title#gym-table-title
           th = "ジム"
@@ -55,7 +55,7 @@
         - @gym_stats.each do |gym_stat|
           - @gym_sum += gym_stat["record_num"]
           tr.hidden_row
-            td.text-center id="gym_name_#{Gym.find_by(name: gym_stat["gym_name"]).id}"
+            td.text-left.table-gym-name id="gym_name_#{Gym.find_by(name: gym_stat["gym_name"]).id}"
               = link_to(user_path(@user,grade_select: @grade_select, gym_select: gym_stat["gym_id"])) do
                 = gym_stat["gym_name"]
             td.text-center.record-num-column id="gym_num_#{Gym.find_by(name: gym_stat["gym_name"]).id}"
@@ -72,4 +72,5 @@
     - if @user.records.any?
       ol.records
         = render @records
-      = will_paginate @records
+      .content_center
+        = will_paginate @records

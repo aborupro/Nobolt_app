@@ -342,37 +342,6 @@ iframe {
   color: $gray-600;
 }
 
-// マイ完登記録
-
-.table_detail tr:hover{
-  cursor:pointer;
- }
-
-.record-num:after {
-  content: "";
-  position: absolute;
-  right: 32px;
-  top: 20px;
-  transition: all 0.2s ease-in-out;
-  display: block;
-  width: 8px;
-  height: 8px;
-  border-top: solid 2px #000;
-  border-right: solid 2px #000;
-  -webkit-transform: rotate(135deg);
-  transform: rotate(135deg);
-}
-
-.record-num.open:after {
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  top: 23px;
-}
-
-.record-num-column {
-  width: 125px;
-}
-
 .hidden {
   display: none;
 }
