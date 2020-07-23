@@ -6,8 +6,6 @@
   p.text-center
     | 新しくジムを登録する場合はこちら⇨
     = link_to "新規ジム登録", new_gym_path
-  / .content_center
-  /   = will_paginate @gyms
   ul.gym_list_box.content_center
     = render @gyms
   .content_center
