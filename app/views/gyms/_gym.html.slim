@@ -2,7 +2,10 @@
   = link_to controller: 'records', action: 'new', selection_gym_name: gym.name do
     .gym-card
       .gym-image
-        = image_tag gym.picture.url if gym.picture?
+        - if gym.picture?
+          = image_tag gym.picture.url
+        - else
+          image src="/assets/PAK75_borudaringukabe_TP_V.jpg"
       ul.gym-content
         li.gym-card-name
           = gym.name
