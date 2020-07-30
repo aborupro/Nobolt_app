@@ -9,8 +9,8 @@
   flex-wrap: wrap;
   min-height: 96vh;
   .gym_list {
-    height: 350px;
-    width: 250px;
+    height: 400px;
+    width: 300px;
     border-radius: 5px;
     box-shadow: 0 2px 5px $black;
     margin: 15px 10px;
@@ -19,4 +19,41 @@
 
 .search-box {
   margin-bottom: 5px;
+}
+
+// gym card
+.gym-card {
+  overflow: auto;
+  .gym-image {
+    height: 50%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .gym-content {
+    height: 50%;
+    list-style-type: none;
+    padding: 15px;
+  }
+}
+
+.gym-card-name {
+  font-size: 20px;
+
+}
+
+.gym-card-content {
+  font-size: 13px;
+}
+
+.gym-card-delete {
+  margin-left: 15px;
+  display: inline;
+}
+
+.gym-card-edit {
+  text-align: right;
+  padding-right: 15px;
 }
