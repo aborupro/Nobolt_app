@@ -97,7 +97,7 @@ RSpec.describe "Records", type: :system do
       it "is a user who has records" do
         system_log_in_as(user)
         visit user_path(user)
-        expect(page).to have_content "マイ完登記録 (#{user.records.count})"
+        expect(page).to have_content "完登記録 (#{user.records.count})"
       end
   
       it "is a user who has no record" do
@@ -117,7 +117,7 @@ RSpec.describe "Records", type: :system do
           click_button '登録'
         }.to change(Record, :count).by(1)
         visit user_path(no_record_user)
-        expect(page).to have_content "マイ完登記録 (1)"
+        expect(page).to have_content "完登記録 (1)"
       end
     end
   end
