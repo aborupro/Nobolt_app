@@ -1,7 +1,10 @@
 - provide(:title, 'ユーザ一覧')
-h1
-  | ユーザ一覧
-= will_paginate
-ul.users.user_info
-  = render @users
-= will_paginate
+.container
+  h2.text-center.page-title
+    | ユーザ一覧
+  .content_center
+    = will_paginate
+  ul.users.user_info
+    = render @users
+  .content_center
+    = will_paginate
