@@ -6,7 +6,9 @@ span.user
   = record.gym.name
   = record.grade.name
   = record.challenge
-  = "good" if record.strong_point == "1"
+  - if record.strong_point == "1"
+    span.good-mark
+      = "good"
   = image_tag record.picture.url if record.picture?
 span.timestamp
   = record.created_at
