@@ -6,28 +6,26 @@
     = form_with(model: @gym, local: true) do |f|
       = render 'shared/error_messages', object: f.object
       = f.label :name
+      span.required
+        | 必須
       = f.text_field :name, readonly: true, class: 'form-control'
       = f.hidden_field :prefecture_code, value: @gym.prefecture_code, class: 'form-control'
       = f.label :prefecture
+      span.required
+        | 必須
       = f.text_field :prefecture, value: (JpPrefecture::Prefecture.find @gym.prefecture_code).name, readonly: true, class: 'form-control'
       = f.label :address
+      span.required
+        | 必須
       = f.text_field :address, value: @gym.address, readonly: true, class: 'form-control'
       span.picture
         = f.label :picture
-        span.optional
-          | 任意
         = f.file_field :picture
       = f.label :url
-      span.optional
-        | 任意
       = f.text_field :url, class: 'form-control'
       = f.label :business_hours
-      span.optional
-        | 任意
       = f.text_field :business_hours, class: 'form-control'
       = f.label :price
-      span.optional
-        | 任意
       = f.text_area :price, class: 'form-control'
       = f.submit "更新", class: "btn btn-primary"
     = link_to controller: 'records', action: 'new', selection_gym_name: @gym.name do

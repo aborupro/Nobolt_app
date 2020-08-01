@@ -1,7 +1,7 @@
 = form_with(model: @record, local: true) do |f|
   .record-form
     = f.label :gym_name
-    span.optional
+    span.required
         | 必須
     = f.text_field :gym_name, value: @gym_name, readonly: true, placeholder: "例）Nobolog 東京店", class: 'form-control'
     p
@@ -9,17 +9,17 @@
       = link_to "ジム選択", gyms_path
   .record-form
     = f.label :grade
-    span.optional
+    span.required
         | 必須
     = f.select :grade, Grade.pluck(:name), {},:class=> 'form-control'
   .record-form
     = f.label :challenge
-    span.optional
+    span.required
         | 必須
     = f.text_field :challenge, placeholder: "例）1番、スラブの四角、100°の棒など", class: 'form-control'
   .record-form
     = f.label :strong_point
-    span.optional
+    span.required
         | 必須
     .custom-control.custom-switch.first-clear
       = f.check_box :strong_point, class:"custom-control-input", id:"customSwitch1"

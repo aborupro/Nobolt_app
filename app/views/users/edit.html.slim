@@ -6,8 +6,12 @@
     = form_with(model: @user, local: true) do |f|
       = render 'shared/error_messages', object: f.object
       = f.label :name
+      span.required
+        | 必須
       = f.text_field :name, class: 'form-control'
       = f.label :email
+      span.required
+        | 必須
       = f.email_field :email, class: 'form-control'
       = f.label :password
       = f.password_field :password, class: 'form-control'
@@ -15,8 +19,6 @@
       = f.password_field :password_confirmation, class: 'form-control'
       span.picture
         = f.label :picture
-        span.optional
-          | 任意
         .row.img_prev
           section.user_info
             h1
