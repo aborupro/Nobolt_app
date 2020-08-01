@@ -12,7 +12,7 @@ RSpec.describe "Records", type: :system do
   describe "record" do
     it "posts a valid record at the gym recorded last time" do
       system_log_in_as(user)
-      click_link "記録する"
+      find('.pc-nav').click_link "記録する"
       expect(page).to have_current_path "/records/new"
       expect(page).to have_title full_title("記録する")
       expect {
@@ -29,7 +29,7 @@ RSpec.describe "Records", type: :system do
 
     it "posts an invalid record at the gym recorded last time" do
       system_log_in_as(user)
-      click_link "記録する"
+      find('.pc-nav').click_link "記録する"
       expect(page).to have_current_path "/records/new"
       expect(page).to have_title full_title("記録する")
       expect {
@@ -46,7 +46,7 @@ RSpec.describe "Records", type: :system do
 
     it "posts valid record with a picture" do
       system_log_in_as(user)
-      click_link "記録する"
+      find('.pc-nav').click_link "記録する"
       expect(page).to have_current_path "/records/new"
       expect(page).to have_title full_title("記録する")
       expect {
@@ -64,7 +64,7 @@ RSpec.describe "Records", type: :system do
 
     it "deletes a record" do
       system_log_in_as(user)
-      click_link "記録する"
+      find('.pc-nav').click_link "記録する"
       expect(page).to have_current_path "/records/new"
       expect(page).to have_title full_title("記録する")
       expect {
@@ -102,7 +102,7 @@ RSpec.describe "Records", type: :system do
   
       it "is a user who has no record" do
         system_log_in_as(no_record_user)
-        click_link '記録する'
+        find('.pc-nav').click_link '記録する'
         expect(page).to have_current_path "/gyms"
         expect(page).to have_title full_title("ジム選択")
         expect(page).to have_content 'まずは、ジムを選択してください'

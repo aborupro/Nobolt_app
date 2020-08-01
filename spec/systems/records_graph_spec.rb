@@ -120,7 +120,7 @@ RSpec.describe "RecordsGraph", type: :system do
     context "visits daily graph page" do
       it "shows active day tag", js: true do
         visit graphs_path
-        expect(page).to have_selector 'h4', text: '日'
+        expect(page).to have_selector 'h3', text: '日'
         expect(page).to have_css "a#day.nav-link.active"
       end
     end
@@ -129,7 +129,7 @@ RSpec.describe "RecordsGraph", type: :system do
       it "shows active week tag", js: true do
         visit graphs_path
         click_link "週"
-        expect(page).to have_selector 'h4', text: '週'
+        expect(page).to have_selector 'h3', text: '週'
         expect(page).to have_css "a#week.nav-link.active"
       end
     end
@@ -138,7 +138,7 @@ RSpec.describe "RecordsGraph", type: :system do
       it "shows active month tag", js: true do
         visit graphs_path
         click_link "月"
-        expect(page).to have_selector 'h4', text: '月'
+        expect(page).to have_selector 'h3', text: '月'
         expect(page).to have_css "a#month.nav-link.active"
       end
     end

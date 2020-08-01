@@ -36,8 +36,8 @@ RSpec.describe "Logins", type: :system do
         expect(page).to_not have_link 'ログイン', href: login_path
         expect(page).to have_link 'ログアウト', href: logout_path
         expect(page).to have_link "マイページ", href: user_path(user)
-        click_link "アカウント"
-        click_link "ログアウト"
+        find('#pc-dropdown').click_link "アカウント"
+        find('#pc-dropdown').click_link"ログアウト"
         expect(page).to have_current_path root_path
         expect(page).to have_link 'ログイン', href: login_path
         expect(page).to_not have_link 'ログアウト', href: logout_path
