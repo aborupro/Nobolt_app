@@ -1,20 +1,32 @@
 = form_with(model: @record, local: true) do |f|
-  = f.label :gym_name
-  = f.text_field :gym_name, value: @gym_name, readonly: true, placeholder: "例）Nobolog 東京店", class: 'form-control'
-  p
-    | 別のジムで記録する場合はこちら⇨
-    = link_to "ジム選択", gyms_path
-  = f.label :grade
-  = f.select :grade, Grade.pluck(:name)
-  = f.label :challenge
-  = f.text_field :challenge, placeholder: "例）1番、スラブの四角、100°の棒など", class: 'form-control'
-  = f.label :strong_point
-  .custom-control.custom-switch
-    = f.check_box :strong_point, class:"custom-control-input", id:"customSwitch1"
-    = f.label :strong_point, "1度目のトライでクリアした場合にチェック", class:"custom-control-label", for:"customSwitch1"
-  span.picture
-    = f.label :picture
+  .record-form
+    = f.label :gym_name
     span.optional
-      | 任意
-    = f.file_field :picture
-  = f.submit "登録", class: "btn btn-primary"
+        | 必須
+    = f.text_field :gym_name, value: @gym_name, readonly: true, placeholder: "例）Nobolog 東京店", class: 'form-control'
+    p
+      | 別のジムで記録する場合はこちら⇨
+      = link_to "ジム選択", gyms_path
+  .record-form
+    = f.label :grade
+    span.optional
+        | 必須
+    = f.select :grade, Grade.pluck(:name), {},:class=> 'form-control'
+  .record-form
+    = f.label :challenge
+    span.optional
+        | 必須
+    = f.text_field :challenge, placeholder: "例）1番、スラブの四角、100°の棒など", class: 'form-control'
+  .record-form
+    = f.label :strong_point
+    span.optional
+        | 必須
+    .custom-control.custom-switch.first-clear
+      = f.check_box :strong_point, class:"custom-control-input", id:"customSwitch1"
+      = f.label :strong_point, "1度目のトライでクリアした場合にチェック", class:"custom-control-label", for:"customSwitch1"
+  .record-form
+    span.picture
+      = f.label :picture
+      = f.file_field :picture
+  .record-form
+    = f.submit "登録", class: "btn btn-primary"
