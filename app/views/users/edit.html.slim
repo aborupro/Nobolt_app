@@ -4,6 +4,15 @@
     h2.page-title
       | プロフィール編集
     = form_with(model: @user, local: true) do |f|
+      .profile-picture
+        span.picture
+          = @user.name
+          .row.img_prev
+            section.user_info
+              h1
+                img.hidden#avatar_img_prev[src="#"]
+                = image_tag @user.picture.url, class:'avatar_present_img'
+          = f.file_field :picture, id:'post_img'
       = render 'shared/error_messages', object: f.object
       = f.label :name
       span.required
@@ -17,12 +26,4 @@
       = f.password_field :password, class: 'form-control'
       = f.label :password_confirmation
       = f.password_field :password_confirmation, class: 'form-control'
-      span.picture
-        = f.label :picture
-        .row.img_prev
-          section.user_info
-            h1
-              img.hidden#avatar_img_prev[src="#"]
-              = image_tag @user.picture.url, class:'avatar_present_img'
-        = f.file_field :picture, id:'post_img'
-      = f.submit "編集を保存する", class: "btn btn-primary"
+      = f.submit "保存", class: "btn btn-primary"
