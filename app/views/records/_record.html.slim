@@ -2,18 +2,20 @@
 = link_to image_tag(record.user.picture.url), record.user, class: "avater"
 span.user
   = link_to record.user.name, record.user
-.content
-  = record.gym.name
-  = record.grade.name
-  = record.challenge
   - if record.strong_point == "1"
     span.good-mark
       = "一撃"
+.content
+  = record.gym.name
+span.content
+  = record.grade.name
+  span.content-challenge
+    = record.challenge
   = image_tag record.picture.url if record.picture?
 span.timestamp
   = record.created_at
-  <div id="likes_buttons_#{record.id}">
+  <span id="likes_buttons_#{record.id}" class="like-button">
     = render partial: 'likes/like', locals: { record: record, likes: @likes}
-  </div>
+  </span>
   - if current_user?(record.user)
-    = link_to "削除", record, method: :delete, data: { confirm: "本当に削除しますか?" }
+    = link_to "削除", record, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "record-delete"
