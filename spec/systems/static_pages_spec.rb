@@ -14,11 +14,6 @@ RSpec.describe "Statics", type: :system do
     expect(page).to have_title "使い方 | #{base_title}"
   end
 
-  it "returns correct contact title" do
-    visit contact_path
-    expect(page).to have_title "お問い合わせ | #{base_title}"
-  end
-
   describe "layout links" do
     context "when not logged in" do
       it "contain root link" do
@@ -29,11 +24,6 @@ RSpec.describe "Statics", type: :system do
       it "contains help link" do
         visit root_path
         expect(page).to have_link '使い方', href: help_path
-      end
-  
-      it "contains contact link" do
-        visit root_path
-        expect(page).to have_link 'お問い合わせ', href: contact_path
       end
   
       it "contains login link" do
