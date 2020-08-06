@@ -147,3 +147,9 @@
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 575px) {
+  .sp-header-container {
+    margin: 0 15px;
+  }
+}
