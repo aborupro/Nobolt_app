@@ -46,13 +46,22 @@ RSpec.describe "RankingsRanking", type: :system do
       rank_number_6 = '#rank-number-' + "#{user_6.id}"
       user_name_6   = '#user-name-'   + "#{user_6.id}"
       score_6       = '#score-'       + "#{user_6.id}"
-      expect(find(rank_number_4)).to have_content "1"
+      
+      within find(rank_number_4) do
+        expect(find('.crown')[:src]).to eq '/assets/crown-1.png'
+      end
       expect(find(user_name_4)).to have_content user_4.name
       expect(find(score_4)).to have_content "100pt"
-      expect(find(rank_number_5)).to have_content "2"
+
+      within find(rank_number_5) do
+        expect(find('.crown')[:src]).to eq '/assets/crown-2.png'
+      end
       expect(find(user_name_5)).to have_content user_5.name
       expect(find(score_5)).to have_content "50pt"
-      expect(find(rank_number_6)).to have_content "3"
+
+      within find(rank_number_6) do
+        expect(find('.crown')[:src]).to eq '/assets/crown-3.png'
+      end
       expect(find(user_name_6)).to have_content user_6.name
       expect(find(score_6)).to have_content "40pt"
     end
