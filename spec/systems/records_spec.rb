@@ -17,7 +17,7 @@ RSpec.describe "Records", type: :system do
       expect(page).to have_title full_title("記録する")
       expect {
         select '3級', from: '級'
-        fill_in '課題の種類（番号、形、色など課題を特定できる情報）', with: '100°四角'
+        fill_in '課題の種類', with: '100°四角'
         check '1度目のトライでクリアした場合にチェック'
         click_button '登録'
       }.to change(Record, :count).by(1)
@@ -38,7 +38,7 @@ RSpec.describe "Records", type: :system do
         click_button '登録'
       }.to_not change(Record, :count)
       expect(page).to have_content '1個のエラーがあります'
-      expect(page).to have_content '課題の種類（番号、形、色など課題を特定できる情報）を入力してください'
+      expect(page).to have_content '課題の種類を入力してください'
       # 登録したジム内容を再度確認できる
       expect(page).to have_field 'ジム名', with: Gym.find(Record.find_by(user_id: user.id).gym_id).name
       expect(page).to have_current_path "/records"
@@ -51,7 +51,7 @@ RSpec.describe "Records", type: :system do
       expect(page).to have_title full_title("記録する")
       expect {
         select '3級', from: '級'
-        fill_in '課題の種類（番号、形、色など課題を特定できる情報）', with: '100°四角'
+        fill_in '課題の種類', with: '100°四角'
         check '1度目のトライでクリアした場合にチェック'
         attach_file '課題の写真', "#{Rails.root}/spec/factories/boulder1.jpg"
         click_button '登録'
@@ -69,7 +69,7 @@ RSpec.describe "Records", type: :system do
       expect(page).to have_title full_title("記録する")
       expect {
         select '3級', from: '級'
-        fill_in '課題の種類（番号、形、色など課題を特定できる情報）', with: '100°四角'
+        fill_in '課題の種類', with: '100°四角'
         check '1度目のトライでクリアした場合にチェック'
         click_button '登録'
       }.to change(Record, :count).by(1)
@@ -112,7 +112,7 @@ RSpec.describe "Records", type: :system do
         expect(page).to have_title full_title("記録する")
         expect {
           select '3級', from: '級'
-          fill_in '課題の種類（番号、形、色など課題を特定できる情報）', with: '100°四角'
+          fill_in '課題の種類', with: '100°四角'
           check '1度目のトライでクリアした場合にチェック'
           click_button '登録'
         }.to change(Record, :count).by(1)
