@@ -43,7 +43,7 @@ RSpec.describe "UsersProfile", type: :system do
         expect(page).to have_css '.pagination', count: 1
         user.records.paginate(page: 1).each do |record|
           expect(page).to have_content record.grade.name
-          expect(page).to have_content "good" if record.strong_point == "1"
+          expect(page).to have_content "一撃" if record.strong_point == "1"
           expect(page).to have_content record.challenge
           expect(page).to have_content Gym.find_by(id:record.gym_id).name
         end
