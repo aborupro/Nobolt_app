@@ -11,6 +11,7 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認）
+        picture: 画像
       micropost:
         picture: 画像
         user_id: ユーザID
@@ -26,6 +27,6 @@ ja:
       record:
         gym_name: ジム名
         grade: 級
-        challenge: 課題の種類（番号、形、色など課題を特定できる情報）
+        challenge: 課題の種類
         strong_point: 一撃クリア
         picture: 課題の写真

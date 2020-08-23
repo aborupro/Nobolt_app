@@ -12,7 +12,7 @@ RSpec.describe "Records", type: :system do
     context "register" do
       it "registers a valid gym" do
         system_log_in_as(user)
-        click_link "ジム選択"
+        find('.pc-nav').click_link "ジム選択"
         expect(page).to have_current_path "/gyms"
         expect(page).to have_title full_title("ジム選択")
         expect {
@@ -39,7 +39,7 @@ RSpec.describe "Records", type: :system do
   
       it "registers an invalid gym" do
         system_log_in_as(user)
-        click_link "ジム選択"
+        find('.pc-nav').click_link "ジム選択"
         expect(page).to have_current_path "/gyms"
         expect(page).to have_title full_title("ジム選択")
         expect {
@@ -74,7 +74,7 @@ RSpec.describe "Records", type: :system do
     context "select" do
       it "redirects to gym select page" do
         system_log_in_as(no_record_user)
-        click_link "記録する"
+        find('.pc-nav').click_link "記録する"
         expect(page).to have_current_path "/gyms"
         expect(page).to have_title full_title("ジム選択")
         expect(page).to have_content 'まずは、ジムを選択してください'
@@ -82,12 +82,12 @@ RSpec.describe "Records", type: :system do
   
       it "selects correct gym" do
         system_log_in_as(no_record_user)
-        click_link "ジム選択"
+        find('.pc-nav').click_link "ジム選択"
         expect(page).to have_current_path "/gyms"
         expect(page).to have_title full_title("ジム選択")
         expect(page).to have_content gym_1.name
         expect(page).to have_content gym_2.name
-        fill_in 'キーワード検索', with: gym_1.name
+        fill_in "地名・キーワードで検索", with: gym_1.name
         click_button "検索"
         expect(page).to have_content gym_1.name
         expect(page).to_not have_content gym_2.name
@@ -102,7 +102,7 @@ RSpec.describe "Records", type: :system do
           gym[n] = FactoryBot.create(:gym)
         end
         system_log_in_as(admin)
-        click_link "ジム選択"
+        find('.pc-nav').click_link "ジム選択"
         expect(page).to have_current_path "/gyms"
         expect(page).to have_title full_title("ジム選択")
         Gym.paginate(page: 1).each do |page_gym|
@@ -115,7 +115,7 @@ RSpec.describe "Records", type: :system do
 
       it "has no delete link when logged in as non-admin" do
         system_log_in_as(user)
-        click_link "ジム選択"
+        find('.pc-nav').click_link "ジム選択"
         expect(page).to_not have_link "削除"
       end
     end

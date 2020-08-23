@@ -2,6 +2,8 @@ html
   head
     title
       = full_title(yield(:title))
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    meta name="description" content=""
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all',
@@ -11,7 +13,7 @@ html
     = render 'layouts/shim'
   body
     = render 'layouts/header'
-    .container-fluid
+    .container-fluid#content
       - flash.each do |message_type, message|
         = content_tag(:div, message, class: "flash_message alert alert-#{message_type}")
       = yield

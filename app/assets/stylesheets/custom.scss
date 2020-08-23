@@ -56,8 +56,9 @@ footer {
   color: white;
 }
 
-.login_home {
-    justify-content: center;
+.content_center {
+  display: flex;
+  justify-content: center;
 }
 
 //avater
@@ -74,7 +75,7 @@ footer {
   }
 }
 
-// .login_home {
+// .content_center {
 //   justify-content: center;
 //   .user_info {
 //     margin-top: 20px;
@@ -199,7 +200,7 @@ aside {
   }
   .content {
     display: block;
-    margin-left: 60px;
+    margin-left: 70px;
     img {
       display: block;
       padding: 5px 0;
@@ -208,7 +209,7 @@ aside {
   .timestamp {
     color: #D3D3D3;
     display: block;
-    margin-left: 60px;
+    margin-left: 70px;
   }
 }
 
@@ -280,7 +281,7 @@ input {
 
 .center {
   h1 {
-    text-align: center;;
+    text-align: center;
   }
   margin: 0 auto;
 }
@@ -337,21 +338,42 @@ iframe {
 
 /* gym index */
 
-.gym_list_box {
-  padding: 50px 10px;
-  overflow: overlay;
-  display: flex;
-  flex-wrap: wrap;
-  min-height: 96vh;
-  .gym_list {
-    height: 350px;
-    width: 250px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px $black;
-    margin: 30px 10px;
-  }
-}
-
 .gray {
   color: $gray-600;
+}
+
+.hidden {
+  display: none;
+}
+
+#header {
+  position: fixed;
+  z-index: 5;
+}
+
+#content {
+  padding-top: 52.38
+}
+
+.form-control, .form-control:focus{
+  color: black;
+}
+
+.search-window {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.page-title {
+  padding:10px;
+  text-align: center;
+}
+
+/* required form mark */
+.required {
+  color: #fff;
+  background: #dc2000;
+  padding: 2px;
+  margin-left: 1em;
+  font-size: 12px;
 }

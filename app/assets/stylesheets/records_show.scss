@@ -1,0 +1,49 @@
+// 完登記録
+
+.table_detail tr:hover{
+  cursor:pointer;
+ }
+
+.record-num:after {
+  content: "";
+  position: absolute;
+  right: 22px;
+  top: 15px;
+  transition: all 0.2s ease-in-out;
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-top: solid 2px #000;
+  border-right: solid 2px #000;
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.record-num.open:after {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 18px;
+}
+
+.record-num-column {
+  position: relative;
+  width: 125px;
+}
+
+.table-view {
+  font-size: 12px;
+  td {
+    padding: 0;
+  }
+}
+
+#grade-table {
+  width: 200px;
+}
+
+.table-gym-name {
+  a {
+    padding-left: 12px;
+    display: block;
+  }
+}

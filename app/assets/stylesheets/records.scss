@@ -1,3 +1,32 @@
-// Place all the styles related to the Records controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.first-clear {
+  margin-bottom: 30px;
+}
+
+.record-form {
+  padding: 15px 20px 10px 20px;
+  border-top: solid 1px #ccc
+}
+
+.first-clear {
+  margin-bottom: 15px;
+}
+
+.good-mark {
+  color: #fff;
+  background: #dc0000;
+  padding: 2px;
+  margin-left: 1em;
+  font-size: 12px;
+}
+
+.like-button {
+  margin-left: 20px;
+}
+
+.content-challenge {
+  margin-left: 20px;
+}
+
+.record-delete {
+  margin-left: 20px;
+}

@@ -11,7 +11,49 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     # @microposts = @user.microposts.paginate(page: params[:page])
-    @records = @user.records.includes(:gym, :grade, :likes).paginate(page: params[:page])
+    # @records = @user.records.includes(:gym, :grade, :likes).paginate(page: params[:page])
+
+    if params[:gym_select].present?
+      @gym_select = params[:gym_select]
+    else
+      @gym_select = Gym.pluck("id")
+    end
+
+    if params[:grade_select].present?
+      @grade_select = params[:grade_select]
+    else
+      @grade_select = Grade.pluck("id")
+    end
+    
+    @grade_stats = Record.joins(:grade)
+                         .joins(:gym)
+                         .unscope(:order)
+                         .select("grades.name as grade_name,
+                                  count(*) as record_num,
+                                  grades.id as grade_id")
+                         .where("records.user_id = ?", @user.id)
+                         .where("records.grade_id in (?)", @grade_select)
+                         .where("records.gym_id in (?)", @gym_select)
+                         .group("records.grade_id")
+                         .order("records.grade_id")
+
+    @gym_stats = Record.joins(:grade)
+                       .joins(:gym)
+                       .unscope(:order)
+                       .select("gyms.name as gym_name,
+                               count(*) as record_num,
+                               gyms.id as gym_id")
+                       .where("records.user_id = ?", @user.id)
+                       .where("records.grade_id in (?)", @grade_select)
+                       .where("records.gym_id in (?)", @gym_select)
+                       .group("records.gym_id")
+                       .order("records.gym_id")
+    
+    @records = @user.records
+                    .where("grade_id in (?)", @grade_select)
+                    .where("gym_id in (?)", @gym_select)
+                    .includes(:gym, :grade, :likes).paginate(page: params[:page])
+
     redirect_to root_url and return unless @user.activated?
   end
 
@@ -68,7 +110,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :picture)
     end
 
     # beforeアクション

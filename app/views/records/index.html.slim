@@ -1,10 +1,13 @@
 - provide(:title, '完登記録(全ユーザ)')
-.row.login_home
-  .col-sd-6
-    h3
-      | 完登記録(全ユーザ)
+.container
+  h2.text-center.page-title
+    | 完登記録(全ユーザ)
+
+  .col-md-8.col-lg-6.col-xl-5.mx-auto
     - if @records.any?
-      = will_paginate @records
+      .content_center
+        = will_paginate @records
       ol.records
         = render @records
-      = will_paginate @records
+      .content_center
+        = will_paginate @records

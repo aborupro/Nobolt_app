@@ -1,6 +1,11 @@
 - provide(:title, 'ランキング')
+.container
+  .row.content_center
+    .col-sd-6
+      h2.page-title
+        | ランキング
 
-= render 'term_form'
+  = render 'term_form'
 
-#rank-show
-  = render 'show'
+  #rank-show
+    = render 'show'

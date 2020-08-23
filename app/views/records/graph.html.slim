@@ -1,36 +1,32 @@
 - provide(:title, 'グラフ')
-- @page_title = "#{@from}〜#{@to}"
+.container
+  h3.text-center.page-title
+    = "#{current_user.name}さんのグラフ（#{@selected_term_jp}別）"
 
-ul.nav.nav-tabs.mx-auto.justify-content-around.form-inline
-  li.nav-item
-    = link_to "日", graphs_path(term: "day",from_to: @from_to ), class: "nav-link", id: "day"
-  li.nav-item
-    = link_to "週", graphs_path(term: "week",from_to: @from_to ), class: "nav-link", id: "week"
-  li.nav-item
-    = link_to "月", graphs_path(term: "month",from_to: @from_to ), class: "nav-link", id: "month"
+  - @page_title = "#{@from}〜#{@to}"
 
-input.term type="hidden" value=@selected_term
+  ul.nav.nav-tabs.mx-auto.justify-content-around.form-inline
+    li.nav-item
+      = link_to "日", graphs_path(term: "day",from_to: @from_to ), class: "nav-link", id: "day"
+    li.nav-item
+      = link_to "週", graphs_path(term: "week",from_to: @from_to ), class: "nav-link", id: "week"
+    li.nav-item
+      = link_to "月", graphs_path(term: "month",from_to: @from_to ), class: "nav-link", id: "month"
 
-javascript:
-  term = $('.term').val();
-  $(`#${term}`).addClass("active")
-  $("#hoge").css("color","red")
+  input#term type="hidden" value=@selected_term
 
-h4.text-center
-  = "#{current_user.name}さんのグラフ（#{@selected_term_jp}別）"
+  .col-md-6.mx-auto
+    .form-inline.mb-3.justify-content-around
+      - if @chart_pre
+        = link_to "", graphs_path(pre_preview: @from_to, term: @selected_term), class: "fa fa-chevron-left mr-3"
+      - else
+        div.fa.fa-chevron-left.mr-3.gray
+      span.ml-2.mr-2.lead
+        strong
+          = @page_title
+      - if @chart_next
+        = link_to "", graphs_path(next_preview: @from_to, term: @selected_term), class: "fa fa-chevron-right ml-3"
+      - else
+        div.fa.fa-chevron-right.ml-3.gray
 
-.col-md-6.mx-auto
-  .form-inline.mb-3.justify-content-around
-    - if @chart_pre
-      = link_to "", graphs_path(pre_preview: @from_to, term: @selected_term), class: "fa fa-chevron-left mr-3"
-    - else
-      div.fa.fa-chevron-left.mr-3.gray
-    span.ml-2.mr-2.lead
-      strong
-        = @page_title
-    - if @chart_next
-      = link_to "", graphs_path(next_preview: @from_to, term: @selected_term), class: "fa fa-chevron-right ml-3"
-    - else
-      div.fa.fa-chevron-right.ml-3.gray
-
-= column_chart @chart
+  = column_chart @chart

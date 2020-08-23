@@ -29,12 +29,12 @@ RSpec.describe "RankingsRanking", type: :system do
   describe "ranking" do
     it "has correct score in the gym that the user recorded in" do
       system_log_in_as(user_5)
-      click_link "ランキング"
+      find('.pc-nav').click_link "ランキング"
       expect(page).to have_current_path "/rankings"
       expect(page).to have_title full_title("ランキング")
-      expect(page).to have_select('集計期間', selected: Time.current.strftime("%Y年%m月"), options: ["全期間"] + (Record.last[:created_at].to_date.beginning_of_month..Date.today).select{|date| date.day == 1 }.map { |item| item.strftime("%Y年%m月")}.reverse)
-      expect(page).to have_select('ジム', selected: '全てのジム', options: ["全てのジム"] + Gym.pluck("name"))
-      select gym.name, from: 'ジム'
+      expect(page).to have_select(:month, selected: Time.current.strftime("%Y年%m月"), options: ["全期間"] + (Record.last[:created_at].to_date.beginning_of_month..Date.today).select{|date| date.day == 1 }.map { |item| item.strftime("%Y年%m月")}.reverse)
+      expect(page).to have_select(:gym, selected: '全てのジム', options: ["全てのジム"] + Gym.pluck("name"))
+      select gym.name, from: :gym
       click_button '集計'
       expect(page).to have_content "あなたの順位は 3人中 2位 です"
       rank_number_4 = '#rank-number-' + "#{user_4.id}"
@@ -46,23 +46,32 @@ RSpec.describe "RankingsRanking", type: :system do
       rank_number_6 = '#rank-number-' + "#{user_6.id}"
       user_name_6   = '#user-name-'   + "#{user_6.id}"
       score_6       = '#score-'       + "#{user_6.id}"
-      expect(find(rank_number_4)).to have_content "1"
+      
+      within find(rank_number_4) do
+        expect(find('.crown')[:src]).to eq '/assets/crown-1.png'
+      end
       expect(find(user_name_4)).to have_content user_4.name
       expect(find(score_4)).to have_content "100pt"
-      expect(find(rank_number_5)).to have_content "2"
+
+      within find(rank_number_5) do
+        expect(find('.crown')[:src]).to eq '/assets/crown-2.png'
+      end
       expect(find(user_name_5)).to have_content user_5.name
       expect(find(score_5)).to have_content "50pt"
-      expect(find(rank_number_6)).to have_content "3"
+
+      within find(rank_number_6) do
+        expect(find('.crown')[:src]).to eq '/assets/crown-3.png'
+      end
       expect(find(user_name_6)).to have_content user_6.name
       expect(find(score_6)).to have_content "40pt"
     end
 
     it "doesn't have score in the gym that the user didn't record in" do
       system_log_in_as(user_5)
-      click_link "ランキング"
+      find('.pc-nav').click_link "ランキング"
       expect(page).to have_current_path "/rankings"
       expect(page).to have_title full_title("ランキング")
-      select other_gym.name, from: 'ジム'
+      select other_gym.name, from: :gym
       click_button '集計'
       expect(page).to have_content "あなたはこの期間、このジムで実績がありません"
       expect(page).to_not have_content user_4.name
@@ -72,10 +81,10 @@ RSpec.describe "RankingsRanking", type: :system do
 
     it "has score in all term & all gyms" do
       system_log_in_as(user_5)
-      click_link "ランキング"
+      find('.pc-nav').click_link "ランキング"
       expect(page).to have_current_path "/rankings"
       expect(page).to have_title full_title("ランキング")
-      select '全期間', from: '集計期間'
+      select '全期間', from: :month
       click_button '集計'
       expect(page).to have_content '集計期間：全期間'
       expect(page).to have_content user_1.name
@@ -91,13 +100,12 @@ RSpec.describe "RankingsRanking", type: :system do
         FactoryBot.create(:user, :with_records_random_time)
       end
       system_log_in_as(user_5)
-      click_link "ランキング"
+      find('.pc-nav').click_link "ランキング"
       expect(page).to have_current_path "/rankings"
       expect(page).to have_title full_title("ランキング")
-      select '全期間', from: '集計期間'
+      select '全期間', from: :month
       click_button '集計'
       expect(page).to have_css '.pagination', count: 2
     end
-      
   end
 end

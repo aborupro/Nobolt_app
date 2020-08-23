@@ -2,7 +2,7 @@
 .row
   aside.col-md-4
     section.user_info
-      img[src="/assets/kaburikko1"]
+      = image_tag @user.picture.url
       h1
         = @user.name
       span
@@ -16,7 +16,7 @@
       - if @users.any?
         .avater
           - @users.each do |user|
-            = link_to image_tag("/assets/kaburikko1"), user
+            = link_to image_tag(user.picture.url), user
   .col-md-8
     h3
       = @title

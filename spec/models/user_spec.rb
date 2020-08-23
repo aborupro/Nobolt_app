@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { FactoryBot.build(:user) }
+  let(:user) { FactoryBot.build(:user, :with_picture_under_5MB) }
+  let(:user_5MB) { FactoryBot.build(:user, :with_picture_over_5MB) }
 
   it "is valid with a name and email" do
     expect(user).to be_valid
@@ -74,6 +76,17 @@ RSpec.describe User, type: :model do
           user.email = "foo@bar+baz.com"
           expect(user).to be_invalid
         end
+      end
+    end
+
+    describe "picture" do
+      it "is valid that has a picture under 5MB" do
+        expect(user).to be_valid
+      end
+
+      it "is invalid with a picture over 5MB" do
+        user_5MB.valid?
+        expect(user_5MB.errors[:picture]).to include('画像は5MBが上限です')
       end
     end
 

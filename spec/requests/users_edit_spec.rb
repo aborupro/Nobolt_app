@@ -12,7 +12,8 @@ RSpec.describe "UsersEdits", type: :request do
         name:  "Foo Bar",
         email: "foo@bar.com",
         password: "",
-        password_confirmation: "" 
+        password_confirmation: "" ,
+        picture: "#{Rails.root}/spec/factories/boulder1.jpg"
       }
     }
   end
@@ -23,7 +24,8 @@ RSpec.describe "UsersEdits", type: :request do
         name:  "",
         email: "foo@invalid",
         password: "foo",
-        password_confirmation: "bar" 
+        password_confirmation: "bar",
+        picture: "#{Rails.root}/spec/factories/over5MB.jpeg"
       }
     }
   end

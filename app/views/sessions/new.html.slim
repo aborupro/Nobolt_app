@@ -14,5 +14,9 @@
         span#remember-me-text
           | ログイン状態を保持する
       = f.submit "ログイン", class: "btn btn-primary", id: "f-login-submit"
+    = form_with(scope: :session, url: login_path, local: true) do |f|
+      = f.hidden_field :email, value: "example@nobolog.com"
+      = f.hidden_field :password, value: "foobar"
+      = f.submit "お試しログイン", class: "btn btn-info", id: "trial-login-submit"
     p
       = link_to "新規登録はこちら", signup_path

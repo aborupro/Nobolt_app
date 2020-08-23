@@ -1,7 +1,7 @@
 li#micropost-
 = micropost.id
   .micropost 
-= link_to image_tag("/assets/kaburikko1"), micropost.user, class: "avater"
+= link_to image_tag(micropost.user.picture.url), micropost.user, class: "avater"
 span.user
   = link_to micropost.user.name, micropost.user
 span.content

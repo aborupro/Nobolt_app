@@ -1,3 +1,25 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.second-paginate {
+  margin-top: 16px;
+}
+
+.user-index-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-index-pic {
+  margin-left: 30px;
+}
+
+.user-index-name {
+  margin: 20px 0 0 10px;
+}
+
+.user-del {
+  .btn {
+    padding: 0.2rem;
+    font-size: 14px;
+    line-height: 14px;
+    margin-top: 15px;
+  }
+}
