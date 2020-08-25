@@ -7,7 +7,7 @@
     - if !@gym_name
       = form_with(url: gyms_search_path, method: :post, local: true) do |search_f|
         = search_f.label :search, 'ジム検索'
-        = search_f.text_field :search, value: @keyword, placeholder: "例）Nobolog", class: "form-control"
+        = search_f.text_field :search, value: @keyword, placeholder: "例）Nobolt", class: "form-control"
         = search_f.submit '検索'
       - if @gyms
         table

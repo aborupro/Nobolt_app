@@ -68,7 +68,7 @@ RSpec.describe "GymsEdit", type: :request do
         patch_invalid_information
         expect(request.fullpath).to eq edit_gym_path(gym)
         gym.reload
-        expect(gym.url).to eq "https://nobolog.com"
+        expect(gym.url).to eq "https://nobolt.com"
         expect(gym.business_hours).to eq "9:00-23:00"
         expect(gym.price).to eq "1800円"
       end

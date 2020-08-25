@@ -3,7 +3,7 @@ FactoryBot.define do
     sequence(:name) { |n| "gym#{n}" }
     prefecture_code { 13 }
     picture { "sample_picture" }
-    url { "https://nobolog.com" }
+    url { "https://nobolt.com" }
     business_hours { "9:00-23:00" }
     address { "MyString" }
     price { "1800円" }
