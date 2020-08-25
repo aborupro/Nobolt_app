@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe StaticPagesController, type: :controller do
 
-  let(:base_title) { "Nobolog" }
+  let(:base_title) { "Nobolt" }
 
   describe "#home" do
     it "responds successfully" do

@@ -14,7 +14,7 @@ RSpec.describe "Gyms", type: :request do
                                         name: "Gym 1",
                                         prefecture_code: 13,
                                         picture: "MyString",
-                                        url: "https://nobolog.com",
+                                        url: "https://nobolt.com",
                                         business_hours: "MyString",
                                         address: "MyString",
                                         price: "MyString"

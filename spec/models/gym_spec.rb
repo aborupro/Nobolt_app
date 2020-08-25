@@ -30,8 +30,8 @@ RSpec.describe Gym, type: :model do
       end
 
       it "is invalid with a duplicate name" do
-        gym.name = "Nobolog 東京店"
-        other_gym.name = "Nobolog 東京店"
+        gym.name = "Nobolt 東京店"
+        other_gym.name = "Nobolt 東京店"
         gym.save
         other_gym.valid?
         expect(other_gym.errors[:name]).to include('はすでに存在します')

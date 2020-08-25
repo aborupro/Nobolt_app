@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Statics", type: :system do
 
-  let(:base_title) { "Nobolog" }
+  let(:base_title) { "Nobolt" }
 
   it "returns correct home title" do
     visit root_path
@@ -18,7 +18,7 @@ RSpec.describe "Statics", type: :system do
     context "when not logged in" do
       it "contain root link" do
         visit root_path
-        expect(page).to have_link 'Nobolog', href: root_path
+        expect(page).to have_link 'Nobolt', href: root_path
       end
   
       it "contains help link" do

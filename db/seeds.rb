@@ -4,7 +4,7 @@ time_from = Time.parse('2018-1-1')
 time_to   = Time.current
 
 User.create!(name:  "壁崎 登る",
-  email: "example@nobolog.com",
+  email: "example@nobolt.com",
   password:              "foobar",
   password_confirmation: "foobar",
   admin: true,
@@ -13,7 +13,7 @@ User.create!(name:  "壁崎 登る",
 
 149.times do |n|
   name  = Faker::Name.name
-  email = "example-#{n+1}@nobolog.com"
+  email = "example-#{n+1}@nobolt.com"
   password = "password"
   User.create!(name:  name,
       email: email,
@@ -79,7 +79,7 @@ gyms["results"].each do |gym|
     name:  gym['name'],
     prefecture_code: (JpPrefecture::Prefecture.find name: @seed_gym_prefecture).code,
     address: gym['formatted_address'],
-    url: "https://nobolog.com",
+    url: "https://nobolt.com",
     business_hours: "9:00-22:00",
     price: "1800円"
   )

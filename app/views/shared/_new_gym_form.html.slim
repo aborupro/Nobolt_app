@@ -2,7 +2,7 @@
   = f.label :name
   span.required
     | 必須
-  = f.text_field :name, value: @gym_name, readonly: true, placeholder: "例）Nobolog 東京店", class: 'form-control'
+  = f.text_field :name, value: @gym_name, readonly: true, placeholder: "例）Nobolt 東京店", class: 'form-control'
   = f.hidden_field :prefecture_code, value: (JpPrefecture::Prefecture.find name: @gym_prefecture).code, class: 'form-control'
   = f.label :prefecture
   span.required
@@ -16,7 +16,7 @@
     = f.label :picture
     = f.file_field :picture
   = f.label :url
-  = f.text_field :url, placeholder: "例）https://nobolog.com", class: 'form-control'
+  = f.text_field :url, placeholder: "例）https://nobolt.com", class: 'form-control'
   = f.label :business_hours
   = f.text_field :business_hours, placeholder: "例）9:00-22:00", class: 'form-control'
   = f.label :price
