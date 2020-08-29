@@ -25,6 +25,7 @@ gem 'ransack'
 gem 'chartkick'
 gem 'mysql2'
 gem 'font-awesome-sass'
+gem 'rename'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
