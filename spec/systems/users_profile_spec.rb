@@ -5,8 +5,8 @@ RSpec.describe "UsersProfile", type: :system do
 
   let!(:grade1) { FactoryBot.create(:grade, name: "1級") }
   let!(:grade2) { FactoryBot.create(:grade, name: "2級") }
-  let!(:gym1) { FactoryBot.create(:gym, name: "nobolog1") }
-  let!(:gym2) { FactoryBot.create(:gym, name: "nobolog2") }
+  let!(:gym1) { FactoryBot.create(:gym, name: "nobolt1") }
+  let!(:gym2) { FactoryBot.create(:gym, name: "nobolt2") }
 
   let!(:user) { FactoryBot.create(:user, :with_records) }
   let!(:record1) { FactoryBot.create(:record, user_id: user.id, grade_id: grade1.id, gym_id: gym1.id) }
@@ -31,23 +31,23 @@ RSpec.describe "UsersProfile", type: :system do
   #     end
   #   end
 
-    describe "GET /users/:id" do
-      it "shows profile display" do
-        visit user_path(user)
-        expect(user.records.length).to eq 103
-        expect(current_path).to eq user_path(user)
-        expect(page).to have_title full_title("マイページ")
-        expect(page).to have_selector '.user_info', text: user.name
-        expect(page).to have_selector 'h1 img'
-        expect(page).to have_content user.records.count.to_s
-        expect(page).to have_css '.pagination', count: 1
-        user.records.paginate(page: 1).each do |record|
-          expect(page).to have_content record.grade.name
-          expect(page).to have_content "一撃" if record.strong_point == "1"
-          expect(page).to have_content record.challenge
-          expect(page).to have_content Gym.find_by(id:record.gym_id).name
-        end
+  describe "GET /users/:id" do
+    it "shows profile display" do
+      visit user_path(user)
+      expect(user.records.length).to eq 103
+      expect(current_path).to eq user_path(user)
+      expect(page).to have_title full_title("マイページ")
+      expect(page).to have_selector '.user_info', text: user.name
+      expect(page).to have_selector 'h1 img'
+      expect(page).to have_content user.records.count.to_s
+      expect(page).to have_css '.pagination', count: 1
+      user.records.paginate(page: 1).each do |record|
+        expect(page).to have_content record.grade.name
+        expect(page).to have_content "一撃" if record.strong_point == "1"
+        expect(page).to have_content record.challenge
+        expect(page).to have_content Gym.find_by(id:record.gym_id).name
       end
+    end
 
     it "shows follow and follower count" do
       visit user_path(user)
@@ -62,8 +62,8 @@ RSpec.describe "UsersProfile", type: :system do
         expect(current_path).to eq user_path(user)
         expect(page).to have_content "1級"
         expect(page).to have_content "2級"
-        expect(page).to have_content "nobolog1"
-        expect(page).to have_content "nobolog2"
+        expect(page).to have_content "nobolt1"
+        expect(page).to have_content "nobolt2"
         expect(find("#grade_num_" + grade1.id.to_s)).to have_content "2"
         expect(find("#grade_num_" + grade2.id.to_s)).to have_content "1"
         expect(find("#gym_num_" + gym1.id.to_s)).to have_content "2"
@@ -73,8 +73,8 @@ RSpec.describe "UsersProfile", type: :system do
         click_link '1級'
         expect(page).to have_content "1級"
         expect(page).to_not have_content "2級"
-        expect(page).to have_content "nobolog1"
-        expect(page).to have_content "nobolog2"
+        expect(page).to have_content "nobolt1"
+        expect(page).to have_content "nobolt2"
         expect(find('#grade_sum')).to have_content "2"
         expect(find('#gym_sum')).to have_content "2"
       end
@@ -86,19 +86,19 @@ RSpec.describe "UsersProfile", type: :system do
         expect(current_path).to eq user_path(user)
         expect(page).to have_content "1級"
         expect(page).to have_content "2級"
-        expect(page).to have_content "nobolog1"
-        expect(page).to have_content "nobolog2"
+        expect(page).to have_content "nobolt1"
+        expect(page).to have_content "nobolt2"
         expect(find("#grade_num_" + grade1.id.to_s)).to have_content "2"
         expect(find("#grade_num_" + grade2.id.to_s)).to have_content "1"
         expect(find("#gym_num_" + gym1.id.to_s)).to have_content "2"
         expect(find("#gym_num_" + gym2.id.to_s)).to have_content "1"
         expect(find('#grade_sum')).to have_content "103"
         expect(find('#gym_sum')).to have_content "103"
-        click_link 'nobolog2'
+        click_link 'nobolt2'
         expect(page).to have_content "1級"
         expect(page).to_not have_content "2級"
-        expect(page).to_not have_content "nobolog1"
-        expect(page).to have_content "nobolog2"
+        expect(page).to_not have_content "nobolt1"
+        expect(page).to have_content "nobolt2"
         expect(find('#grade_sum')).to have_content "1"
         expect(find('#gym_sum')).to have_content "1"
       end
@@ -115,8 +115,8 @@ RSpec.describe "UsersProfile", type: :system do
         end
         
         within '#gym-table' do
-          expect(page).to have_content "nobolog1"
-          expect(page).to have_content "nobolog2"
+          expect(page).to have_content "nobolt1"
+          expect(page).to have_content "nobolt2"
         end
         
         find("#grade-table-title").click
@@ -127,8 +127,8 @@ RSpec.describe "UsersProfile", type: :system do
         end
 
         within '#gym-table' do
-          expect(page).to_not have_content "nobolog1"
-          expect(page).to_not have_content "nobolog2"
+          expect(page).to_not have_content "nobolt1"
+          expect(page).to_not have_content "nobolt2"
         end
 
         find("#grade-table-title").click
@@ -139,8 +139,8 @@ RSpec.describe "UsersProfile", type: :system do
         end
         
         within '#gym-table' do
-          expect(page).to have_content "nobolog1"
-          expect(page).to have_content "nobolog2"
+          expect(page).to have_content "nobolt1"
+          expect(page).to have_content "nobolt2"
         end
       end
     end
@@ -156,20 +156,20 @@ RSpec.describe "UsersProfile", type: :system do
         end
         
         within '#gym-table' do
-          expect(page).to have_content "nobolog1"
-          expect(page).to have_content "nobolog2"
+          expect(page).to have_content "nobolt1"
+          expect(page).to have_content "nobolt2"
         end
         
         find("#gym-table-title").click
-        
+
         within '#grade-table' do
           expect(page).to_not have_content "1級"
           expect(page).to_not have_content "2級"
         end
 
         within '#gym-table' do
-          expect(page).to_not have_content "nobolog1"
-          expect(page).to_not have_content "nobolog2"
+          expect(page).to_not have_content "nobolt1"
+          expect(page).to_not have_content "nobolt2"
         end
 
         find("#gym-table-title").click
@@ -180,8 +180,8 @@ RSpec.describe "UsersProfile", type: :system do
         end
         
         within '#gym-table' do
-          expect(page).to have_content "nobolog1"
-          expect(page).to have_content "nobolog2"
+          expect(page).to have_content "nobolt1"
+          expect(page).to have_content "nobolt2"
         end
       end
     end

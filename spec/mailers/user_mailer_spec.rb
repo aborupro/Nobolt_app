@@ -7,7 +7,7 @@ RSpec.describe UserMailer, type: :mailer do
     it "activates account" do
       user.activation_token = User.new_token
       mail = UserMailer.account_activation(user)
-      expect(mail.subject).to eq("Nobologよりメールアドレスの確認")
+      expect(mail.subject).to eq("Noboltよりメールアドレスの確認")
       expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["noreply@example.com"])
       expect(mail.body.encoded.split(/\r\n/).map{|i| Base64.decode64(i)}.join).to include(user.name)
@@ -20,7 +20,7 @@ RSpec.describe UserMailer, type: :mailer do
     it "resets password" do
       user.reset_token = User.new_token
       mail = UserMailer.password_reset(user)
-      expect(mail.subject).to eq("Nobologよりパスワード再設定のご案内")
+      expect(mail.subject).to eq("Noboltよりパスワード再設定のご案内")
       expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["noreply@example.com"])
       expect(mail.body.encoded.split(/\r\n/).map{|i| Base64.decode64(i)}.join).to include(user.name)

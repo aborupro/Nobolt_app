@@ -10,7 +10,7 @@ RSpec.describe "GymsEdit", type: :request do
     patch gym_path(gym), params: { 
       gym: { 
         picture: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/factories/boulder1.jpg'), 'image/jpg'),
-        url: "https://new_nobolog.com",
+        url: "https://new_nobolt.com",
         business_hours: "10:00-24:00",
         price: "2200円"
       }
@@ -39,7 +39,7 @@ RSpec.describe "GymsEdit", type: :request do
         expect(request.path).to eq edit_gym_path(gym)
         gym.reload
         expect(gym.picture.identifier).to eq "boulder1.jpg"
-        expect(gym.url).to eq "https://new_nobolog.com"
+        expect(gym.url).to eq "https://new_nobolt.com"
         expect(gym.business_hours).to eq "10:00-24:00"
         expect(gym.price).to eq "2200円"
       end
@@ -54,7 +54,7 @@ RSpec.describe "GymsEdit", type: :request do
         expect(request.fullpath).to eq edit_gym_path(gym)
         gym.reload
         expect(gym.picture.identifier).to eq "boulder1.jpg"
-        expect(gym.url).to eq "https://new_nobolog.com"
+        expect(gym.url).to eq "https://new_nobolt.com"
         expect(gym.business_hours).to eq "10:00-24:00"
         expect(gym.price).to eq "2200円"
       end

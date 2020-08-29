@@ -35,3 +35,4 @@
 
 # 環境変数格納ファイルを無視する
 /.envrc
+/environments/
