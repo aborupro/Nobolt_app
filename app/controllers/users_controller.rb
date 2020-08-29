@@ -93,7 +93,7 @@ class UsersController < ApplicationController
   end
 
   def following
-    @title = "フォロー"
+    @title = "フォロー中"
     @user  = User.find(params[:id])
     @users = @user.following.paginate(page: params[:page])
     render 'show_follow'

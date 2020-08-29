@@ -47,7 +47,7 @@ RSpec.describe "Likes", type: :system do
           within user1_record1_id do
             find(".like").click
           end
-          expect(page).to have_content "完登記録(フォローユーザ)"
+          expect(page).to have_content "完登記録(フォロー中)"
           expect(find(user1_record1_id)).to have_content "1"
         }.to change(Like, :count).by(-1)
 
@@ -55,7 +55,7 @@ RSpec.describe "Likes", type: :system do
           within user1_record2_id do
             find(".like").click
           end
-          expect(page).to have_content "完登記録(フォローユーザ)"
+          expect(page).to have_content "完登記録(フォロー中)"
           expect(find(user1_record2_id)).to have_content "1"
         }.to change(Like, :count).by(1)
       end
