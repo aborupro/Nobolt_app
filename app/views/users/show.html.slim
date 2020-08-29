@@ -67,7 +67,6 @@
 
 .row.content_center
   .col-md-8.col-lg-6.col-xl-5.mx-auto
-    = render 'follow_form' if logged_in?
     - if @user.records.any?
       ol.records
         = render @records
