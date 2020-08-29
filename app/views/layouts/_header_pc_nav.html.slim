@@ -11,13 +11,13 @@
     a.nav-link.dropdown-toggle[data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true"]
       | 完登記録
     .dropdown-menu[x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);"]
+      = link_to "マイページ", current_user, class: "dropdown-item"
       = link_to "フォローユーザ", root_path, class: "dropdown-item"
       = link_to "全ユーザ", records_path, class: "dropdown-item"
   li.nav-item.dropdown#pc-dropdown
     a.nav-link.dropdown-toggle[data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true"]
       | アカウント
     .dropdown-menu[x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);"]
-      = link_to "マイページ", current_user, class: "dropdown-item"
       = link_to "プロフィール編集", edit_user_path(current_user), class: "dropdown-item"
       = link_to "ユーザ一覧", users_path, class: "dropdown-item"
       .dropdown-divider
