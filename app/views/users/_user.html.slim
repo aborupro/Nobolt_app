@@ -3,9 +3,10 @@ li.user-index-info
     = image_tag user.picture.url
   .user-index-name
     = link_to user.name, user
-    = render 'index_follow_form', { user: user } if logged_in?
     section.stats
       = render 'shared/index_stats', { user: user }
     .user-del
       - if current_user.admin? && !current_user?(user)
         = link_to "削除", user, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-danger"
+  .index_follow_form
+    = render 'index_follow_form', { user: user } if logged_in?
