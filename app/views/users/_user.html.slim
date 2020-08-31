@@ -8,5 +8,3 @@ li.user-index-info
     .user-del
       - if current_user.admin? && !current_user?(user)
         = link_to "削除", user, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-danger"
-  .index_follow_form
-    = render 'index_follow_form', { user: user } if logged_in?
