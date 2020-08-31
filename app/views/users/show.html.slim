@@ -1,23 +1,25 @@
 - provide(:title, "マイページ")
 .row.content_center
   .col-sd-6
-    = render 'follow_form' if logged_in?
     - if @user.records.any?
       h2.page-title
         | 完登記録 (
         = @user.records.count
         | )
-.row.content_center
-  aside.col-md-4
-    section.user_info
-      h1
-        = image_tag @user.picture.url
-      p
-        = @user.name
-    section.stats
-      = render 'shared/stats'
-.row.content_center
-  = link_to "絞り込みクリア", user_path(@user)
+.user-show-info
+  .row.content_center
+    aside.col-md-4
+      section.user_info
+        h1
+          = image_tag @user.picture.url
+        p
+          = @user.name
+      section.stats
+        = render 'shared/stats'
+  .row.content_center
+    = render 'follow_form' if logged_in?
+  .row.content_center
+    = link_to "絞り込みクリア", user_path(@user)
 
 .row.content_center
   table.table.table-hover.table-bordered#grade-table.table-view
