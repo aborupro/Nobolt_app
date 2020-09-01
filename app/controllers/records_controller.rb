@@ -254,7 +254,6 @@ class RecordsController < ApplicationController
     @my_rank = 0
     @ranks.each_with_index do |rank, i|
       if rank["user_id"] == current_user.id
-        # @my_rank = rank.rank_number
         @my_rank = rank["rank_number"]
         break
       end

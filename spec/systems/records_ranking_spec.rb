@@ -27,7 +27,7 @@ RSpec.describe "RankingsRanking", type: :system do
 
 
   describe "ranking" do
-    it "has correct score in the gym that the user recorded in" do
+    it "has correct score in the gym that the user recorded in", js: true do
       system_log_in_as(user_5)
       find('.pc-nav').click_link "ランキング"
       expect(page).to have_current_path "/rankings"
@@ -48,25 +48,25 @@ RSpec.describe "RankingsRanking", type: :system do
       score_6       = '#score-'       + "#{user_6.id}"
       
       within find(rank_number_4) do
-        expect(find('.crown')[:src]).to eq '/assets/crown-1.png'
+        expect(find('.crown')[:src]).to have_content '/assets/crown-1.png'
       end
       expect(find(user_name_4)).to have_content user_4.name
       expect(find(score_4)).to have_content "100pt"
 
       within find(rank_number_5) do
-        expect(find('.crown')[:src]).to eq '/assets/crown-2.png'
+        expect(find('.crown')[:src]).to have_content '/assets/crown-2.png'
       end
       expect(find(user_name_5)).to have_content user_5.name
       expect(find(score_5)).to have_content "50pt"
 
       within find(rank_number_6) do
-        expect(find('.crown')[:src]).to eq '/assets/crown-3.png'
+        expect(find('.crown')[:src]).to have_content '/assets/crown-3.png'
       end
       expect(find(user_name_6)).to have_content user_6.name
       expect(find(score_6)).to have_content "40pt"
     end
 
-    it "doesn't have score in the gym that the user didn't record in" do
+    it "doesn't have score in the gym that the user didn't record in", js: true do
       system_log_in_as(user_5)
       find('.pc-nav').click_link "ランキング"
       expect(page).to have_current_path "/rankings"
@@ -79,7 +79,7 @@ RSpec.describe "RankingsRanking", type: :system do
       expect(page).to_not have_content user_6.name
     end
 
-    it "has score in all term & all gyms" do
+    it "has score in all term & all gyms", js: true do
       system_log_in_as(user_5)
       find('.pc-nav').click_link "ランキング"
       expect(page).to have_current_path "/rankings"
@@ -95,7 +95,7 @@ RSpec.describe "RankingsRanking", type: :system do
       expect(page).to have_content user_6.name
     end
 
-    it "has score in all term & all gyms" do
+    it "has score in all term & all gyms", js: true do
       150.times do |n|
         FactoryBot.create(:user, :with_records_random_time)
       end

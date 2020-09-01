@@ -16,11 +16,6 @@
   margin: 20px 0 0 10px;
 }
 
-.index_follow_form {
-  margin-top: 50px;
-  transform: translateY(-50%);
-}
-
 .user-del {
   .btn {
     padding: 0.2rem;
@@ -28,4 +23,8 @@
     line-height: 14px;
     margin-top: 15px;
   }
+}
+
+.follow_form {
+  width: 290px
 }
