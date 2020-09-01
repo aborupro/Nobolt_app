@@ -9,9 +9,9 @@ RSpec.describe "UsersIndex", type: :system do
 
   before do
     i = 100
-    user = Array.new(i){{}}
+    @user = Array.new(i){{}}
     i.times do |n|
-      user[n] = FactoryBot.create(:user)
+      @user[n] = FactoryBot.create(:user, :with_5_records)
     end
   end
 
@@ -50,6 +50,17 @@ RSpec.describe "UsersIndex", type: :system do
         find('#pc-dropdown').click_link "アカウント"
         find('#pc-dropdown').click_link "ユーザ一覧"
         expect(page).to_not have_link "削除"
+      end
+
+      it "shows user correct user's score" do
+        system_log_in_as(user)
+        visit "/users"
+        expect(current_path).to eq "/users"
+        expect(find("#score_" + @user[0].id.to_s)).to have_content "100"
+        expect(find("#score_" + @user[1].id.to_s)).to have_content "100"
+        expect(find("#score_" + @user[2].id.to_s)).to have_content "100"
+        expect(find("#score_" + @user[3].id.to_s)).to have_content "100"
+        expect(find("#score_" + @user[4].id.to_s)).to have_content "100"
       end
     end
   end

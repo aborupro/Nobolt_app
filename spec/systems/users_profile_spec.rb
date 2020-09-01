@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "UsersProfile", type: :system do
   include ApplicationHelper
 
-  let!(:grade1) { FactoryBot.create(:grade, name: "1級") }
-  let!(:grade2) { FactoryBot.create(:grade, name: "2級") }
+  let!(:grade1) { FactoryBot.create(:grade, name: "1級", grade_point: 10) }
+  let!(:grade2) { FactoryBot.create(:grade, name: "2級", grade_point: 9 ) }
   let!(:gym1) { FactoryBot.create(:gym, name: "nobolt1") }
   let!(:gym2) { FactoryBot.create(:gym, name: "nobolt2") }
 
@@ -54,6 +54,12 @@ RSpec.describe "UsersProfile", type: :system do
       expect(current_path).to eq user_path(user)
       expect(page).to have_content user.active_relationships.count.to_s
       expect(page).to have_content user.passive_relationships.count.to_s
+    end
+
+    it "shows correct user's score" do
+      visit user_path(user)
+      expect(current_path).to eq user_path(user)
+      expect(find("#score_" + user.id.to_s)).to have_content "2,320"
     end
 
     context "select grade" do

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   
   def index
     @users = User.where(activated: true).paginate(page: params[:page], per_page: 25)
+    user_points
   end
 
   def show
@@ -53,6 +54,14 @@ class UsersController < ApplicationController
                     .where("grade_id in (?)", @grade_select)
                     .where("gym_id in (?)", @gym_select)
                     .includes(:gym, :grade, :likes).paginate(page: params[:page])
+    
+    user_points
+    if @points.find_by(user_id: @user.id).nil?
+      @point = 0
+    else
+      @point = @points.find_by(user_id: @user.id)
+                      .score.to_i.to_s(:delimited)
+    end
 
     redirect_to root_url and return unless @user.activated?
   end
@@ -124,5 +133,12 @@ class UsersController < ApplicationController
     # 管理者かどうか確認
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+
+    def user_points
+      @points = Record.joins(:grade)
+                      .unscope(:order)
+                      .select("(sum(grade_point) + sum(strong_point))*10 as score, records.user_id as user_id")
+                      .group("records.user_id")
     end
 end

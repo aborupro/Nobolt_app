@@ -4,7 +4,12 @@ li.user-index-info
   .user-index-name
     = link_to user.name, user
     section.stats
-      = render 'shared/index_stats', { user: user }
+      - if @points.find_by(user_id: user.id).nil?
+        = render 'shared/index_stats', { user: user,
+                  point: 0 }
+      - else
+        = render 'shared/index_stats', { user: user,
+                  point: @points.find_by(user_id: user.id).score.to_i.to_s(:delimited) }
     .user-del
       - if current_user.admin? && !current_user?(user)
         = link_to "削除", user, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-danger"
