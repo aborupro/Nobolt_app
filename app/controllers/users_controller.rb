@@ -56,7 +56,7 @@ class UsersController < ApplicationController
                     .includes(:gym, :grade, :likes).paginate(page: params[:page])
     
     user_points
-    if @points.find_by(user_id: @user.id).nil?
+    if @points.nil? or @points.find_by(user_id: @user.id).nil?
       @point = 0
     else
       @point = @points.find_by(user_id: @user.id)
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       flash[:info] = "アカウントを有効にするために、メールを確認してください"
-      redirect_to root_url
+      redirect_to signup_url
     else
       render 'new'
     end

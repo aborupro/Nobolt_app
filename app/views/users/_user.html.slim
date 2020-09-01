@@ -4,7 +4,7 @@ li.user-index-info
   .user-index-name
     = link_to user.name, user
     section.stats
-      - if @points.find_by(user_id: user.id).nil?
+      - if @points.nil? or @points.find_by(user_id: user.id).nil?
         = render 'shared/index_stats', { user: user,
                   point: 0 }
       - else
