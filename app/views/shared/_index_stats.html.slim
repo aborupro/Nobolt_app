@@ -1,0 +1,13 @@
+- user ||= current_user
+.stats
+  a href="#{following_user_path(user)}" 
+    strong.stat id="following_#{user.id}"
+      = user.following.count
+    |  フォロー中
+  a href="#{followers_user_path(user)}" 
+    strong.stat id="followers_#{user.id}"
+      = user.followers.count
+    |  フォロワー 
+  strong.stat id="score_#{user.id}"
+    = ((user.records.pluck("strong_point").map(&:to_i).sum + user.records.pluck("grade_id").sum) * 10).to_s(:delimited)
+  |  pt
