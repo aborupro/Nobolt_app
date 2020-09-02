@@ -1,27 +1,22 @@
 - provide(:title, @title)
-.row
-  aside.col-md-4
-    section.user_info
-      = image_tag @user.picture.url
-      h1
-        = @user.name
-      span
-        = link_to "マイページ", @user
-      span
-        b
-          | 投稿数:
-        = @user.microposts.count
-      = render 'shared/stats'
-    section
-      - if @users.any?
-        .avater
-          - @users.each do |user|
-            = link_to image_tag(user.picture.url), user
-  .col-md-8
-    h3
-      = @title
+.row.content_center
+  h2.text-center.page-title
+    = @title
+.user-show-info
+  .row.content_center
+    aside.col-md-5
+      section.user_info
+        h1
+          = image_tag @user.picture.url
+        p
+          = link_to @user.name, @user
+      section.stats
+        = render 'shared/stats'
+
+.row.content_center
+  .col-md-8.col-lg-6.col-xl-5.mx-auto
     - if @users.any?
       = will_paginate @users
-      ul.users.follow.avater
+      ul.users.user_info
         = render @users
       = will_paginate @users
