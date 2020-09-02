@@ -1,30 +1,45 @@
 require "json"
 
-time_from = Time.parse('2018-1-1')
+time_from = Time.parse('2020-1-1')
 time_to   = Time.current
 
+picture_file = File.open("app/assets/images/climber#{[1, 2, 3, 4, 5, 6].sample.to_s}.jpg")
 User.create!(name:  "壁崎 登る",
   email: "example@nobolt.com",
   password:              "foobar",
   password_confirmation: "foobar",
   admin: true,
   activated: true,
-  activated_at: Time.zone.now)
+  activated_at: Time.zone.now,
+  picture: picture_file)
+picture_file.close
 
-149.times do |n|
+picture_file = File.open("app/assets/images/climber#{[1, 2, 3, 4, 5, 6].sample.to_s}.jpg")
+User.create!(name:  "ゲストユーザ",
+  email: "guest@nobolt.com",
+  password:              "pass-guest",
+  password_confirmation: "pass-guest",
+  activated: true,
+  activated_at: Time.zone.now,
+  picture: picture_file)
+
+78.times do |n|
+  picture_file = File.open("app/assets/images/climber#{[1, 2, 3, 4, 5, 6].sample.to_s}.jpg")
   name  = Faker::Name.name
   email = "example-#{n+1}@nobolt.com"
-  password = "password"
+  password = "password-#{n+1}"
   User.create!(name:  name,
       email: email,
       password:              password,
       password_confirmation: password,
       activated: true,
-      activated_at: Time.zone.now)
+      activated_at: Time.zone.now,
+      picture: picture_file)
+  picture_file.close
 end
 
 users_6 = User.order(:created_at).take(6)
-users_150 = User.all
+users_80 = User.all
 50.times do
   content = "#{rand(1..9)}級をクリアした！！"
   users_6.each { |user| user.microposts.create!(content: content) }
@@ -75,14 +90,17 @@ gyms["results"].each do |gym|
     break if @seed_gym_prefecture == region
   end
 
+  picture_file = File.open("app/assets/images/bouldering_wall#{[1, 2, 3, 4, 5].sample.to_s}.jpg")
   Gym.create!(
     name:  gym['name'],
     prefecture_code: (JpPrefecture::Prefecture.find name: @seed_gym_prefecture).code,
     address: gym['formatted_address'],
+    picture: picture_file,
     url: "https://nobolt.com",
     business_hours: "9:00-22:00",
     price: "1800円"
   )
+  picture_file.close
 
   @record_gym = Gym.find_by(name: gym['name'])
 
@@ -100,7 +118,7 @@ gyms["results"].each do |gym|
 end
 f.close
 
-users_150.each do |user|
+users_80.each do |user|
   user.records.create!(
     gym_id: @record_gym.id,
     grade_id: rand(1..16),
@@ -111,10 +129,10 @@ users_150.each do |user|
 end
 
 users = User.all
-user  = users.first
+user  = users.second
 
-following = users[2..50]
-followers = users[3..40]
+following = users[2..25]
+followers = users[3..20]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 

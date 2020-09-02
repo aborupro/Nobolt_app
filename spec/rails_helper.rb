@@ -70,7 +70,7 @@ RSpec.configure do |config|
 
   # js: true のフィーチャスペックのみリトライを有効にする
   config.around :each, :js do |ex|
-    ex.run_with_retry retry: 5
+    ex.run_with_retry retry: 3
   end
 
   config.before(:each, type: :system) do

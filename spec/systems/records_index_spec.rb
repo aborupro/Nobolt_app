@@ -21,7 +21,7 @@ RSpec.describe "RecordsIndex", type: :system do
         visit root_path
         expect(page).to have_css '.pagination', count: 2
         expect(page).to have_title full_title("")
-        expect(page).to have_content "完登記録(フォローユーザ)"
+        expect(page).to have_content "完登記録(フォロー中)"
       end
 
       it "has follow users' records" do
