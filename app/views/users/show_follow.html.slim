@@ -10,7 +10,7 @@
           = image_tag @user.picture.url
         p
           = link_to @user.name, @user
-      section.stats
+      section.stats#relationships-stats
         = render 'shared/stats'
 
 .row.content_center

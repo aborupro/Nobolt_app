@@ -34,9 +34,13 @@
 .records {
   list-style: none;
   padding: 0;
+  
+  li:first-child {
+    border-top: 1px solid $border-color;
+  }
   li {
     padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid $border-color;
   }
   .user {
     margin-top: 5em;
