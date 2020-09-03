@@ -30,3 +30,33 @@
 .record-delete {
   margin-left: 20px;
 }
+
+.records {
+  list-style: none;
+  padding: 0;
+  
+  li:first-child {
+    border-top: 1px solid $border-color;
+  }
+  li {
+    padding: 10px 0;
+    border-bottom: 1px solid $border-color;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .content {
+    display: block;
+    margin-left: 70px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: #D3D3D3;
+    display: block;
+    margin-left: 70px;
+  }
+}

@@ -24,6 +24,13 @@ RSpec.describe "RecordsIndex", type: :system do
         expect(page).to have_content "完登記録(フォロー中)"
       end
 
+      it "has records on Home page" do
+        visit root_path
+        user.following_record.paginate(page: 1).each do |following_record_item|
+          expect(page).to have_content CGI.escapeHTML(following_record_item.content)
+        end
+      end
+
       it "has follow users' records" do
         visit root_path
         expect(page).to have_content user_1.name, count:5

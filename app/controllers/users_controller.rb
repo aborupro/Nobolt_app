@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   
   def index
     @users = User.where(activated: true).paginate(page: params[:page], per_page: 25)
-    user_points
+    @points = users_points
   end
 
   def show
@@ -55,13 +55,7 @@ class UsersController < ApplicationController
                     .where("gym_id in (?)", @gym_select)
                     .includes(:gym, :grade, :likes).paginate(page: params[:page])
     
-    user_points
-    if @points.nil? or @points.find_by(user_id: @user.id).nil?
-      @point = 0
-    else
-      @point = @points.find_by(user_id: @user.id)
-                      .score.to_i.to_s(:delimited)
-    end
+    @point = user_point(@user)
 
     redirect_to root_url and return unless @user.activated?
   end
@@ -105,6 +99,8 @@ class UsersController < ApplicationController
     @title = "フォロー中"
     @user  = User.find(params[:id])
     @users = @user.following.paginate(page: params[:page], per_page: 25)
+    @point = user_point(@user)
+    @points = users_points
     render 'show_follow'
   end
 
@@ -112,6 +108,8 @@ class UsersController < ApplicationController
     @title = "フォロワー"
     @user  = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page], per_page: 25)
+    @point = user_point(@user)
+    @points = users_points
     render 'show_follow'
   end
 
@@ -135,10 +133,22 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user.admin?
     end
 
-    def user_points
-      @points = Record.joins(:grade)
+    def users_points
+      points = Record.joins(:grade)
                       .unscope(:order)
                       .select("(sum(grade_point) + sum(strong_point))*10 as score, records.user_id as user_id")
                       .group("records.user_id")
+      return points
+    end
+
+    def user_point(user)
+      points = users_points
+      if points.nil? or points.find_by(user_id: user.id).nil?
+        point = 0
+      else
+        point = points.find_by(user_id: user.id)
+                        .score.to_i.to_s(:delimited)
+      end
+      return point
     end
 end

@@ -5,6 +5,7 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
+$border-color: #e8e8e8;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -120,7 +121,6 @@ aside {
   padding: 0;
   text-align: center;
   a {
-    // float: left;
     padding: 0 10px;
     border-left: 1px solid e8e8e8;
     color: gray;
@@ -133,9 +133,6 @@ aside {
       color: blue;
     }
   }
-  // strong {
-  //   display: block;
-  // }
 }
 
 .users.follow {
@@ -153,33 +150,7 @@ aside {
   margin: 0;
 }
 
-/* records */
 
-.records {
-  list-style: none;
-  padding: 0;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-  }
-  .user {
-    margin-top: 5em;
-    padding-top: 0;
-  }
-  .content {
-    display: block;
-    margin-left: 70px;
-    img {
-      display: block;
-      padding: 5px 0;
-    }
-  }
-  .timestamp {
-    color: #D3D3D3;
-    display: block;
-    margin-left: 70px;
-  }
-}
 
 /* microposts */
 
@@ -188,7 +159,7 @@ aside {
   padding: 0;
   li {
     padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    border-top: 1px solid $border-color;
   }
   .user {
     margin-top: 5em;
@@ -285,18 +256,6 @@ input {
 
 #session_remember_me {
   width: auto;
-}
-
-/* Users index */
-
-.users {
-  list-style: none;
-  margin: 0;
-  li {
-    overflow: auto;
-    padding: 10px 0;
-    border-bottom: 1px solid $gray-600;
-  }
 }
 
 iframe {
