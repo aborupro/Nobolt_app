@@ -4,7 +4,7 @@
 
 .gym_list_box {
   padding: 0px;
-  overflow: overlay;
+  overflow: auto;
   display: flex;
   flex-wrap: wrap;
   min-height: 96vh;
@@ -32,20 +32,17 @@
       object-fit: cover;
     }
   }
-  .gym-content {
+  .gym-card-content {
     height: 50%;
     list-style-type: none;
     padding: 15px;
+    font-size: 13px;
   }
 }
 
 .gym-card-name {
   font-size: 20px;
 
-}
-
-.gym-card-content {
-  font-size: 13px;
 }
 
 .gym-card-delete {
