@@ -5,7 +5,7 @@
         - if gym.picture?
           = image_tag gym.picture.url
         - else
-          image src="/assets/bouldering_wall#{[1, 2, 3, 4, 5].sample.to_s}"
+          = image_tag "/assets/bouldering_wall#{[1, 2, 3, 4, 5].sample.to_s}"
       ul.gym-card-content
         li.gym-card-name
           = gym.name
