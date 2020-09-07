@@ -40,28 +40,6 @@ footer {
   width: 100%;
 }
 
-//home.html.erb
-
-.cover {
-  background-image: url(/assets/bouldering_image.jpg);
-  background-size: cover;
-  background-position: center center;
-  width: 100%;
-  height: 300px;
-  
-  //文字を上下左右中央寄せ
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: white;
-}
-
-.content_center {
-  display: flex;
-  justify-content: center;
-}
-
 //avater
 
 .avater {
