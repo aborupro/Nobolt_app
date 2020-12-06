@@ -26,6 +26,10 @@ gem 'chartkick'
 gem 'mysql2'
 gem 'font-awesome-sass'
 gem 'rename'
+gem 'nokogiri'
+gem 'sassc'
+
+gem 'faker'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -38,7 +42,6 @@ group :development, :test do
   gem 'rspec-rails', '~>4.0.0'
   gem "factory_bot_rails", "~> 4.10.0"
   gem 'rails-controller-testing'
-  gem 'faker'
   gem 'bullet'
 end
 
@@ -63,7 +66,7 @@ group :test do
 end
 
 group :production do
-  gem 'fog'
+  gem 'fog-aws'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
