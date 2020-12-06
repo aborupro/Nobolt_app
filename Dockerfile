@@ -16,8 +16,14 @@ WORKDIR $APP_ROOT
 ADD Gemfile $APP_ROOT/Gemfile
 ADD Gemfile.lock $APP_ROOT/Gemfile.lock
 
-# bundle installの実行
-RUN bundle install
+# sasscインストール時のエラー対応
+RUN gem install sassc -v '2.4.0' --source 'https://rubygems.org/'
+RUN gem install hpricot -v '0.8.6' --source 'https://rubygems.org/'
+RUN gem install byebug -v '11.1.3' --source 'https://rubygems.org/'
+RUN gem install mysql2 -v '0.5.3' --source 'https://rubygems.org/'
+
+# Bundler 2に対応するため、bunderをインストール & bundle installの実行
+RUN gem install bundler && bundle config build.nokogiri --use-system-libraries && bundle install
 
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
 ADD . $APP_ROOT
