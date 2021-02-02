@@ -10,13 +10,13 @@ services:
     command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/Nobolt_app
-    depends_on:
-      - chrome
-  chrome:
-    image: selenium/standalone-chrome-debug:latest
-    ports:
-      - 4444:4444
-      - 5900:5900
+  #   depends_on:
+  #     - chrome
+  # chrome:
+  #   image: selenium/standalone-chrome-debug:latest
+  #   ports:
+  #     - 4444:4444
+  #     - 5900:5900
   web:
     build:
       context: containers/nginx
