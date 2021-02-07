@@ -1,7 +1,7 @@
 class RecordsController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user,   only: :destroy
-  before_action :set_value,      only: [:new, :search]
+  before_action :set_value,      only: %i[new search]
   after_action  :set_value,      only: :create
 
   def index
@@ -15,27 +15,27 @@ class RecordsController < ApplicationController
 
   def new
     @record = Record.new
-    render "new"
+    render 'new'
   end
 
   def create
     @record = current_user.records.build(record_params)
-    if params[:record]["gym_name"].present?
-      gym_name = Gym.find_by(name: params[:record]["gym_name"])
+    if params[:record]['gym_name'].present?
+      gym_name = Gym.find_by(name: params[:record]['gym_name'])
       @record.gym_id = gym_name.id
     end
-    if params[:record]["grade"].present?
-      grade = Grade.find_by(name: params[:record]["grade"])
+    if params[:record]['grade'].present?
+      grade = Grade.find_by(name: params[:record]['grade'])
       @record.grade_id = grade.id
     end
-    flash.now[:info] = "記録を保存しました" if @record.save
+    flash.now[:info] = '記録を保存しました' if @record.save
     set_value
     render 'new'
   end
 
   def destroy
     @record.destroy
-    flash[:success] = "記録を削除しました"
+    flash[:success] = '記録を削除しました'
     redirect_to request.referrer || root_url
   end
 
@@ -56,6 +56,7 @@ class RecordsController < ApplicationController
   end
 
   private
+
   def record_params
     params.require(:record).permit(:challenge, :strong_point, :picture)
   end
@@ -65,10 +66,10 @@ class RecordsController < ApplicationController
                          .unscope(:order)
                          .select("(sum(grade_point) + sum(strong_point))*10 as score,
                                  date_format(records.created_at ,'#{time_format}') as date")
-                         .where("records.user_id = ?", current_user.id)
-                         .where("records.created_at between ? and ?", @from, @to)
-                         .group("date")
-                         .order("date")
+                         .where('records.user_id = ?', current_user.id)
+                         .where('records.created_at between ? and ?', @from, @to)
+                         .group('date')
+                         .order('date')
   end
 
   def set_graph_value
@@ -78,44 +79,44 @@ class RecordsController < ApplicationController
     @chart = []
 
     # 集計単位を判別
-    if params[:term].present?
-      @selected_term = params[:term]
-    else
-      @selected_term = "day"
-    end
+    @selected_term = if params[:term].present?
+                       params[:term]
+                     else
+                       'day'
+                     end
 
     # 集計の基準日を計算
     if params[:pre_preview].present?
       case @selected_term
-      when "month" then
+      when 'month'
         @from_to = Date.parse(params[:pre_preview]) << 6
-      when "week" then
+      when 'week'
         @from_to = Date.parse(params[:pre_preview]) - 7 * 8
-      when "day" then
+      when 'day'
         @from_to = Date.parse(params[:pre_preview]) - 7
       end
     elsif params[:next_preview].present?
       case @selected_term
-      when "month" then
+      when 'month'
         @from_to = Date.parse(params[:next_preview]) >> 6
-      when "week" then
+      when 'week'
         @from_to = Date.parse(params[:next_preview]) + 7 * 8
-      when "day" then
+      when 'day'
         @from_to = Date.parse(params[:next_preview]) + 7
       end
     else
-      if params[:from_to].present?
-        @from_to = Date.parse(params[:from_to])
-      else
-        @from_to = Time.current.to_date
-      end
+      @from_to = if params[:from_to].present?
+                   Date.parse(params[:from_to])
+                 else
+                   Time.current.to_date
+                 end
     end
-    
+
     # グラフの値を計算
     case @selected_term
-    when "month" then
-      @selected_term_jp = "月"
-      if @from_to.strftime("%m").to_i < 7
+    when 'month'
+      @selected_term_jp = '月'
+      if @from_to.strftime('%m').to_i < 7
         # 1/1~6/30
         @from = @from_to.beginning_of_year.to_date
         @to = @from.since(5.month).end_of_month.to_date
@@ -126,7 +127,7 @@ class RecordsController < ApplicationController
       end
 
       set_graph('%Y/%m')
-      
+
       6.times do |i|
         t = (@from >> i).strftime('%Y/%m')
         temp_score = 0
@@ -135,24 +136,24 @@ class RecordsController < ApplicationController
         end
         @chart.append([t, temp_score])
       end
-    when "week" then
-      @selected_term_jp = "週"
+    when 'week'
+      @selected_term_jp = '週'
 
       @from = @from_to.ago(7.weeks).beginning_of_week(:sunday).to_date
       @to = @from_to.end_of_week(:sunday).to_date
 
       set_graph('%Y/%U weeks')
-      
+
       8.times do |i|
-        t = @from + i*7
+        t = @from + i * 7
         temp_score = 0
         @graph_value.each do |g|
           temp_score = g.score.to_i if (t + 1).strftime('%Y/%U weeks') == g.date
         end
-        @chart.append(["#{t.strftime('%Y/%m/%d週')}", temp_score])
+        @chart.append([t.strftime('%Y/%m/%d週').to_s, temp_score])
       end
-    when "day" then
-      @selected_term_jp = "日"
+    when 'day'
+      @selected_term_jp = '日'
 
       @from = @from_to.beginning_of_week(:sunday).to_date
       @to = @from_to.end_of_week(:sunday).to_date
@@ -160,22 +161,24 @@ class RecordsController < ApplicationController
       set_graph('%Y/%m/%d')
 
       7.times do |i|
-        t = (@from + i).strftime("%Y/%m/%d")
+        t = (@from + i).strftime('%Y/%m/%d')
         temp_score = 0
         @graph_value.each do |g|
           temp_score = g.score.to_i if t == g.date
         end
-        @chart.append([t + "(#{%w(日 月 火 水 木 金 土)[i]})", temp_score])
+        @chart.append([t + "(#{%w[日 月 火 水 木 金 土][i]})", temp_score])
       end
     end
 
     # 前の日付が記録を始めた時期より前だったら、左矢印を非活性状態にする
-    @chart_pre = false if Record.where(user_id: current_user.id).blank? || @from <= Record.where(user_id: current_user.id).last.created_at.to_date
+    if Record.where(user_id: current_user.id).blank? || @from <= Record.where(user_id: current_user.id).last.created_at.to_date
+      @chart_pre = false
+    end
     # 次の日付が未来だったら、右矢印を非活性状態にする
     @chart_next = false if @to >= Date.today
 
-    @from = @from.strftime("%Y/%m/%d")
-    @to = @to.strftime("%Y/%m/%d")
+    @from = @from.strftime('%Y/%m/%d')
+    @to = @to.strftime('%Y/%m/%d')
   end
 
   def set_value
@@ -186,20 +189,20 @@ class RecordsController < ApplicationController
         latest_record = Record.find_by(user_id: current_user.id)
         @gym_name = Gym.find(latest_record.gym_id).name
       else
-        flash[:info] = "まずは、ジムを選択してください"
+        flash[:info] = 'まずは、ジムを選択してください'
         redirect_to gyms_path
       end
     end
   end
 
   def set_rank_value
-    all_term = "全期間"
-    all_gym = "全てのジム"
+    all_term = '全期間'
+    all_gym = '全てのジム'
 
     @month_choice = [all_term] + (Record.last[:created_at].to_date.beginning_of_month..Date.today)
-    .select{|date| date.day == 1 }.map { |item| item.strftime("%Y年%m月")}.reverse
-    
-    @gym_choice = [all_gym] + Gym.pluck("name")
+                    .select { |date| date.day == 1 }.map { |item| item.strftime('%Y年%m月')}.reverse
+
+    @gym_choice = [all_gym] + Gym.pluck('name')
 
     if params[:month].present?
       if params[:month] != all_term
@@ -214,14 +217,14 @@ class RecordsController < ApplicationController
     else
       @begin_time = Time.current.beginning_of_month
       @end_time = Time.current.end_of_month
-      @selected_month = Time.current.strftime("%Y年%m月")
+      @selected_month = Time.current.strftime('%Y年%m月')
     end
 
     if params[:gym].present? && params[:gym] != all_gym
       @target_gym = Gym.find_by(name: params[:gym]).id
       @selected_gym = params[:gym]
     else
-      @target_gym = Gym.pluck("id")
+      @target_gym = Gym.pluck('id')
       @selected_gym = all_gym
     end
 
@@ -252,9 +255,9 @@ class RecordsController < ApplicationController
     @ranks = ActiveRecord::Base.connection.select_all(query)
 
     @my_rank = 0
-    @ranks.each_with_index do |rank, i|
-      if rank["user_id"] == current_user.id
-        @my_rank = rank["rank_number"]
+    @ranks.each_with_index do |rank, _i|
+      if rank['user_id'] == current_user.id
+        @my_rank = rank['rank_number']
         break
       end
     end

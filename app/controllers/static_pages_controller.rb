@@ -6,8 +6,7 @@ class StaticPagesController < ApplicationController
       # カレントユーザがフォローしているユーザとカレントユーザのステータスフィードを返す
       @feed_items = current_user.feed.paginate(page: params[:page])
       # カレントユーザがフォローしているユーザとカレントユーザの記録を返す
-      @following_record_items  = current_user.following_record.paginate(page: params[:page])
+      @following_record_items = current_user.following_record.paginate(page: params[:page])
     end
   end
-
 end

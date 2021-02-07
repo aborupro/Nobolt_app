@@ -11,5 +11,4 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe RecordsHelper, type: :helper do
-  
 end

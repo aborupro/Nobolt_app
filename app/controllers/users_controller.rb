@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
-                          :following, :followers]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :logged_in_user, only: %i[index edit update destroy
+                                          following followers]
+  before_action :correct_user,   only: %i[edit update]
   before_action :admin_user,     only: :destroy
-  
+
   def index
     @users = User.where(activated: true).paginate(page: params[:page], per_page: 25)
     @points = users_points
@@ -14,29 +14,29 @@ class UsersController < ApplicationController
     # @microposts = @user.microposts.paginate(page: params[:page])
     # @records = @user.records.includes(:gym, :grade, :likes).paginate(page: params[:page])
 
-    if params[:gym_select].present?
-      @gym_select = params[:gym_select]
-    else
-      @gym_select = Gym.pluck("id")
-    end
+    @gym_select = if params[:gym_select].present?
+                    params[:gym_select]
+                  else
+                    Gym.pluck('id')
+                  end
 
-    if params[:grade_select].present?
-      @grade_select = params[:grade_select]
-    else
-      @grade_select = Grade.pluck("id")
-    end
-    
+    @grade_select = if params[:grade_select].present?
+                      params[:grade_select]
+                    else
+                      Grade.pluck('id')
+                    end
+
     @grade_stats = Record.joins(:grade)
                          .joins(:gym)
                          .unscope(:order)
                          .select("grades.name as grade_name,
                                   count(*) as record_num,
                                   grades.id as grade_id")
-                         .where("records.user_id = ?", @user.id)
-                         .where("records.grade_id in (?)", @grade_select)
-                         .where("records.gym_id in (?)", @gym_select)
-                         .group("records.grade_id")
-                         .order("records.grade_id")
+                         .where('records.user_id = ?', @user.id)
+                         .where('records.grade_id in (?)', @grade_select)
+                         .where('records.gym_id in (?)', @gym_select)
+                         .group('records.grade_id')
+                         .order('records.grade_id')
 
     @gym_stats = Record.joins(:grade)
                        .joins(:gym)
@@ -44,17 +44,17 @@ class UsersController < ApplicationController
                        .select("gyms.name as gym_name,
                                count(*) as record_num,
                                gyms.id as gym_id")
-                       .where("records.user_id = ?", @user.id)
-                       .where("records.grade_id in (?)", @grade_select)
-                       .where("records.gym_id in (?)", @gym_select)
-                       .group("records.gym_id")
-                       .order("records.gym_id")
-    
+                       .where('records.user_id = ?', @user.id)
+                       .where('records.grade_id in (?)', @grade_select)
+                       .where('records.gym_id in (?)', @gym_select)
+                       .group('records.gym_id')
+                       .order('records.gym_id')
+
     @records = @user.records
-                    .where("grade_id in (?)", @grade_select)
-                    .where("gym_id in (?)", @gym_select)
+                    .where('grade_id in (?)', @grade_select)
+                    .where('gym_id in (?)', @gym_select)
                     .includes(:gym, :grade, :likes).paginate(page: params[:page])
-    
+
     @point = user_point(@user)
 
     redirect_to root_url and return unless @user.activated?
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      flash[:info] = "アカウントを有効にするために、メールを確認してください"
+      flash[:info] = 'アカウントを有効にするために、メールを確認してください'
       redirect_to signup_url
     else
       render 'new'
@@ -82,7 +82,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "プロフィールの編集に成功しました"
+      flash[:success] = 'プロフィールの編集に成功しました'
       redirect_to @user
     else
       render 'edit'
@@ -91,12 +91,12 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "ユーザを削除しました"
+    flash[:success] = 'ユーザを削除しました'
     redirect_to users_url
   end
 
   def following
-    @title = "フォロー中"
+    @title = 'フォロー中'
     @user  = User.find(params[:id])
     @users = @user.following.paginate(page: params[:page], per_page: 25)
     @point = user_point(@user)
@@ -105,7 +105,7 @@ class UsersController < ApplicationController
   end
 
   def followers
-    @title = "フォロワー"
+    @title = 'フォロワー'
     @user  = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page], per_page: 25)
     @point = user_point(@user)
@@ -115,40 +115,40 @@ class UsersController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation, :picture)
-    end
+  def user_params
+    params.require(:user).permit(:name, :email, :password,
+                                 :password_confirmation, :picture)
+  end
 
-    # beforeアクション
+  # beforeアクション
 
-    # 正しいユーザーかどうか確認
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
+  # 正しいユーザーかどうか確認
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user)
+  end
 
-    # 管理者かどうか確認
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
+  # 管理者かどうか確認
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
 
-    def users_points
-      points = Record.joins(:grade)
-                      .unscope(:order)
-                      .select("(sum(grade_point) + sum(strong_point))*10 as score, records.user_id as user_id")
-                      .group("records.user_id")
-      return points
-    end
+  def users_points
+    points = Record.joins(:grade)
+                   .unscope(:order)
+                   .select('(sum(grade_point) + sum(strong_point))*10 as score, records.user_id as user_id')
+                   .group('records.user_id')
+    points
+  end
 
-    def user_point(user)
-      points = users_points
-      if points.nil? or points.find_by(user_id: user.id).nil?
-        point = 0
-      else
-        point = points.find_by(user_id: user.id)
-                        .score.to_i.to_s(:delimited)
-      end
-      return point
-    end
+  def user_point(user)
+    points = users_points
+    point = if points.nil? || points.find_by(user_id: user.id).nil?
+              0
+            else
+              points.find_by(user_id: user.id)
+                    .score.to_i.to_s(:delimited)
+            end
+    point
+  end
 end

@@ -10,6 +10,6 @@ class CreateRecords < ActiveRecord::Migration[5.2]
 
       t.timestamps precision: 6
     end
-    add_index :records, [:user_id, :gym_id, :created_at]
+    add_index :records, %i[user_id gym_id created_at]
   end
 end

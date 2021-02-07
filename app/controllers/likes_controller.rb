@@ -4,7 +4,7 @@ class LikesController < ApplicationController
   def create
     @like = current_user.likes.create(record_id: params[:record_id])
     respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path)}
+      format.html { redirect_back(fallback_location: root_path) }
       format.js
     end
   end
@@ -13,7 +13,7 @@ class LikesController < ApplicationController
     @like = Like.find_by(record_id: params[:record_id], user_id: current_user.id)
     @like.destroy
     respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path)}
+      format.html { redirect_back(fallback_location: root_path) }
       format.js
     end
   end

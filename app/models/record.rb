@@ -11,13 +11,12 @@ class Record < ApplicationRecord
   validates :user_id, presence: true
   validates :gym_id, presence: true
   mount_uploader :picture, PictureUploader
-  validate  :picture_size
+  validate :picture_size
 
   private
-    # アップロードされた画像のサイズをバリデーションする
-    def picture_size
-      if picture.size > 5.megabytes
-        errors.add(:picture, "画像は5MBが上限です")
-      end
-    end
+
+  # アップロードされた画像のサイズをバリデーションする
+  def picture_size
+    errors.add(:picture, '画像は5MBが上限です') if picture.size > 5.megabytes
+  end
 end

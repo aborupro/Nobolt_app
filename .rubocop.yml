@@ -1,0 +1,14 @@
+# 将来的には対応する規約の読込
+inherit_from: .rubocop_todo.yml
+
+# 日本語のコメントを許可
+Style/AsciiComments:
+  Enabled: false
+
+# クラスのコメント必須を無視
+Documentation:
+  Enabled: false
+
+# 文字リテラルのイミュータブル宣言を無視（freezeになるのはRuby3以降）
+Style/FrozenStringLiteralComment:
+  Enabled: false
