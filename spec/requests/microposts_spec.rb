@@ -4,8 +4,8 @@ RSpec.describe 'Microposts', type: :request do
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:user) }
 
-  let!(:micropost) { FactoryBot.create(:micropost, :orange)}
-  let!(:other_micropost) { FactoryBot.create(:micropost_n, user: other_user)}
+  let!(:micropost) { FactoryBot.create(:micropost, :orange) }
+  let!(:other_micropost) { FactoryBot.create(:micropost_n, user: other_user) }
 
   describe 'GET /microposts' do
     context 'create' do

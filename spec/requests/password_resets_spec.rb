@@ -53,7 +53,6 @@ RSpec.describe 'PasswordResets', type: :request do
 
     it 'is valid email and invalid token' do
       post password_resets_path, params: { password_reset: { email: user.email } }
-      user = assigns(:user)
       get edit_password_reset_path('wrong token', email: '')
       follow_redirect!
       expect(request.fullpath).to eq '/'

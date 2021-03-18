@@ -97,7 +97,7 @@ RSpec.describe 'Records', type: :system do
     context 'delete' do
       it 'has delete link when logged in as admin' do
         i = 100
-        gym = Array.new(i) {{}}
+        gym = Array.new(i) { {} }
         i.times do |n|
           gym[n] = FactoryBot.create(:gym)
         end

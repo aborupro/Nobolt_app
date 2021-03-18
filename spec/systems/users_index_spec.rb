@@ -8,7 +8,7 @@ RSpec.describe 'UsersIndex', type: :system do
 
   before do
     i = 100
-    @user = Array.new(i) {{}}
+    @user = Array.new(i) { {} }
     i.times do |n|
       @user[n] = FactoryBot.create(:user, :with_5_records)
     end

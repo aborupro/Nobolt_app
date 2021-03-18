@@ -1,8 +1,8 @@
 class RecordsController < ApplicationController
   before_action :logged_in_user
-  before_action :correct_user,   only: :destroy
-  before_action :set_value,      only: %i[new search]
-  after_action  :set_value,      only: :create
+  before_action :correct_user, only: :destroy
+  before_action :set_gym, only: %i[new search]
+  after_action  :set_gym, only: :create
 
   def index
     @records = Record.includes(:grade, :gym, :user, :likes).paginate(page: params[:page])
@@ -29,7 +29,7 @@ class RecordsController < ApplicationController
       @record.grade_id = grade.id
     end
     flash.now[:info] = '記録を保存しました' if @record.save
-    set_value
+    set_gym
     render 'new'
   end
 
@@ -48,11 +48,12 @@ class RecordsController < ApplicationController
   end
 
   def rank
-    set_rank_value
+    query = cal_query
+    rank_value(query)
   end
 
   def graph
-    set_graph_value
+    cal_graph
   end
 
   private
@@ -61,7 +62,7 @@ class RecordsController < ApplicationController
     params.require(:record).permit(:challenge, :strong_point, :picture)
   end
 
-  def set_graph(time_format)
+  def graph_time(time_format)
     @graph_value = Record.joins(:grade)
                          .unscope(:order)
                          .select("(sum(grade_point) + sum(strong_point))*10 as score,
@@ -72,7 +73,7 @@ class RecordsController < ApplicationController
                          .order('date')
   end
 
-  def set_graph_value
+  def cal_graph
     @count = 0
     @chart_pre = true
     @chart_next = true
@@ -126,7 +127,7 @@ class RecordsController < ApplicationController
         @to = @from_to.end_of_year.to_date
       end
 
-      set_graph('%Y/%m')
+      graph_time('%Y/%m')
 
       6.times do |i|
         t = (@from >> i).strftime('%Y/%m')
@@ -142,7 +143,7 @@ class RecordsController < ApplicationController
       @from = @from_to.ago(7.weeks).beginning_of_week(:sunday).to_date
       @to = @from_to.end_of_week(:sunday).to_date
 
-      set_graph('%Y/%U weeks')
+      graph_time('%Y/%U weeks')
 
       8.times do |i|
         t = @from + i * 7
@@ -158,7 +159,7 @@ class RecordsController < ApplicationController
       @from = @from_to.beginning_of_week(:sunday).to_date
       @to = @from_to.end_of_week(:sunday).to_date
 
-      set_graph('%Y/%m/%d')
+      graph_time('%Y/%m/%d')
 
       7.times do |i|
         t = (@from + i).strftime('%Y/%m/%d')
@@ -171,7 +172,8 @@ class RecordsController < ApplicationController
     end
 
     # 前の日付が記録を始めた時期より前だったら、左矢印を非活性状態にする
-    if Record.where(user_id: current_user.id).blank? || @from <= Record.where(user_id: current_user.id).last.created_at.to_date
+    if Record.where(user_id: current_user.id).blank? \
+       || @from <= Record.where(user_id: current_user.id).last.created_at.to_date
       @chart_pre = false
     end
     # 次の日付が未来だったら、右矢印を非活性状態にする
@@ -181,26 +183,24 @@ class RecordsController < ApplicationController
     @to = @to.strftime('%Y/%m/%d')
   end
 
-  def set_value
+  def set_gym
     if params[:selection_gym_name].present?
       @gym_name = params[:selection_gym_name]
+    elsif Record.find_by(user_id: current_user.id).present?
+      latest_record = Record.find_by(user_id: current_user.id)
+      @gym_name = Gym.find(latest_record.gym_id).name
     else
-      if Record.find_by(user_id: current_user.id).present?
-        latest_record = Record.find_by(user_id: current_user.id)
-        @gym_name = Gym.find(latest_record.gym_id).name
-      else
-        flash[:info] = 'まずは、ジムを選択してください'
-        redirect_to gyms_path
-      end
+      flash[:info] = 'まずは、ジムを選択してください'
+      redirect_to gyms_path
     end
   end
 
-  def set_rank_value
+  def cal_query
     all_term = '全期間'
     all_gym = '全てのジム'
 
     @month_choice = [all_term] + (Record.last[:created_at].to_date.beginning_of_month..Date.today)
-                    .select { |date| date.day == 1 }.map { |item| item.strftime('%Y年%m月')}.reverse
+                    .select { |date| date.day == 1 }.map { |item| item.strftime('%Y年%m月') }.reverse
 
     @gym_choice = [all_gym] + Gym.pluck('name')
 
@@ -208,7 +208,6 @@ class RecordsController < ApplicationController
       if params[:month] != all_term
         @begin_time = Date.strptime(params[:month], '%Y年%m月').beginning_of_month
         @end_time = Date.strptime(params[:month], '%Y年%m月').end_of_month
-
       else
         @begin_time = Record.last[:created_at].to_date.beginning_of_month
         @end_time = Date.today.end_of_month
@@ -252,6 +251,10 @@ class RecordsController < ApplicationController
       order by score DESC) as s2;
       ', gym_ids: @target_gym, begin_times: @begin_time, end_times: @end_time])
 
+    query
+  end
+
+  def rank_value(query)
     @ranks = ActiveRecord::Base.connection.select_all(query)
 
     @my_rank = 0
