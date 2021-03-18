@@ -11,5 +11,4 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe GymsHelper, type: :helper do
-  
 end

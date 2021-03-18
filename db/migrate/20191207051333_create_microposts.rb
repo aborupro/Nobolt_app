@@ -6,6 +6,6 @@ class CreateMicroposts < ActiveRecord::Migration[5.2]
 
       t.timestamps precision: 6
     end
-    add_index :microposts, [:user_id, :created_at]
+    add_index :microposts, %i[user_id created_at]
   end
 end

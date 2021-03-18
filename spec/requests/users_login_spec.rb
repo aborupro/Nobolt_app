@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "UsersLogins", type: :request do
-  #is_logged_in?メソッドを使えるようにするために、呼び出す
+RSpec.describe 'UsersLogins', type: :request do
+  # is_logged_in?メソッドを使えるようにするために、呼び出す
   include SessionsHelper
 
   let(:user) { FactoryBot.create(:user) }
@@ -9,8 +9,8 @@ RSpec.describe "UsersLogins", type: :request do
   def post_invalid_information
     post login_path, params: {
       session: {
-        email: "",
-        password: ""
+        email: '',
+        password: ''
       }
     }
   end
@@ -24,9 +24,9 @@ RSpec.describe "UsersLogins", type: :request do
     }
   end
 
-  describe "GET /login" do
-    context "invalid form information" do
-      it "post invalid information and has dager message then delete danger message" do
+  describe 'GET /login' do
+    context 'invalid form information' do
+      it 'post invalid information and has dager message then delete danger message' do
         get login_path
         post_invalid_information
         expect(flash[:danger]).to be_truthy
@@ -36,8 +36,8 @@ RSpec.describe "UsersLogins", type: :request do
       end
     end
 
-    context "valid form information" do
-      it "post valid information and has no danger message folloed by twice logout" do
+    context 'valid form information' do
+      it 'post valid information and has no danger message folloed by twice logout' do
         get login_path
         post_valid_information
         expect(flash[:danger]).to be_falsey
@@ -47,24 +47,24 @@ RSpec.describe "UsersLogins", type: :request do
         delete logout_path
         expect(is_logged_in?).to be_falsey
         follow_redirect!
-        expect(request.fullpath).to eq "/"
+        expect(request.fullpath).to eq '/'
         delete logout_path
         follow_redirect!
-        expect(request.fullpath).to eq "/"
+        expect(request.fullpath).to eq '/'
       end
     end
 
-    context "remember_me" do
-      it "has remember_token when checking remember_me" do
-        log_in_as(user, remember_me: "1")
+    context 'remember_me' do
+      it 'has remember_token when checking remember_me' do
+        log_in_as(user, remember_me: '1')
         expect(cookies[:remember_token]).to_not be_empty
       end
 
-      it "has no remember_token when not checking remember_me" do
-        log_in_as(user, remember_me: "1")
+      it 'has no remember_token when not checking remember_me' do
+        log_in_as(user, remember_me: '1')
         expect(cookies[:remember_token]).to_not be_empty
         delete logout_path
-        log_in_as(user, remember_me: "0")
+        log_in_as(user, remember_me: '0')
         expect(cookies[:remember_token]).to be_empty
       end
     end

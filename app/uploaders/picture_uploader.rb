@@ -12,12 +12,11 @@ class PictureUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def default_url(*args)
-    "climber1.jpg"
+  def default_url(*_args)
+    'climber1.jpg'
   end
 
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
-
 end

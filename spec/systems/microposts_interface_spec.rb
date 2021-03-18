@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "MicropostsInterface", type: :system do
+RSpec.describe 'MicropostsInterface', type: :system do
   include ApplicationHelper
 
   let!(:user) { FactoryBot.create(:user, :with_microposts) }

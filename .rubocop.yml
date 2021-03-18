@@ -1,0 +1,41 @@
+# 将来的には対応する規約の読込
+inherit_from: .rubocop_todo.yml
+
+# 日本語のコメントを許可
+Style/AsciiComments:
+  Enabled: false
+
+# クラスのコメント必須を無視
+Documentation:
+  Enabled: false
+
+# 文字リテラルのイミュータブル宣言を無視（freezeになるのはRuby3以降）
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# ABcSize指摘のmaxを20に変更
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - 'app/controllers/users_controller.rb'
+    - 'app/controllers/sessions_controller.rb'
+    - 'app/controllers/records_controller.rb'
+
+# 関数の行数制限を15に変更
+# 関数の行数制限を無視
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - 'app/controllers/users_controller.rb'
+    - 'app/controllers/sessions_controller.rb'
+    - 'app/controllers/records_controller.rb'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'app/controllers/users_controller.rb'
+    - 'app/models/user.rb'
+    - 'app/controllers/records_controller.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'app/controllers/records_controller.rb'

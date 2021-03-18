@@ -1,0 +1,17 @@
+Style/MixinUsage:
+  Exclude:
+    - 'bin/*'
+
+# Rspecのコードのブロック数制限を無視
+Metrics/BlockLength:
+  Exclude:
+    - 'config/**/*' #将来的に修正
+  #無視
+    - 'spec/**/*'
+    - 'Guardfile'
+    - 'db/*.rb'
+    - 'app/models/user.rb'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'app/controllers/records_controller.rb'

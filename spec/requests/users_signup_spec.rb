@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "UsersSignups", type: :request do
-  #is_logged_in?メソッドを使えるようにするために、呼び出す
+RSpec.describe 'UsersSignups', type: :request do
+  # is_logged_in?メソッドを使えるようにするために、呼び出す
   include SessionsHelper
 
   before do
@@ -10,24 +10,24 @@ RSpec.describe "UsersSignups", type: :request do
 
   let(:user) { FactoryBot.create(:user, activated: false) }
 
-  describe "GET /signup" do
-    it "is invalid signup information" do
+  describe 'GET /signup' do
+    it 'is invalid signup information' do
       get signup_path
-      expect {
+      expect do
         post users_path, params: {
           user: {
-            name: "",
-            email: "user@invalid",
-            password: "foo",
-            password_confirmation: "bar"
+            name: '',
+            email: 'user@invalid',
+            password: 'foo',
+            password_confirmation: 'bar'
           }
         }
-      }.to_not change(User, :count)
+      end.to_not change(User, :count)
     end
 
-    it "is valid signup information with account activation" do
+    it 'is valid signup information with account activation' do
       get signup_path
-      expect {
+      expect do
         post users_path, params: {
           user: {
             name: user.name,
@@ -36,13 +36,13 @@ RSpec.describe "UsersSignups", type: :request do
             password_confirmation: user.password
           }
         }
-      }.to change(User, :count).by(1)
+      end.to change(User, :count).by(1)
       expect(user.activated?).to be_falsey
-      #有効化していない状態でログインしてみる
+      # 有効化していない状態でログインしてみる
       log_in_as(user)
       expect(is_logged_in?).to be_falsey
       # 有効化トークンが不正な場合
-      get edit_account_activation_path("invalid token", email: user.email)
+      get edit_account_activation_path('invalid token', email: user.email)
       expect(is_logged_in?).to be_falsey
       # トークンは正しいがメールアドレスが無効な場合
       get edit_account_activation_path(user.activation_token, email: 'wrong')
