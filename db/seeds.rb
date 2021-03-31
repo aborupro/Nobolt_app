@@ -67,7 +67,7 @@ grades = [
   ['初段', 11],
   ['二段', 12],
   ['三段', 13],
-  ['四級', 14],
+  ['四段', 14],
   ['五段', 15],
   ['六段', 16]
 ]
@@ -80,7 +80,7 @@ grades.each do |grade|
 end
 
 f = File.open('app/assets/data/bouldering_gyms.json')
-gyms = JSON.parse(f)
+gyms = JSON.load(f)
 
 gyms['results'].each do |gym|
   regions.each do |region|
