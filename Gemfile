@@ -63,6 +63,8 @@ group :test do
   gem 'launchy', '~> 2.4.3'
   gem 'rspec-retry'
   gem 'webdrivers'
+  gem "rspec"
+  gem "rspec_junit_formatter"
 end
 
 group :production do
