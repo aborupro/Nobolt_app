@@ -17,7 +17,7 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
+# download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
@@ -34,20 +34,16 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-# database.ymlとdatabase.ci.ymlを入れ替える
+# database setup
       - run: mv config/database.ci.yml config/database.yml 
-
-# Database setup
-      # - run: bundle exec rake db:create
-      # - run: bundle exec rake db:schema:load
       - run: bundle exec rake db:create db:migrate db:seed --trace
 
-# rubocopを走らせる
+# run rubocop
       - run:
           name: Rubocop
           command: bundle exec rubocop
 
-# rspecを走らせる
+# run rspec
       - run:
           name: run tests
           command: |
@@ -55,8 +51,7 @@ jobs:
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
 
-
-# ③ここでRspecJunitFormatterというgemをインストールしていないとエラーになります。gemfileに記述しましょう。
+# install RspecJunitFormatter gem
             bundle exec rspec \
               --format progress \
               --format RspecJunitFormatter \
@@ -70,24 +65,3 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # executor: ruby/default
-    # steps:
-    #   - checkout
-    #   - run:
-    #       name: Which bundler?
-    #       command: bundle -v
-    #   - ruby/bundle-install
