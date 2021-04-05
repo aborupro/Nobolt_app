@@ -50,8 +50,6 @@ jobs:
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
-
-# install RspecJunitFormatter gem
             bundle exec rspec \
               --format progress \
               --format RspecJunitFormatter \
