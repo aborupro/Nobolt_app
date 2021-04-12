@@ -53,11 +53,11 @@ RSpec.describe 'UsersIndex', type: :system do
         system_log_in_as(user)
         visit '/users'
         expect(current_path).to eq '/users'
-        expect(find('#score_' + @user[0].id.to_s)).to have_content '100'
-        expect(find('#score_' + @user[1].id.to_s)).to have_content '100'
-        expect(find('#score_' + @user[2].id.to_s)).to have_content '100'
-        expect(find('#score_' + @user[3].id.to_s)).to have_content '100'
-        expect(find('#score_' + @user[4].id.to_s)).to have_content '100'
+        expect(find("#score_#{@user[0].id}")).to have_content '100'
+        expect(find("#score_#{@user[1].id}")).to have_content '100'
+        expect(find("#score_#{@user[2].id}")).to have_content '100'
+        expect(find("#score_#{@user[3].id}")).to have_content '100'
+        expect(find("#score_#{@user[4].id}")).to have_content '100'
       end
     end
   end

@@ -134,21 +134,19 @@ class UsersController < ApplicationController
   end
 
   def users_points
-    points = Record.joins(:grade)
-                   .unscope(:order)
-                   .select('(sum(grade_point) + sum(strong_point))*10 as score, records.user_id as user_id')
-                   .group('records.user_id')
-    points
+    Record.joins(:grade)
+          .unscope(:order)
+          .select('(sum(grade_point) + sum(strong_point))*10 as score, records.user_id as user_id')
+          .group('records.user_id')
   end
 
   def user_point(user)
     points = users_points
-    point = if points.nil? || points.find_by(user_id: user.id).nil?
-              0
-            else
-              points.find_by(user_id: user.id)
-                    .score.to_i.to_s(:delimited)
-            end
-    point
+    if points.nil? || points.find_by(user_id: user.id).nil?
+      0
+    else
+      points.find_by(user_id: user.id)
+            .score.to_i.to_s(:delimited)
+    end
   end
 end

@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Relationships', type: :request do
-  let(:user_1) { FactoryBot.create(:user) }
-  let(:user_2) { FactoryBot.create(:user) }
-  let!(:relationship_1) { Relationship.create(follower_id: user_1.id, followed_id: user_2.id) }
+  let(:user1) { FactoryBot.create(:user) }
+  let(:user2) { FactoryBot.create(:user) }
+  let!(:relationship1) { Relationship.create(follower_id: user1.id, followed_id: user2.id) }
 
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:user) }
@@ -22,7 +22,7 @@ RSpec.describe 'Relationships', type: :request do
     context 'destroy' do
       it 'requires logged-in user' do
         expect do
-          delete relationship_path(relationship_1)
+          delete relationship_path(relationship1)
         end.to_not change(Relationship, :count)
         follow_redirect!
         expect(request.fullpath).to eq '/login'

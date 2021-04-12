@@ -80,7 +80,7 @@ grades.each do |grade|
 end
 
 f = File.open('app/assets/data/bouldering_gyms.json')
-gyms = JSON.load(f)
+gyms = JSON.parse(f.read)
 
 gyms['results'].each do |gym|
   regions.each do |region|

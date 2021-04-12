@@ -41,15 +41,15 @@ RSpec.describe 'RankingsRanking', type: :system do
       select gym.name, from: :gym
       click_button '集計'
       expect(page).to have_content 'あなたの順位は 3人中 2位 です'
-      rank_number4 = '#rank-number-' + user4.id.to_s
-      user_name4   = '#user-name-'   + user4.id.to_s
-      score4       = '#score-'       + user4.id.to_s
-      rank_number5 = '#rank-number-' + user5.id.to_s
-      user_name5   = '#user-name-'   + user5.id.to_s
-      score5       = '#score-'       + user5.id.to_s
-      rank_number6 = '#rank-number-' + user6.id.to_s
-      user_name6   = '#user-name-'   + user6.id.to_s
-      score6       = '#score-'       + user6.id.to_s
+      rank_number4 = "#rank-number-#{user4.id}"
+      user_name4   = "#user-name-#{user4.id}"
+      score4       = "#score-#{user4.id}"
+      rank_number5 = "#rank-number-#{user5.id}"
+      user_name5   = "#user-name-#{user5.id}"
+      score5       = "#score-#{user5.id}"
+      rank_number6 = "#rank-number-#{user6.id}"
+      user_name6   = "#user-name-#{user6.id}"
+      score6       = "#score-#{user6.id}"
 
       within find(rank_number4) do
         expect(find('.crown')[:src]).to have_content '/assets/crown-1.png'

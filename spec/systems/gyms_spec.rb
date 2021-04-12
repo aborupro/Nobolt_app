@@ -5,8 +5,8 @@ RSpec.describe 'Records', type: :system do
   let(:user) { FactoryBot.create(:user, :with_records) }
   let(:no_record_user) { FactoryBot.create(:user) }
   let!(:admin) { FactoryBot.create(:user, admin: true) }
-  let!(:gym_1) { FactoryBot.create(:gym) }
-  let!(:gym_2) { FactoryBot.create(:gym) }
+  let!(:gym1) { FactoryBot.create(:gym) }
+  let!(:gym2) { FactoryBot.create(:gym) }
 
   describe 'gym' do
     context 'register' do
@@ -85,12 +85,12 @@ RSpec.describe 'Records', type: :system do
         find('.pc-nav').click_link 'ジム選択'
         expect(page).to have_current_path '/gyms'
         expect(page).to have_title full_title('ジム選択')
-        expect(page).to have_content gym_1.name
-        expect(page).to have_content gym_2.name
-        fill_in '地名・キーワードで検索', with: gym_1.name
+        expect(page).to have_content gym1.name
+        expect(page).to have_content gym2.name
+        fill_in '地名・キーワードで検索', with: gym1.name
         click_button '検索'
-        expect(page).to have_content gym_1.name
-        expect(page).to_not have_content gym_2.name
+        expect(page).to have_content gym1.name
+        expect(page).to_not have_content gym2.name
       end
     end
 

@@ -29,12 +29,12 @@ RSpec.describe User, type: :model do
 
     context 'maximum character length is 255' do
       it 'is valid with a not too long email' do
-        user.email = 'a' * 243 + '@example.com'
+        user.email = "#{'a' * 243}@example.com"
         expect(user).to be_valid
       end
 
       it 'is invalid with a too long email' do
-        user.email = 'a' * 244 + '@example.com'
+        user.email = "#{'a' * 244}@example.com"
         expect(user).to be_invalid
       end
     end

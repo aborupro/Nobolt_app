@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="rspec" tests="183" skipped="0" failures="0" errors="0" time="273.011992" timestamp="2021-04-12T22:58:16+09:00" hostname="0783fd12676d">
+<properties>
+<property name="seed" value="32471"/>
+</properties>
+<testcase classname="spec.controllers.sessions_controller_spec" name="SessionsController GET #new returns http success" file="./spec/controllers/sessions_controller_spec.rb" time="0.160748"></testcase>
+<testcase classname="spec.controllers.static_pages_controller_spec" name="StaticPagesController#home responds successfully" file="./spec/controllers/static_pages_controller_spec.rb" time="0.069806"></testcase>
+<testcase classname="spec.controllers.static_pages_controller_spec" name="StaticPagesController#home returns a 200 response" file="./spec/controllers/static_pages_controller_spec.rb" time="0.014825"></testcase>
+<testcase classname="spec.helpers.sessions_helper_spec" name="SessionsHelper current_user returns right user when session is nil" file="./spec/helpers/sessions_helper_spec.rb" time="0.088199"></testcase>
+<testcase classname="spec.helpers.sessions_helper_spec" name="SessionsHelper current_user returns nil when remember digest is wrong" file="./spec/helpers/sessions_helper_spec.rb" time="0.037757"></testcase>
+<testcase classname="spec.mailers.user_mailer_spec" name="UserMailer account_activation activates account" file="./spec/mailers/user_mailer_spec.rb" time="2.471455"></testcase>
+<testcase classname="spec.mailers.user_mailer_spec" name="UserMailer password_reset resets password" file="./spec/mailers/user_mailer_spec.rb" time="0.500331"></testcase>
+<testcase classname="spec.models.grade_spec" name="Grade grade can save is valid" file="./spec/models/grade_spec.rb" time="0.013373"></testcase>
+<testcase classname="spec.models.grade_spec" name="Grade grade cannot save is invalid with a blank name" file="./spec/models/grade_spec.rb" time="0.910338"></testcase>
+<testcase classname="spec.models.grade_spec" name="Grade grade cannot save is invalid with a duplicate name" file="./spec/models/grade_spec.rb" time="0.017585"></testcase>
+<testcase classname="spec.models.grade_spec" name="Grade grade cannot save is invalid with a blank grade_point" file="./spec/models/grade_spec.rb" time="0.006874"></testcase>
+<testcase classname="spec.models.gym_spec" name="Gym gym can save is valid" file="./spec/models/gym_spec.rb" time="0.023787"></testcase>
+<testcase classname="spec.models.gym_spec" name="Gym gym can save is valid that has a picture under 5MB" file="./spec/models/gym_spec.rb" time="0.063383"></testcase>
+<testcase classname="spec.models.gym_spec" name="Gym gym can save is valid that has a blank url" file="./spec/models/gym_spec.rb" time="0.006205"></testcase>
+<testcase classname="spec.models.gym_spec" name="Gym gym cannot save is invalid with a blank name" file="./spec/models/gym_spec.rb" time="0.009955"></testcase>
+<testcase classname="spec.models.gym_spec" name="Gym gym cannot save is invalid with a duplicate name" file="./spec/models/gym_spec.rb" time="0.021508"></testcase>
+<testcase classname="spec.models.gym_spec" name="Gym gym cannot save is invalid with a picture over 5MB" file="./spec/models/gym_spec.rb" time="0.818788"></testcase>
+<testcase classname="spec.models.gym_spec" name="Gym gym cannot save is invalid with an invalid url" file="./spec/models/gym_spec.rb" time="0.006410"></testcase>
+<testcase classname="spec.models.gym_spec" name="Gym gym cannot save is invalid without a address" file="./spec/models/gym_spec.rb" time="0.009506"></testcase>
+<testcase classname="spec.models.gym_spec" name="Gym gym cannot save is invalid without a prefecture_code" file="./spec/models/gym_spec.rb" time="0.012525"></testcase>
+<testcase classname="spec.models.like_spec" name="Like like valid like is valid" file="./spec/models/like_spec.rb" time="0.164962"></testcase>
+<testcase classname="spec.models.like_spec" name="Like like nil user_id is invalid" file="./spec/models/like_spec.rb" time="0.063497"></testcase>
+<testcase classname="spec.models.like_spec" name="Like like nil record_id is invalid" file="./spec/models/like_spec.rb" time="0.075134"></testcase>
+<testcase classname="spec.models.micropost_spec" name="Micropost micropost is valid" file="./spec/models/micropost_spec.rb" time="0.035957"></testcase>
+<testcase classname="spec.models.micropost_spec" name="Micropost micropost has user id" file="./spec/models/micropost_spec.rb" time="0.017905"></testcase>
+<testcase classname="spec.models.micropost_spec" name="Micropost micropost content should be present" file="./spec/models/micropost_spec.rb" time="0.018809"></testcase>
+<testcase classname="spec.models.micropost_spec" name="Micropost micropost content requires less than 140 characters" file="./spec/models/micropost_spec.rb" time="0.018118"></testcase>
+<testcase classname="spec.models.micropost_spec" name="Micropost micropost order is the reverse order of creation time" file="./spec/models/micropost_spec.rb" time="0.070798"></testcase>
+<testcase classname="spec.models.record_spec" name="Record record can save is valid that has a picture under 5MB" file="./spec/models/record_spec.rb" time="0.109010"></testcase>
+<testcase classname="spec.models.record_spec" name="Record record can save is valid with a challenge that has less than 50 characters" file="./spec/models/record_spec.rb" time="0.089024"></testcase>
+<testcase classname="spec.models.record_spec" name="Record record cannot save is invalid without a grade_id" file="./spec/models/record_spec.rb" time="0.084975"></testcase>
+<testcase classname="spec.models.record_spec" name="Record record cannot save is invalid without a strong_point" file="./spec/models/record_spec.rb" time="0.085549"></testcase>
+<testcase classname="spec.models.record_spec" name="Record record cannot save is invalid without a challenge" file="./spec/models/record_spec.rb" time="0.085344"></testcase>
+<testcase classname="spec.models.record_spec" name="Record record cannot save is invalid without a user_id" file="./spec/models/record_spec.rb" time="0.083620"></testcase>
+<testcase classname="spec.models.record_spec" name="Record record cannot save is invalid without a gym_id" file="./spec/models/record_spec.rb" time="0.086902"></testcase>
+<testcase classname="spec.models.record_spec" name="Record record cannot save is invalid with a challenge that has more than 51 characters" file="./spec/models/record_spec.rb" time="0.096843"></testcase>
+<testcase classname="spec.models.record_spec" name="Record record cannot save is invalid with a picture over 5MB" file="./spec/models/record_spec.rb" time="1.028448"></testcase>
+<testcase classname="spec.models.record_spec" name="Record record order is the reverse order of creation time" file="./spec/models/record_spec.rb" time="0.165200"></testcase>
+<testcase classname="spec.models.relationship_spec" name="Relationship follows and unfollows a user" file="./spec/models/relationship_spec.rb" time="0.115269"></testcase>
+<testcase classname="spec.models.relationship_spec" name="Relationship validation is valid" file="./spec/models/relationship_spec.rb" time="0.028993"></testcase>
+<testcase classname="spec.models.relationship_spec" name="Relationship validation requires a follower_id" file="./spec/models/relationship_spec.rb" time="0.029201"></testcase>
+<testcase classname="spec.models.relationship_spec" name="Relationship validation requires a followed_id" file="./spec/models/relationship_spec.rb" time="0.051464"></testcase>
+<testcase classname="spec.models.user_spec" name="User is valid with a name and email" file="./spec/models/user_spec.rb" time="0.056151"></testcase>
+<testcase classname="spec.models.user_spec" name="User should be present(nonblank)" file="./spec/models/user_spec.rb" time="0.066304"></testcase>
+<testcase classname="spec.models.user_spec" name="User name is invalid with a blank name" file="./spec/models/user_spec.rb" time="0.060056"></testcase>
+<testcase classname="spec.models.user_spec" name="User name is invalid with a too long name" file="./spec/models/user_spec.rb" time="0.060383"></testcase>
+<testcase classname="spec.models.user_spec" name="User email is invalid with a blank email" file="./spec/models/user_spec.rb" time="0.056914"></testcase>
+<testcase classname="spec.models.user_spec" name="User email is unique email addresses" file="./spec/models/user_spec.rb" time="0.089876"></testcase>
+<testcase classname="spec.models.user_spec" name="User email is saved as lower-case email addresses" file="./spec/models/user_spec.rb" time="0.097687"></testcase>
+<testcase classname="spec.models.user_spec" name="User email maximum character length is 255 is valid with a not too long email" file="./spec/models/user_spec.rb" time="0.063355"></testcase>
+<testcase classname="spec.models.user_spec" name="User email maximum character length is 255 is invalid with a too long email" file="./spec/models/user_spec.rb" time="0.062851"></testcase>
+<testcase classname="spec.models.user_spec" name="User email email should have valid email addresses is valid with valid addresses" file="./spec/models/user_spec.rb" time="0.084006"></testcase>
+<testcase classname="spec.models.user_spec" name="User email email should have valid email addresses is invalid with invalid addresses" file="./spec/models/user_spec.rb" time="0.071169"></testcase>
+<testcase classname="spec.models.user_spec" name="User email picture is valid that has a picture under 5MB" file="./spec/models/user_spec.rb" time="0.052436"></testcase>
+<testcase classname="spec.models.user_spec" name="User email picture is invalid with a picture over 5MB" file="./spec/models/user_spec.rb" time="0.951317"></testcase>
+<testcase classname="spec.models.user_spec" name="User mimimum password length is 6 is mimimum length password" file="./spec/models/user_spec.rb" time="0.069127"></testcase>
+<testcase classname="spec.models.user_spec" name="User mimimum password length is 6 is less than mimimum password length" file="./spec/models/user_spec.rb" time="0.062676"></testcase>
+<testcase classname="spec.models.user_spec" name="User authenticated? returns false for a user with nil digest" file="./spec/models/user_spec.rb" time="0.061070"></testcase>
+<testcase classname="spec.models.user_spec" name="User associated micropost is destroyed by user destruction" file="./spec/models/user_spec.rb" time="0.202660"></testcase>
+<testcase classname="spec.models.user_spec" name="User feed has followed user&apos;s posts" file="./spec/models/user_spec.rb" time="2.262659"></testcase>
+<testcase classname="spec.models.user_spec" name="User feed has my posts" file="./spec/models/user_spec.rb" time="2.114198"></testcase>
+<testcase classname="spec.models.user_spec" name="User feed has unfollowed user&apos;s posts" file="./spec/models/user_spec.rb" time="2.796964"></testcase>
+<testcase classname="spec.requests.gyms_edit_spec" name="GymsEdit gym#edit patch valid information when logged in can update" file="./spec/requests/gyms_edit_spec.rb" time="20.416317"></testcase>
+<testcase classname="spec.requests.gyms_edit_spec" name="GymsEdit gym#edit patch valid information when logged in can access edit page with friendly forwarding and can update" file="./spec/requests/gyms_edit_spec.rb" time="0.194132"></testcase>
+<testcase classname="spec.requests.gyms_edit_spec" name="GymsEdit gym#edit patch invalid information when logged in cannot update" file="./spec/requests/gyms_edit_spec.rb" time="1.298021"></testcase>
+<testcase classname="spec.requests.gyms_edit_spec" name="GymsEdit gym#edit patch valid information when not logged in cannot update" file="./spec/requests/gyms_edit_spec.rb" time="0.077275"></testcase>
+<testcase classname="spec.requests.gyms_edit_spec" name="GymsEdit gym#edit visits edit page when not logged in redirects to log in page" file="./spec/requests/gyms_edit_spec.rb" time="0.057237"></testcase>
+<testcase classname="spec.requests.gyms_spec" name="Gyms gym create does not create when not logged in" file="./spec/requests/gyms_spec.rb" time="0.061231"></testcase>
+<testcase classname="spec.requests.gyms_spec" name="Gyms gym destroy does not destroy when not logged in" file="./spec/requests/gyms_spec.rb" time="0.062305"></testcase>
+<testcase classname="spec.requests.gyms_spec" name="Gyms gym destroy does not destroy when logged in as a non-admin" file="./spec/requests/gyms_spec.rb" time="0.193561"></testcase>
+<testcase classname="spec.requests.gyms_spec" name="Gyms gym destroy destroy when logged in as an admin-user" file="./spec/requests/gyms_spec.rb" time="0.113853"></testcase>
+<testcase classname="spec.requests.likes_spec" name="Likes /likes when not logged in create requires logged-in user" file="./spec/requests/likes_spec.rb" time="0.109980"></testcase>
+<testcase classname="spec.requests.likes_spec" name="Likes /likes when not logged in destroy requires logged-in user" file="./spec/requests/likes_spec.rb" time="0.127843"></testcase>
+<testcase classname="spec.requests.likes_spec" name="Likes /relationships when logged in likes a record with html" file="./spec/requests/likes_spec.rb" time="0.126476"></testcase>
+<testcase classname="spec.requests.likes_spec" name="Likes /relationships when logged in likes a record with Ajax" file="./spec/requests/likes_spec.rb" time="0.303129"></testcase>
+<testcase classname="spec.requests.likes_spec" name="Likes /relationships when logged in deletes a like with html" file="./spec/requests/likes_spec.rb" time="0.131399"></testcase>
+<testcase classname="spec.requests.likes_spec" name="Likes /relationships when logged in deletes a like with Ajax" file="./spec/requests/likes_spec.rb" time="0.239864"></testcase>
+<testcase classname="spec.requests.microposts_spec" name="Microposts GET /microposts create dees not create a micropost when not logged in" file="./spec/requests/microposts_spec.rb" time="0.092802"></testcase>
+<testcase classname="spec.requests.microposts_spec" name="Microposts GET /microposts destroy does not destroy a micropost when not logged in" file="./spec/requests/microposts_spec.rb" time="0.070915"></testcase>
+<testcase classname="spec.requests.microposts_spec" name="Microposts GET /microposts destroy does not destroy a micropost for wrong micropost" file="./spec/requests/microposts_spec.rb" time="0.192447"></testcase>
+<testcase classname="spec.requests.password_resets_spec" name="PasswordResets GET /password_resets/:id/new is invalid email" file="./spec/requests/password_resets_spec.rb" time="0.123369"></testcase>
+<testcase classname="spec.requests.password_resets_spec" name="PasswordResets GET /password_resets/:id/new is valid email" file="./spec/requests/password_resets_spec.rb" time="0.094377"></testcase>
+<testcase classname="spec.requests.password_resets_spec" name="PasswordResets GET /password_resets/:id/edit is invalid email" file="./spec/requests/password_resets_spec.rb" time="0.064662"></testcase>
+<testcase classname="spec.requests.password_resets_spec" name="PasswordResets GET /password_resets/:id/edit is invalid user" file="./spec/requests/password_resets_spec.rb" time="0.076738"></testcase>
+<testcase classname="spec.requests.password_resets_spec" name="PasswordResets GET /password_resets/:id/edit is valid email and invalid token" file="./spec/requests/password_resets_spec.rb" time="0.069501"></testcase>
+<testcase classname="spec.requests.password_resets_spec" name="PasswordResets GET /password_resets/:id/edit is valid email and valid token" file="./spec/requests/password_resets_spec.rb" time="0.099250"></testcase>
+<testcase classname="spec.requests.password_resets_spec" name="PasswordResets GET /password_resets/:id/edit is invalid password and invalid password confirmation" file="./spec/requests/password_resets_spec.rb" time="0.135500"></testcase>
+<testcase classname="spec.requests.password_resets_spec" name="PasswordResets GET /password_resets/:id/edit is blank password" file="./spec/requests/password_resets_spec.rb" time="0.080425"></testcase>
+<testcase classname="spec.requests.password_resets_spec" name="PasswordResets GET /password_resets/:id/edit is expired token" file="./spec/requests/password_resets_spec.rb" time="0.083681"></testcase>
+<testcase classname="spec.requests.password_resets_spec" name="PasswordResets GET /password_resets/:id/edit is valid password and valid password confirmation" file="./spec/requests/password_resets_spec.rb" time="0.267245"></testcase>
+<testcase classname="spec.requests.records_spec" name="Records GET /records create does not create a record when not logged in" file="./spec/requests/records_spec.rb" time="0.120147"></testcase>
+<testcase classname="spec.requests.records_spec" name="Records GET /records destroy does not destroy a record when not logged in" file="./spec/requests/records_spec.rb" time="0.113654"></testcase>
+<testcase classname="spec.requests.records_spec" name="Records GET /records destroy does not destroy other user&apos;s record" file="./spec/requests/records_spec.rb" time="0.219402"></testcase>
+<testcase classname="spec.requests.records_spec" name="Records GET /records destroy destroys own record" file="./spec/requests/records_spec.rb" time="0.141008"></testcase>
+<testcase classname="spec.requests.relationships_spec" name="Relationships /relationships when not logged in create requires logged-in user" file="./spec/requests/relationships_spec.rb" time="0.064321"></testcase>
+<testcase classname="spec.requests.relationships_spec" name="Relationships /relationships when not logged in destroy requires logged-in user" file="./spec/requests/relationships_spec.rb" time="0.061440"></testcase>
+<testcase classname="spec.requests.relationships_spec" name="Relationships /relationships when logged in follows a user with the standard way" file="./spec/requests/relationships_spec.rb" time="0.097989"></testcase>
+<testcase classname="spec.requests.relationships_spec" name="Relationships /relationships when logged in follows a user with Ajax" file="./spec/requests/relationships_spec.rb" time="0.210576"></testcase>
+<testcase classname="spec.requests.relationships_spec" name="Relationships /relationships when logged in unfollows a user with the standard way" file="./spec/requests/relationships_spec.rb" time="0.111253"></testcase>
+<testcase classname="spec.requests.relationships_spec" name="Relationships /relationships when logged in unfollows a user with Ajax" file="./spec/requests/relationships_spec.rb" time="0.190244"></testcase>
+<testcase classname="spec.requests.sessions_spec" name="Sessions GET /login returns http success" file="./spec/requests/sessions_spec.rb" time="0.020232"></testcase>
+<testcase classname="spec.requests.users_edit_spec" name="UsersEdits GET /users/:id/edit edit is unsuccessful edit" file="./spec/requests/users_edit_spec.rb" time="0.180769"></testcase>
+<testcase classname="spec.requests.users_edit_spec" name="UsersEdits GET /users/:id/edit edit is successful edit" file="./spec/requests/users_edit_spec.rb" time="0.110290"></testcase>
+<testcase classname="spec.requests.users_edit_spec" name="UsersEdits GET /users/:id/edit edit is successful edit with friendly forwarding" file="./spec/requests/users_edit_spec.rb" time="0.104580"></testcase>
+<testcase classname="spec.requests.users_edit_spec" name="UsersEdits GET /users/:id/edit edit edit when not logged in" file="./spec/requests/users_edit_spec.rb" time="0.066422"></testcase>
+<testcase classname="spec.requests.users_edit_spec" name="UsersEdits GET /users/:id/edit edit edit when not logged in as wrong user" file="./spec/requests/users_edit_spec.rb" time="0.117679"></testcase>
+<testcase classname="spec.requests.users_edit_spec" name="UsersEdits GET /users/:id/edit edit doesn&apos;t allow the admin attribute to be edited via the web" file="./spec/requests/users_edit_spec.rb" time="0.075134"></testcase>
+<testcase classname="spec.requests.users_edit_spec" name="UsersEdits GET /users/:id/edit update when not logged in" file="./spec/requests/users_edit_spec.rb" time="0.060789"></testcase>
+<testcase classname="spec.requests.users_edit_spec" name="UsersEdits GET /users/:id/edit update when logged in as wrong user" file="./spec/requests/users_edit_spec.rb" time="0.094538"></testcase>
+<testcase classname="spec.requests.users_edit_spec" name="UsersEdits GET /users/:id/edit index when not logged in" file="./spec/requests/users_edit_spec.rb" time="0.072761"></testcase>
+<testcase classname="spec.requests.users_edit_spec" name="UsersEdits GET /users/:id/edit destroy when not logged in" file="./spec/requests/users_edit_spec.rb" time="0.062699"></testcase>
+<testcase classname="spec.requests.users_edit_spec" name="UsersEdits GET /users/:id/edit destroy destroy when logged in as a non-admin" file="./spec/requests/users_edit_spec.rb" time="0.089225"></testcase>
+<testcase classname="spec.requests.users_edit_spec" name="UsersEdits GET /users/:id/edit destroy destroy when logged in as an admin-user" file="./spec/requests/users_edit_spec.rb" time="0.206041"></testcase>
+<testcase classname="spec.requests.users_login_spec" name="UsersLogins GET /login invalid form information post invalid information and has dager message then delete danger message" file="./spec/requests/users_login_spec.rb" time="0.048936"></testcase>
+<testcase classname="spec.requests.users_login_spec" name="UsersLogins GET /login valid form information post valid information and has no danger message folloed by twice logout" file="./spec/requests/users_login_spec.rb" time="0.136397"></testcase>
+<testcase classname="spec.requests.users_login_spec" name="UsersLogins GET /login remember_me has remember_token when checking remember_me" file="./spec/requests/users_login_spec.rb" time="0.031793"></testcase>
+<testcase classname="spec.requests.users_login_spec" name="UsersLogins GET /login remember_me has no remember_token when not checking remember_me" file="./spec/requests/users_login_spec.rb" time="0.057168"></testcase>
+<testcase classname="spec.requests.users_requests_spec" name="UsersRequests redirects to the login page when getting following without logged in" file="./spec/requests/users_requests_spec.rb" time="0.033363"></testcase>
+<testcase classname="spec.requests.users_requests_spec" name="UsersRequests redirects to the login page when getting followers without logged in" file="./spec/requests/users_requests_spec.rb" time="0.024955"></testcase>
+<testcase classname="spec.requests.users_requests_spec" name="UsersRequests GET /signup_path returns http success" file="./spec/requests/users_requests_spec.rb" time="0.054894"></testcase>
+<testcase classname="spec.requests.users_signup_spec" name="UsersSignups GET /signup is invalid signup information" file="./spec/requests/users_signup_spec.rb" time="0.049314"></testcase>
+<testcase classname="spec.requests.users_signup_spec" name="UsersSignups GET /signup is valid signup information with account activation" file="./spec/requests/users_signup_spec.rb" time="0.148264"></testcase>
+<testcase classname="spec.systems.following_spec" name="Logins has correct users in following page" file="./spec/systems/following_spec.rb" time="0.771790"></testcase>
+<testcase classname="spec.systems.following_spec" name="Logins has correct users in follower page" file="./spec/systems/following_spec.rb" time="0.703529"></testcase>
+<testcase classname="spec.systems.following_spec" name="Logins has correct counts in following page" file="./spec/systems/following_spec.rb" time="0.694480"></testcase>
+<testcase classname="spec.systems.following_spec" name="Logins has correct counts in followers page" file="./spec/systems/following_spec.rb" time="0.710170"></testcase>
+<testcase classname="spec.systems.gyms_spec" name="Records gym register registers a valid gym" file="./spec/systems/gyms_spec.rb" time="4.292716"></testcase>
+<testcase classname="spec.systems.gyms_spec" name="Records gym register registers an invalid gym" file="./spec/systems/gyms_spec.rb" time="3.162299"></testcase>
+<testcase classname="spec.systems.gyms_spec" name="Records gym select redirects to gym select page" file="./spec/systems/gyms_spec.rb" time="0.179545"></testcase>
+<testcase classname="spec.systems.gyms_spec" name="Records gym select selects correct gym" file="./spec/systems/gyms_spec.rb" time="0.227880"></testcase>
+<testcase classname="spec.systems.gyms_spec" name="Records gym delete has delete link when logged in as admin" file="./spec/systems/gyms_spec.rb" time="0.954527"></testcase>
+<testcase classname="spec.systems.gyms_spec" name="Records gym delete has no delete link when logged in as non-admin" file="./spec/systems/gyms_spec.rb" time="3.063749"></testcase>
+<testcase classname="spec.systems.likes_spec" name="Likes like visits follow users record page shows correct nice button and count" file="./spec/systems/likes_spec.rb" time="9.479112"></testcase>
+<testcase classname="spec.systems.likes_spec" name="Likes like visits all users record page shows correct nice button and count" file="./spec/systems/likes_spec.rb" time="5.335090"></testcase>
+<testcase classname="spec.systems.login_spec" name="Logins Login invalid has invalid information and danger message then deletes flash message" file="./spec/systems/login_spec.rb" time="0.054103"></testcase>
+<testcase classname="spec.systems.login_spec" name="Logins Login valid information login with valid information followed by logout" file="./spec/systems/login_spec.rb" time="0.170337"></testcase>
+<testcase classname="spec.systems.records_graph_spec" name="RecordsGraph graph visits daily graph and click left &amp; right tags shows correct daily graph" file="./spec/systems/records_graph_spec.rb" time="0.319298"></testcase>
+<testcase classname="spec.systems.records_graph_spec" name="RecordsGraph graph visits weekly graph and click left &amp; right tags shows correct weekly graph" file="./spec/systems/records_graph_spec.rb" time="0.332049"></testcase>
+<testcase classname="spec.systems.records_graph_spec" name="RecordsGraph graph visits monthly graph and click left &amp; right tags shows correct monthly graph" file="./spec/systems/records_graph_spec.rb" time="0.346874"></testcase>
+<testcase classname="spec.systems.records_graph_spec" name="RecordsGraph graph visits daily graph page shows active day tag" file="./spec/systems/records_graph_spec.rb" time="1.164576"></testcase>
+<testcase classname="spec.systems.records_graph_spec" name="RecordsGraph graph visits weekly graph page shows active week tag" file="./spec/systems/records_graph_spec.rb" time="1.153397"></testcase>
+<testcase classname="spec.systems.records_graph_spec" name="RecordsGraph graph visits monthly graph page shows active month tag" file="./spec/systems/records_graph_spec.rb" time="1.135781"></testcase>
+<testcase classname="spec.systems.records_index_spec" name="RecordsIndex record records of follow users has pagination, title, content" file="./spec/systems/records_index_spec.rb" time="3.580332"></testcase>
+<testcase classname="spec.systems.records_index_spec" name="RecordsIndex record records of follow users has follow users&apos; records" file="./spec/systems/records_index_spec.rb" time="3.961893"></testcase>
+<testcase classname="spec.systems.records_index_spec" name="RecordsIndex record records of follow users has no follow users&apos; records" file="./spec/systems/records_index_spec.rb" time="3.756736"></testcase>
+<testcase classname="spec.systems.records_index_spec" name="RecordsIndex record records of follow users has own records" file="./spec/systems/records_index_spec.rb" time="3.589052"></testcase>
+<testcase classname="spec.systems.records_index_spec" name="RecordsIndex record records of follow users has delete link in own record" file="./spec/systems/records_index_spec.rb" time="3.530698"></testcase>
+<testcase classname="spec.systems.records_index_spec" name="RecordsIndex record records of follow users has no delete link in follow users&apos; records" file="./spec/systems/records_index_spec.rb" time="3.533854"></testcase>
+<testcase classname="spec.systems.records_index_spec" name="RecordsIndex record records of follow users deletes own record" file="./spec/systems/records_index_spec.rb" time="4.074385"></testcase>
+<testcase classname="spec.systems.records_index_spec" name="RecordsIndex record records of all users has pagination, title, content" file="./spec/systems/records_index_spec.rb" time="3.580676"></testcase>
+<testcase classname="spec.systems.records_index_spec" name="RecordsIndex record records of all users has own &amp; follow &amp; unfollow users&apos; records" file="./spec/systems/records_index_spec.rb" time="3.589350"></testcase>
+<testcase classname="spec.systems.records_index_spec" name="RecordsIndex record records of all users has delete link in own record" file="./spec/systems/records_index_spec.rb" time="3.544002"></testcase>
+<testcase classname="spec.systems.records_index_spec" name="RecordsIndex record records of all users has no delete link in follow &amp; unfollow users&apos; records" file="./spec/systems/records_index_spec.rb" time="3.582304"></testcase>
+<testcase classname="spec.systems.records_index_spec" name="RecordsIndex record records of all users deletes own record" file="./spec/systems/records_index_spec.rb" time="4.140397"></testcase>
+<testcase classname="spec.systems.records_ranking_spec" name="RankingsRanking ranking has correct score in the gym that the user recorded in" file="./spec/systems/records_ranking_spec.rb" time="4.000418"></testcase>
+<testcase classname="spec.systems.records_ranking_spec" name="RankingsRanking ranking doesn&apos;t have score in the gym that the user didn&apos;t record in" file="./spec/systems/records_ranking_spec.rb" time="1.999900"></testcase>
+<testcase classname="spec.systems.records_ranking_spec" name="RankingsRanking ranking has score in all term &amp; all gyms" file="./spec/systems/records_ranking_spec.rb" time="2.339232"></testcase>
+<testcase classname="spec.systems.records_ranking_spec" name="RankingsRanking ranking has score in all term &amp; all gyms" file="./spec/systems/records_ranking_spec.rb" time="20.805581"></testcase>
+<testcase classname="spec.systems.records_spec" name="Records record posts a valid record at the gym recorded last time" file="./spec/systems/records_spec.rb" time="3.732923"></testcase>
+<testcase classname="spec.systems.records_spec" name="Records record posts an invalid record at the gym recorded last time" file="./spec/systems/records_spec.rb" time="3.312026"></testcase>
+<testcase classname="spec.systems.records_spec" name="Records record posts valid record with a picture" file="./spec/systems/records_spec.rb" time="3.390416"></testcase>
+<testcase classname="spec.systems.records_spec" name="Records record deletes a record" file="./spec/systems/records_spec.rb" time="4.617912"></testcase>
+<testcase classname="spec.systems.records_spec" name="Records record visits other user profile and does not have delete link" file="./spec/systems/records_spec.rb" time="8.378412"></testcase>
+<testcase classname="spec.systems.records_spec" name="Records record record count is a user who has records" file="./spec/systems/records_spec.rb" time="4.122726"></testcase>
+<testcase classname="spec.systems.records_spec" name="Records record record count is a user who has no record" file="./spec/systems/records_spec.rb" time="2.466540"></testcase>
+<testcase classname="spec.systems.static_pages_spec" name="Statics returns correct home title" file="./spec/systems/static_pages_spec.rb" time="0.021390"></testcase>
+<testcase classname="spec.systems.static_pages_spec" name="Statics layout links when not logged in contain root link" file="./spec/systems/static_pages_spec.rb" time="0.019276"></testcase>
+<testcase classname="spec.systems.static_pages_spec" name="Statics layout links when not logged in contains login link" file="./spec/systems/static_pages_spec.rb" time="0.019233"></testcase>
+<testcase classname="spec.systems.static_pages_spec" name="Statics layout links when not logged in contains sinup link" file="./spec/systems/static_pages_spec.rb" time="0.019048"></testcase>
+<testcase classname="spec.systems.users_home_spec" name="UsersHome shows follow and follower count" file="./spec/systems/users_home_spec.rb" time="0.121995"></testcase>
+<testcase classname="spec.systems.users_index_spec" name="UsersIndex GET /users_index has index including pagination" file="./spec/systems/users_index_spec.rb" time="11.822447"></testcase>
+<testcase classname="spec.systems.users_index_spec" name="UsersIndex GET /users_index index logged in as admin including pagination and delete links" file="./spec/systems/users_index_spec.rb" time="12.400646"></testcase>
+<testcase classname="spec.systems.users_index_spec" name="UsersIndex GET /users_index index logged in as non-admin" file="./spec/systems/users_index_spec.rb" time="11.699502"></testcase>
+<testcase classname="spec.systems.users_index_spec" name="UsersIndex GET /users_index index shows user correct user&apos;s score" file="./spec/systems/users_index_spec.rb" time="12.258026"></testcase>
+<testcase classname="spec.systems.users_profile_spec" name="UsersProfile GET /users/:id shows profile display" file="./spec/systems/users_profile_spec.rb" time="10.017995"></testcase>
+<testcase classname="spec.systems.users_profile_spec" name="UsersProfile GET /users/:id shows follow and follower count" file="./spec/systems/users_profile_spec.rb" time="4.115030"></testcase>
+<testcase classname="spec.systems.users_profile_spec" name="UsersProfile GET /users/:id shows correct user&apos;s score" file="./spec/systems/users_profile_spec.rb" time="3.820440"></testcase>
+<testcase classname="spec.systems.users_profile_spec" name="UsersProfile GET /users/:id select grade shows selected grade record" file="./spec/systems/users_profile_spec.rb" time="4.502496"></testcase>
+<testcase classname="spec.systems.users_profile_spec" name="UsersProfile GET /users/:id select gym shows selected gym record" file="./spec/systems/users_profile_spec.rb" time="4.170153"></testcase>
+<testcase classname="spec.systems.users_profile_spec" name="UsersProfile GET /users/:id close&amp;open table with click grade table hide table" file="./spec/systems/users_profile_spec.rb" time="7.454351"></testcase>
+<testcase classname="spec.systems.users_profile_spec" name="UsersProfile GET /users/:id close&amp;open table with click grade table hide table" file="./spec/systems/users_profile_spec.rb" time="7.054988"></testcase>
+<testcase classname="spec.systems.users_signup_spec" name="UsersSignup is invalid because it has no name" file="./spec/systems/users_signup_spec.rb" time="0.053227"></testcase>
+<testcase classname="spec.systems.users_signup_spec" name="UsersSignup is valid because it fulfils condition of input with account activation" file="./spec/systems/users_signup_spec.rb" time="0.073672"></testcase>
+</testsuite>
