@@ -1,4 +1,4 @@
 --require rails_helper
 --format documentation
 --format RspecJunitFormatter
---out rspec.xml
+--out tmp/test-results/rspec.xml

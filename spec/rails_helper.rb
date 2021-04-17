@@ -45,11 +45,8 @@ RSpec.configure do |config|
   FactoryBot::SyntaxRunner.class_eval do
     include ActionDispatch::TestProcess
   end
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
   config.use_transactional_fixtures = true
-
   config.infer_spec_type_from_file_location!
 
   # Filter lines from Rails gems in backtraces.
@@ -73,10 +70,12 @@ RSpec.configure do |config|
     ex.run_with_retry retry: 3
   end
 
+  # js: true でないSystemテストはrack_testで起動
   config.before(:each, type: :system) do
     driven_by :rack_test
   end
 
+  # js: true のSystemテストはheadlessモードで起動
   config.before(:each, type: :system, js: true) do
     driven_by :remote_chrome
     Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
