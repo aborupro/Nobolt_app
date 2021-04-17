@@ -36,7 +36,7 @@ jobs:
 
 # database setup
       - run: mv config/database.ci.yml config/database.yml 
-      - run: bundle exec rake db:create db:migrate db:seed --trace
+      - run: bundle exec rake db:create db:schema:load
 
 # run rubocop
       - run:
