@@ -227,7 +227,7 @@ class RecordsController < ApplicationController
       @selected_gym = all_gym
     end
 
-    query = ActiveRecord::Base.sanitize_sql_array(['
+    ActiveRecord::Base.sanitize_sql_array(['
       select user_id,
              score,
              (select (COUNT(*) + 1)
@@ -249,9 +249,7 @@ class RecordsController < ApplicationController
       where (r.gym_id in (:gym_ids)) and (r.created_at between :begin_times and :end_times)
       group by r.user_id
       order by score DESC) as s2;
-      ', gym_ids: @target_gym, begin_times: @begin_time, end_times: @end_time])
-
-    query
+      ', { gym_ids: @target_gym, begin_times: @begin_time, end_times: @end_time }])
   end
 
   def rank_value(query)

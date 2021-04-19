@@ -34,10 +34,10 @@ RSpec.describe 'Likes', type: :system do
       it 'shows correct nice button and count', js: true do
         visit root_path
         expect(page).to have_css '.like', count: 30
-        user1_record1_id = '#likes_buttons_' + @user1_record1.id.to_s
-        user1_record2_id = '#likes_buttons_' + @user1_record2.id.to_s
-        user2_record1_id = '#likes_buttons_' + @user2_record1.id.to_s
-        user3_record1_id = '#likes_buttons_' + @user3_record1.id.to_s
+        user1_record1_id = "#likes_buttons_#{@user1_record1.id}"
+        user1_record2_id = "#likes_buttons_#{@user1_record2.id}"
+        user2_record1_id = "#likes_buttons_#{@user2_record1.id}"
+        user3_record1_id = "#likes_buttons_#{@user3_record1.id}"
         expect(find(user1_record1_id)).to have_content '2'
         expect(find(user1_record2_id)).to have_content '0'
         expect(find(user2_record1_id)).to have_content '1'
@@ -65,10 +65,10 @@ RSpec.describe 'Likes', type: :system do
       it 'shows correct nice button and count', js: true do
         visit records_path
         expect(page).to have_css '.like', count: 30
-        user1_record1_id = '#likes_buttons_' + @user1_record1.id.to_s
-        user1_record2_id = '#likes_buttons_' + @user1_record2.id.to_s
-        user2_record1_id = '#likes_buttons_' + @user2_record1.id.to_s
-        user3_record1_id = '#likes_buttons_' + @user3_record1.id.to_s
+        user1_record1_id = "#likes_buttons_#{@user1_record1.id}"
+        user1_record2_id = "#likes_buttons_#{@user1_record2.id}"
+        user2_record1_id = "#likes_buttons_#{@user2_record1.id}"
+        user3_record1_id = "#likes_buttons_#{@user3_record1.id}"
         expect(find(user1_record1_id)).to have_content '2'
         expect(find(user1_record2_id)).to have_content '0'
         expect(find(user2_record1_id)).to have_content '1'

@@ -1,4 +1,4 @@
-CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
+CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:].\-+]/
 if Rails.env.production?
   CarrierWave.configure do |config|
     config.fog_credentials = {

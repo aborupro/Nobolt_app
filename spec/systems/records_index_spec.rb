@@ -3,15 +3,15 @@ require 'rails_helper'
 RSpec.describe 'RecordsIndex', type: :system do
   include ApplicationHelper
   let!(:user) { FactoryBot.create(:user, :with_records) }
-  let!(:user_1) { FactoryBot.create(:user, :with_5_records) }
-  let!(:user_2) { FactoryBot.create(:user, :with_5_records) }
-  let!(:user_3) { FactoryBot.create(:user, :with_5_records) }
+  let!(:user1) { FactoryBot.create(:user, :with_5_records) }
+  let!(:user2) { FactoryBot.create(:user, :with_5_records) }
+  let!(:user3) { FactoryBot.create(:user, :with_5_records) }
 
   before do
-    Relationship.create(follower_id: user.id, followed_id: user_1.id)
-    Relationship.create(follower_id: user.id, followed_id: user_2.id)
-    Relationship.create(follower_id: user_1.id, followed_id: user.id)
-    Relationship.create(follower_id: user_3.id, followed_id: user.id)
+    Relationship.create(follower_id: user.id, followed_id: user1.id)
+    Relationship.create(follower_id: user.id, followed_id: user2.id)
+    Relationship.create(follower_id: user1.id, followed_id: user.id)
+    Relationship.create(follower_id: user3.id, followed_id: user.id)
     system_log_in_as(user)
   end
 
@@ -26,14 +26,14 @@ RSpec.describe 'RecordsIndex', type: :system do
 
       it "has follow users' records" do
         visit root_path
-        expect(page).to have_content user_1.name, count: 5
-        expect(page).to have_content user_2.name, count: 5
+        expect(page).to have_content user1.name, count: 5
+        expect(page).to have_content user2.name, count: 5
       end
 
       it "has no follow users' records" do
         visit root_path
         expect(page).to have_css '.pagination', count: 2
-        expect(page).to_not have_content user_3.name
+        expect(page).to_not have_content user3.name
       end
 
       it 'has own records' do
@@ -43,21 +43,21 @@ RSpec.describe 'RecordsIndex', type: :system do
 
       it 'has delete link in own record' do
         visit root_path
-        user_record_id = '#record-' + Record.find_by(user_id: user.id).id.to_s
+        user_record_id = "#record-#{Record.find_by(user_id: user.id).id}"
         expect(find(user_record_id)).to have_selector 'a', text: '削除'
       end
 
       it "has no delete link in follow users' records" do
         visit root_path
-        user_1_record_id = '#record-' + Record.find_by(user_id: user_1.id).id.to_s
-        user_2_record_id = '#record-' + Record.find_by(user_id: user_2.id).id.to_s
+        user_1_record_id = "#record-#{Record.find_by(user_id: user1.id).id}"
+        user_2_record_id = "#record-#{Record.find_by(user_id: user2.id).id}"
         expect(find(user_1_record_id)).to_not have_selector 'a', text: '削除'
         expect(find(user_2_record_id)).to_not have_selector 'a', text: '削除'
       end
 
       it 'deletes own record' do
         visit root_path
-        user_record_id = '#record-' + Record.find_by(user_id: user.id).id.to_s
+        user_record_id = "#record-#{Record.find_by(user_id: user.id).id}"
         expect(find(user_record_id)).to have_selector 'a', text: '削除'
         expect do
           within user_record_id do
@@ -78,22 +78,22 @@ RSpec.describe 'RecordsIndex', type: :system do
       it "has own & follow & unfollow users' records" do
         visit records_path
         expect(page).to have_content user.name, count: 15
-        expect(page).to have_content user_1.name, count: 5
-        expect(page).to have_content user_2.name, count: 5
-        expect(page).to have_content user_3.name, count: 5
+        expect(page).to have_content user1.name, count: 5
+        expect(page).to have_content user2.name, count: 5
+        expect(page).to have_content user3.name, count: 5
       end
 
       it 'has delete link in own record' do
         visit records_path
-        user_record_id = '#record-' + Record.find_by(user_id: user.id).id.to_s
+        user_record_id = "#record-#{Record.find_by(user_id: user.id).id}"
         expect(find(user_record_id)).to have_selector 'a', text: '削除'
       end
 
       it "has no delete link in follow & unfollow users' records" do
         visit records_path
-        user_1_record_id = '#record-' + Record.find_by(user_id: user_1.id).id.to_s
-        user_2_record_id = '#record-' + Record.find_by(user_id: user_2.id).id.to_s
-        user_3_record_id = '#record-' + Record.find_by(user_id: user_3.id).id.to_s
+        user_1_record_id = "#record-#{Record.find_by(user_id: user1.id).id}"
+        user_2_record_id = "#record-#{Record.find_by(user_id: user2.id).id}"
+        user_3_record_id = "#record-#{Record.find_by(user_id: user3.id).id}"
         expect(find(user_1_record_id)).to_not have_selector 'a', text: '削除'
         expect(find(user_2_record_id)).to_not have_selector 'a', text: '削除'
         expect(find(user_3_record_id)).to_not have_selector 'a', text: '削除'
@@ -101,7 +101,7 @@ RSpec.describe 'RecordsIndex', type: :system do
 
       it 'deletes own record' do
         visit records_path
-        user_record_id = '#record-' + Record.find_by(user_id: user.id).id.to_s
+        user_record_id = "#record-#{Record.find_by(user_id: user.id).id}"
         expect(find(user_record_id)).to have_selector 'a', text: '削除'
         expect do
           within user_record_id do

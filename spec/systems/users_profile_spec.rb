@@ -59,7 +59,7 @@ RSpec.describe 'UsersProfile', type: :system do
     it "shows correct user's score" do
       visit user_path(user)
       expect(current_path).to eq user_path(user)
-      expect(find('#score_' + user.id.to_s)).to have_content '2,320'
+      expect(find("#score_#{user.id}")).to have_content '2,320'
     end
 
     context 'select grade' do
@@ -70,10 +70,10 @@ RSpec.describe 'UsersProfile', type: :system do
         expect(page).to have_content '2級'
         expect(page).to have_content 'nobolt1'
         expect(page).to have_content 'nobolt2'
-        expect(find('#grade_num_' + grade1.id.to_s)).to have_content '2'
-        expect(find('#grade_num_' + grade2.id.to_s)).to have_content '1'
-        expect(find('#gym_num_' + gym1.id.to_s)).to have_content '2'
-        expect(find('#gym_num_' + gym2.id.to_s)).to have_content '1'
+        expect(find("#grade_num_#{grade1.id}")).to have_content '2'
+        expect(find("#grade_num_#{grade2.id}")).to have_content '1'
+        expect(find("#gym_num_#{gym1.id}")).to have_content '2'
+        expect(find("#gym_num_#{gym2.id}")).to have_content '1'
         expect(find('#grade_sum')).to have_content '103'
         expect(find('#gym_sum')).to have_content '103'
         click_link '1級'
@@ -94,10 +94,10 @@ RSpec.describe 'UsersProfile', type: :system do
         expect(page).to have_content '2級'
         expect(page).to have_content 'nobolt1'
         expect(page).to have_content 'nobolt2'
-        expect(find('#grade_num_' + grade1.id.to_s)).to have_content '2'
-        expect(find('#grade_num_' + grade2.id.to_s)).to have_content '1'
-        expect(find('#gym_num_' + gym1.id.to_s)).to have_content '2'
-        expect(find('#gym_num_' + gym2.id.to_s)).to have_content '1'
+        expect(find("#grade_num_#{grade1.id}")).to have_content '2'
+        expect(find("#grade_num_#{grade2.id}")).to have_content '1'
+        expect(find("#gym_num_#{gym1.id}")).to have_content '2'
+        expect(find("#gym_num_#{gym2.id}")).to have_content '1'
         expect(find('#grade_sum')).to have_content '103'
         expect(find('#gym_sum')).to have_content '103'
         click_link 'nobolt2'

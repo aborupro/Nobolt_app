@@ -13,6 +13,17 @@ Documentation:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+# 自動生成されるコードなので無視
+Style:
+  Exclude:
+    - 'db/*.rb'
+
+# 自動生成されるコードなので無視
+Layout/EmptyLinesAroundBlockBody:
+  Exclude:
+    - 'db/*.rb'
+
+
 # ABcSize指摘のmaxを20に変更
 Metrics/AbcSize:
   Max: 20

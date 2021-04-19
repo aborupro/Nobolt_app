@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'RecordsGraph', type: :system do
   include ApplicationHelper
   let!(:user) { FactoryBot.create(:user) }
-  let!(:record_1) { FactoryBot.create(:record, user_id: user.id, created_at: Time.current) }
-  let!(:record_2) { FactoryBot.create(:record, user_id: user.id, created_at: 1.week.ago) }
+  let!(:record1) { FactoryBot.create(:record, user_id: user.id, created_at: Time.current) }
+  let!(:record2) { FactoryBot.create(:record, user_id: user.id, created_at: 1.week.ago) }
 
   before do
     system_log_in_as(user)

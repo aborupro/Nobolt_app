@@ -5,8 +5,8 @@ RSpec.describe 'Records', type: :system do
   let!(:user) { FactoryBot.create(:user, :with_records) }
   let(:other_user) { FactoryBot.create(:user, :with_records) }
   let(:no_record_user) { FactoryBot.create(:user) }
-  let!(:gym_1) { FactoryBot.create(:gym) }
-  let!(:gym_2) { FactoryBot.create(:gym) }
+  let!(:gym1) { FactoryBot.create(:gym) }
+  let!(:gym2) { FactoryBot.create(:gym) }
   let!(:grade) { FactoryBot.create(:grade, name: '3級') }
 
   describe 'record' do
@@ -79,7 +79,7 @@ RSpec.describe 'Records', type: :system do
       expect(page).to have_current_path '/records'
       visit root_path
       expect(page).to have_selector 'a', text: '削除'
-      delete_record = '#record-' + Record.find_by(user_id: user.id).id.to_s
+      delete_record = "#record-#{Record.find_by(user_id: user.id).id}"
       expect do
         within delete_record do
           click_on '削除'
