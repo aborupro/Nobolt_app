@@ -17,6 +17,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jp_prefecture'
 gem 'jquery-rails', '~> 4.3'
 gem 'mini_magick'
+gem 'mini_racer'
 gem 'mysql2'
 gem 'nokogiri'
 gem 'puma', '~> 3.11'
@@ -31,7 +32,6 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap4'
-gem 'mini_racer'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -49,6 +49,12 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-rbenv-vars'
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'listen', '3.1.5'
@@ -56,12 +62,6 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '2.0.1'
   gem 'web-console', '>= 3.3.0'
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-rbenv-vars'
-  gem 'capistrano3-puma'
 end
 
 group :test do
