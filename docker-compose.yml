@@ -8,6 +8,7 @@ services:
     command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/Nobolt_app
+      - ~/.ssh:/root/.ssh
     cpu_quota: 50000
     depends_on:
       - db

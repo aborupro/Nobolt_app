@@ -17,6 +17,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jp_prefecture'
 gem 'jquery-rails', '~> 4.3'
 gem 'mini_magick'
+gem 'mini_racer'
 gem 'mysql2'
 gem 'nokogiri'
 gem 'puma', '~> 3.11'
@@ -49,6 +50,12 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-rbenv-vars'
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'listen', '3.1.5'
