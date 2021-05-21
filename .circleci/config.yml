@@ -17,6 +17,7 @@ jobs:
     working_directory: ~/my-app
 
     steps:
+      # build
       - checkout
 
       # download and cache dependencies
@@ -40,6 +41,7 @@ jobs:
       - run: mv config/database.ci.yml config/database.yml 
       - run: bundle exec rake db:create db:schema:load
 
+      # test
       # run rubocop
       - run:
           name: Rubocop
@@ -65,6 +67,7 @@ jobs:
           path: /tmp/test-results
           destination: test-results
 
+      # deploy
       - add_ssh_keys:
           fingerprints:
             - "cb:f4:3b:dd:5a:a8:6c:d8:62:32:90:81:af:e5:c6:e4"
