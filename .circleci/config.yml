@@ -1,25 +1,23 @@
 version: 2.1
 
-jobs:
-  build:
+executors:
+  default:
+    working_directory: ~/my-app
     docker:
       - image: circleci/ruby:2.4.9-node-browsers
         environment:
           - BUNDLER_VERSION: 2.2.15
-          - RAILS_ENV: 'test'
       - image: circleci/mysql:5.7
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
           - MYSQL_ROOT_HOST: '%'
       - image: selenium/standalone-chrome-debug:latest
         name: chrome
-        
-    working_directory: ~/my-app
 
+commands:
+  setup:
     steps:
       - checkout
-
-      # download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
@@ -36,16 +34,20 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-      # database setup
+jobs:
+  test:
+    executor: default
+    environment:
+      RAILS_ENV: test
+    steps:
+      - setup
       - run: mv config/database.ci.yml config/database.yml 
       - run: bundle exec rake db:create db:schema:load
 
-      # run rubocop
       - run:
           name: Rubocop
           command: bundle exec rubocop
 
-      # run rspec
       - run:
           name: run tests
           command: |
@@ -58,9 +60,30 @@ jobs:
               --format progress \
               $TEST_FILES
 
-      # collect reports
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+
+  deploy:
+    executor: default
+    steps:
+      - setup
+      - add_ssh_keys:
+          fingerprints:
+            - "cb:f4:3b:dd:5a:a8:6c:d8:62:32:90:81:af:e5:c6:e4"
+      - deploy:
+          name: Capistrano deploy
+          command: bundle exec cap production deploy
+
+workflows:
+  test_and_deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master

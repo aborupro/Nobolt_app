@@ -29,6 +29,3 @@ set :keep_releases, 3
 set :rbenv_ruby, '2.4.9'
 
 set :bundle_jobs, 2
-
-# #出力するログのレベル。
-# set :log_level, :debug
