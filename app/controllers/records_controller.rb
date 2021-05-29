@@ -30,7 +30,7 @@ class RecordsController < ApplicationController
     end
     flash.now[:info] = '記録を保存しました' if @record.save
     set_gym
-    render 'new'
+    redirect_to new_record_url
   end
 
   def destroy
