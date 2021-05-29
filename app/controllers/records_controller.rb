@@ -2,7 +2,6 @@ class RecordsController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user, only: :destroy
   before_action :set_gym, only: %i[new search]
-  after_action  :set_gym, only: :create
 
   def index
     @records = Record.includes(:grade, :gym, :user, :likes).paginate(page: params[:page])
