@@ -2,7 +2,6 @@ class RecordsController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user, only: :destroy
   before_action :set_gym, only: %i[new search]
-  after_action  :set_gym, only: :create
 
   def index
     @records = Record.includes(:grade, :gym, :user, :likes).paginate(page: params[:page])
@@ -30,7 +29,7 @@ class RecordsController < ApplicationController
     end
     flash.now[:info] = '記録を保存しました' if @record.save
     set_gym
-    redirect_to new_record_url
+    render 'new'
   end
 
   def destroy
