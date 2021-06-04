@@ -8,10 +8,6 @@ FactoryBot.define do
     admin { false }
     activated { true }
 
-    trait :with_microposts do
-      after(:create) { |user| create_list(:micropost_n, 100, user: user) }
-    end
-
     trait :with_records do
       after(:create) { |user| create_list(:record, 100, user: user) }
     end

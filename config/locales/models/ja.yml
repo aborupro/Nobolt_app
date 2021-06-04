@@ -2,7 +2,6 @@ ja:
   activerecord:
     models:
       user: ユーザ
-      micropost: 投稿
       gym: ジム
       record: 記録する
     attributes:
@@ -12,10 +11,6 @@ ja:
         password: パスワード
         password_confirmation: パスワード（確認）
         picture: 画像
-      micropost:
-        picture: 画像
-        user_id: ユーザID
-        content: 内容
       gym:
         name: ジム名
         prefecture: 都道府県

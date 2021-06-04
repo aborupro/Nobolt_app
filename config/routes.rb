@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   post   '/gyms_search',    to: 'gyms#search'
   get    '/gyms_choose',    to: 'gyms#choose'
   post   '/gyms_choose',    to: 'gyms#choose'
-  get    '/records_search', to: 'records#new'
-  post   '/records_search', to: 'records#search'
   get    '/rankings', to: 'records#rank'
   get    '/graphs', to: 'records#graph'
   resources :users do
@@ -23,7 +21,6 @@ Rails.application.routes.draw do
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: %i[new create edit update]
-  resources :microposts,          only: %i[create destroy]
   resources :relationships,       only: %i[create destroy]
   resources :records,             only: %i[index new create destroy] do
     resources :likes, only: %i[create destroy]
