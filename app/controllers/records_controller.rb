@@ -38,14 +38,6 @@ class RecordsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
-  def search
-    @record = Record.new
-    respond_to do |format|
-      format.html { render 'new' }
-      format.js
-    end
-  end
-
   def rank
     query = cal_query
     rank_value(query)
