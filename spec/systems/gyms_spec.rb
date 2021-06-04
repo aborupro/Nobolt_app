@@ -7,6 +7,7 @@ RSpec.describe 'Records', type: :system do
   let!(:admin) { FactoryBot.create(:user, admin: true) }
   let!(:gym1) { FactoryBot.create(:gym) }
   let!(:gym2) { FactoryBot.create(:gym) }
+  let!(:grade) { FactoryBot.create(:grade, name: '3級') }
 
   describe 'gym' do
     context 'register' do
@@ -68,6 +69,42 @@ RSpec.describe 'Records', type: :system do
         expect(page).to have_field 'ジム名', with: @gym_name
         expect(page).to have_field '都道府県', with: @gym_prefecture
         expect(page).to have_field '住所', with: @gym_address
+      end
+
+      it 'registers a valid gym and posts a valid record' do
+        system_log_in_as(user)
+        find('.pc-nav').click_link 'ジム選択'
+        expect(page).to have_current_path '/gyms'
+        expect(page).to have_title full_title('ジム選択')
+        expect do
+          # 新規ジム登録ページに遷移
+          click_on '新規ジム登録'
+          expect(current_path).to eq new_gym_path
+          expect(page).to have_title full_title('新規ジム登録')
+          # 大阪のジムを検索
+          fill_in 'ジム検索', with: '東京'
+          click_button '検索'
+          expect(page).to have_title full_title('新規ジム登録')
+          # 検索した大阪のジムの中から一番はじめにヒットしたものを選択
+          within first('tbody tr') do
+            click_button '選択'
+          end
+          expect(page).to have_title full_title('新規ジム登録')
+          @gym_name = find_by_id('gym_name').value
+          # 一番はじめにヒットした大阪のジムを登録
+          click_button 'ジム登録'
+        end.to change(Gym, :count).by(1)
+
+        expect(page).to have_content 'を保存しました'
+        expect(page).to have_field 'ジム名', with: @gym_name
+
+        expect do
+          select '3級', from: '級'
+          fill_in '課題の種類', with: '100°四角'
+          check '1度目のトライでクリアした場合にチェック'
+          click_button '登録'
+        end.to change(Record, :count).by(1)
+        expect(page).to have_content '記録を保存しました'
       end
     end
 

@@ -40,7 +40,8 @@ class GymsController < ApplicationController
     @gym = Gym.new(gym_params)
     if @gym.save
       flash.now[:info] = "#{@gym.name} を保存しました"
-      gym_save
+      @gym_name = @gym.name
+      @record = Record.new
       render('records/new')
     else
       gym_info
@@ -74,19 +75,6 @@ class GymsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def gym_params
     params.require(:gym).permit(:name, :prefecture_code, :address, :picture, :url, :business_hours, :price)
-  end
-
-  def gym_save
-    @selected_prefecture = (JpPrefecture::Prefecture.find @gym.prefecture_code).name
-    @selected_gym_name = @gym.name
-
-    gyms = Gym.where(prefecture_code: @gym.prefecture_code)
-    @gym_name = []
-    gyms.each do |gym|
-      @gym_name.push(gym.name)
-    end
-    @gym_name.sort!
-    @record = Record.new
   end
 
   def gym_info
