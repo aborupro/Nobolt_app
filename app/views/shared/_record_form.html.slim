@@ -6,7 +6,7 @@
     = f.text_field :gym_name, value: @gym_name, readonly: true, placeholder: "例）Nobolt 東京店", class: 'form-control'
     p
       | 別のジムで記録する場合はこちら⇨
-      = link_to "ジム選択", gyms_path
+      = link_to "ジム選択", gyms_path, id: 'gym_select_link'
   .record-form
     = f.label :grade
     span.required

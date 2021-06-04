@@ -4,7 +4,7 @@ RSpec.describe 'Records', type: :system do
   include ApplicationHelper
   let(:user) { FactoryBot.create(:user, :with_records) }
   let(:no_record_user) { FactoryBot.create(:user) }
-  let!(:admin) { FactoryBot.create(:user, admin: true) }
+  let!(:admin) { FactoryBot.create(:user, :with_5_records, admin: true) }
   let!(:gym1) { FactoryBot.create(:gym) }
   let!(:gym2) { FactoryBot.create(:gym) }
   let!(:grade) { FactoryBot.create(:grade, name: '3級') }
@@ -13,7 +13,10 @@ RSpec.describe 'Records', type: :system do
     context 'register' do
       it 'registers a valid gym' do
         system_log_in_as(user)
-        find('.pc-nav').click_link 'ジム選択'
+        find('.pc-nav').click_link '記録する'
+        expect(page).to have_current_path '/records/new'
+        expect(page).to have_title full_title('記録する')
+        find('#gym_select_link').click
         expect(page).to have_current_path '/gyms'
         expect(page).to have_title full_title('ジム選択')
         expect do
@@ -40,7 +43,8 @@ RSpec.describe 'Records', type: :system do
 
       it 'registers an invalid gym' do
         system_log_in_as(user)
-        find('.pc-nav').click_link 'ジム選択'
+        find('.pc-nav').click_link '記録する'
+        find('#gym_select_link').click
         expect(page).to have_current_path '/gyms'
         expect(page).to have_title full_title('ジム選択')
         expect do
@@ -73,7 +77,8 @@ RSpec.describe 'Records', type: :system do
 
       it 'registers a valid gym and posts a valid record' do
         system_log_in_as(user)
-        find('.pc-nav').click_link 'ジム選択'
+        find('.pc-nav').click_link '記録する'
+        find('#gym_select_link').click
         expect(page).to have_current_path '/gyms'
         expect(page).to have_title full_title('ジム選択')
         expect do
@@ -119,7 +124,7 @@ RSpec.describe 'Records', type: :system do
 
       it 'selects correct gym' do
         system_log_in_as(no_record_user)
-        find('.pc-nav').click_link 'ジム選択'
+        find('.pc-nav').click_link '記録する'
         expect(page).to have_current_path '/gyms'
         expect(page).to have_title full_title('ジム選択')
         expect(page).to have_content gym1.name
@@ -139,7 +144,8 @@ RSpec.describe 'Records', type: :system do
           gym[n] = FactoryBot.create(:gym)
         end
         system_log_in_as(admin)
-        find('.pc-nav').click_link 'ジム選択'
+        find('.pc-nav').click_link '記録する'
+        find('#gym_select_link').click
         expect(page).to have_current_path '/gyms'
         expect(page).to have_title full_title('ジム選択')
         Gym.paginate(page: 1).each do |page_gym|
@@ -152,7 +158,8 @@ RSpec.describe 'Records', type: :system do
 
       it 'has no delete link when logged in as non-admin' do
         system_log_in_as(user)
-        find('.pc-nav').click_link 'ジム選択'
+        find('.pc-nav').click_link '記録する'
+        find('#gym_select_link').click
         expect(page).to_not have_link '削除'
       end
     end
