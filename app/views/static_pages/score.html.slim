@@ -1,0 +1,69 @@
+- provide(:title, 'スコア')
+.container
+  h2.text-center.page-title
+    | スコア
+
+  .score_description.col-md-8.col-lg-6.col-xl-5.mx-auto
+    h4
+      |算出方法
+    ol
+      li
+        | 記録を
+        span 変換表
+        |でポイントにする
+      li 一撃でクリアした場合、+10pt
+      | 以上を記録ごとに算出し、合計した値がスコア
+      table.text-center.mx-auto border='1' width='200'
+        caption.table-caption
+          | 変換表
+        tr
+          th 記録
+          th ポイント
+        tr
+          td 10級
+          td 10pt
+        tr
+          td 9級
+          td 20pt
+        tr
+          td 8級
+          td 30pt
+        tr
+          td 7級
+          td 40pt
+        tr
+          td 6級
+          td 50pt
+        tr
+          td 5級
+          td 60pt
+        tr
+          td 4級
+          td 70pt
+        tr
+          td 3級
+          td 80pt
+        tr
+          td 2級
+          td 90pt
+        tr
+          td 1級
+          td 100pt
+        tr
+          td 初段
+          td 110pt
+        tr
+          td 二段
+          td 120pt
+        tr
+          td 三段
+          td 130pt
+        tr
+          td 四段
+          td 140pt
+        tr
+          td 五段
+          td 150pt
+        tr
+          td 六段
+          td 160pt
