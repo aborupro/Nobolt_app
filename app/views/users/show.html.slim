@@ -1,5 +1,5 @@
 - provide(:title, "マイページ")
-.row.content_center
+.row.no-gutters.content_center
   .col-sd-6
     - if @user.records.any?
       h2.page-title
@@ -7,7 +7,7 @@
         = @user.records.count
         | )
 .user-show-info
-  .row.content_center
+  .row.no-gutters.content_center
     aside.col-md-5
       section.user_info
         h1
@@ -16,13 +16,13 @@
           = @user.name
       section.stats
         = render 'shared/stats'
-  .row.content_center
+  .row.no-gutters.content_center
     .follow_form
       = render 'follow_form' if logged_in?
-  .row.content_center
+  .row.no-gutters.content_center
     = link_to "絞り込みクリア", user_path(@user)
 
-.row.content_center
+.row.no-gutters.content_center
   table.table.table-hover.table-bordered#grade-table.table-view
     thead.thead-light.table_detail
       tr.text-center.table-title#grade-table-title
@@ -68,8 +68,8 @@
           td.text-center.record-num-column#gym_sum
             = @gym_sum
 
-.row.content_center
-  .col-md-8.col-lg-6.col-xl-5.mx-auto
+.row.no-gutters.content_center
+  .col-10.col-md-8.col-lg-6.col-xl-5.mx-auto
     - if @user.records.any?
       ol.records
         = render @records
