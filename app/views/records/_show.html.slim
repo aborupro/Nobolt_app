@@ -12,7 +12,7 @@
         = " #{@my_rank}位 "
       = "です"
 .content_center.rank-paginate
-  = will_paginate @ranks
+  = will_paginate(@ranks, inner_window: 1, outer_window: 0)
 table.table.table-hover.table-bordered
     thead.thead-light
       tr.text-center
@@ -40,4 +40,4 @@ table.table.table-hover.table-bordered
               = rank["score"].to_i.to_s(:delimited)
               | pt
 .content_center
-  = will_paginate @ranks
+  = will_paginate(@ranks, inner_window: 1, outer_window: 0)

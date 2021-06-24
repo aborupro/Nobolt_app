@@ -9,4 +9,4 @@
   ul.gym_list_box.content_center
     = render @gyms
   .content_center
-    = will_paginate @gyms
+    = will_paginate(@gyms, inner_window: 1, outer_window: 0)
