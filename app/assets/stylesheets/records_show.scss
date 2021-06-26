@@ -39,6 +39,16 @@
 
 #grade-table {
   width: 200px;
+  height: max-content;
+  td {
+    height: 20px
+  }
+}
+
+#gym-table {
+  td {
+    height: 20px
+  }
 }
 
 .table-gym-name {

@@ -33,6 +33,12 @@
   }
 }
 
+@media screen and (max-width: 575px) {
+  .avater-rank {
+    margin-left: 5%;
+  }
+}
+
 .rank-body {
   position: relative;
 }

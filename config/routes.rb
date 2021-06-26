@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
+  get '/score', to: 'static_pages#score'
   get 'password_resets/new'
   get 'password_resets/edit'
   get    '/signup',  to: 'users#new'

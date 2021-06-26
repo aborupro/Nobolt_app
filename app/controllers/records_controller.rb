@@ -137,7 +137,7 @@ class RecordsController < ApplicationController
       graph_time('%Y/%U weeks')
 
       8.times do |i|
-        t = @from + i * 7
+        t = (@from + i * 7)
         temp_score = 0
         @graph_value.each do |g|
           temp_score = g.score.to_i if (t + 1).strftime('%Y/%U weeks') == g.date

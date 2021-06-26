@@ -1,6 +1,6 @@
 = form_with(url: rankings_path, method: :get, local: true) do |f|
   .container
-    .row.justify-content-center
+    .row.no-gutters.justify-content-center
       = f.select :month, @month_choice, {selected: @selected_month}, :class=> 'form-control col-10 col-sm-10 col-md-5'
       = f.select :gym, @gym_choice, {selected: @selected_gym}, :class=> 'form-control search-window col-10 col-sm-10 col-md-5'
       = f.submit "集計", class: "btn btn-primary col-10 col-sm-10  col-md-1"

@@ -1,5 +1,5 @@
 = search_form_for @q do |f|
-  .row.justify-content-center
+  .row.no-gutters.justify-content-center
     = f.search_field :name_or_address_cont, placeholder: "地名・キーワードで検索", class: 'form-control col-10 col-sm-10 col-md-5 search-box'
     = f.collection_select :prefecture_code_eq, JpPrefecture::Prefecture.all,
       :code, :name, {include_blank: '都道府県から探す'}, :class=>'form-control search-window col-10 col-sm-10 col-md-5 search-box'

@@ -13,7 +13,7 @@ span.content
     = record.challenge
   = image_tag record.picture.url if record.picture?
 span.timestamp
-  = record.created_at
+  = l record.created_at
   <span id="likes_buttons_#{record.id}" class="like-button">
     = render partial: 'likes/like', locals: { record: record, likes: @likes}
   </span>

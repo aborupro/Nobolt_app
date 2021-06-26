@@ -30,7 +30,7 @@ module NoboltApp
     config.action_view.embed_authenticity_token_in_remote_forms = true
 
     # タイムゾーンを日本時間にする設定
-    config.time_zone = 'Tokyo'
+    config.time_zone = 'Asia/Tokyo'
     config.active_record.default_timezone = :local
   end
 end

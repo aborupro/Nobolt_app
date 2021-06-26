@@ -12,7 +12,7 @@
         = " #{@my_rank}位 "
       = "です"
 .content_center.rank-paginate
-  = will_paginate @ranks
+  = will_paginate(@ranks, inner_window: 1, outer_window: 0)
 table.table.table-hover.table-bordered
     thead.thead-light
       tr.text-center
@@ -23,21 +23,21 @@ table.table.table-hover.table-bordered
       - @ranks.each_with_index do |rank,i|
         - user = User.find(rank["user_id"])
         tr
-          <td id="rank-number-#{user.id}", class="rank-body">
+          td.rank-body id="rank-number-#{user.id}"
             / １位〜３位の場合は、順位に王冠を表示する
             .rank-text
               - if rank["rank_number"]!= 1 && rank["rank_number"] != 2 && rank["rank_number"] != 3
                 = rank["rank_number"]
               - else
                 image.crown src="/assets/crown-#{rank["rank_number"]}.png"
-          <td id="user-name-#{user.id}", class="text-left">
+          td.text-left id="user-name-#{user.id}"
             = link_to(user_path(user)) do
               .avater-rank
                 = image_tag(user.picture.url).to_s
                 = user["name"]
-          <td id="score-#{user.id}", class="rank-body">
+          td.rank-body id="score-#{user.id}"
             .rank-text
               = rank["score"].to_i.to_s(:delimited)
               | pt
 .content_center
-  = will_paginate @ranks
+  = will_paginate(@ranks, inner_window: 1, outer_window: 0)
