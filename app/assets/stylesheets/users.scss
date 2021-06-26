@@ -8,10 +8,6 @@
   height: 120px;
 }
 
-.user-index-pic {
-  margin-left: 30px;
-}
-
 .user-index-name {
   margin: 20px 0 0 10px;
 }
@@ -44,4 +40,24 @@
 
 #relationships-stats {
   margin-bottom: 30px;
+}
+
+.stats-index {
+  text-align: left;
+}
+
+@media screen and (max-width: 575px) {
+  .css-br::after {
+    content: "\A";
+    white-space: pre;
+  }
+
+  .stats-index {
+    a {
+      &:nth-child(2) {
+        padding-left: 0;
+        padding-right: 10px;
+      }
+    }
+  }
 }

@@ -24,7 +24,7 @@ footer {
   a {
     color: black;
     &:hover {
-      color: rgb(24, 188, 156);;
+      color: #18bc9c;
     }
   }
   border-top: 1px solid #eaeaea;
@@ -91,16 +91,16 @@ aside {
   padding: 0;
   text-align: center;
   a {
-    padding: 0 10px;
     border-left: 1px solid e8e8e8;
     color: gray;
     &:first-child {
-      padding-left: 0;
       border: 0;
     }
+    &:nth-child(2) {
+      padding: 0 10px;
+    }
     &:hover {
-      text-decoration: none;
-      color: blue;
+      color: #18bc9c;
     }
   }
 }

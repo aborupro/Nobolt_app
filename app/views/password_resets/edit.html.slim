@@ -1,6 +1,6 @@
 - provide(:title, 'パスワード再設定')
 .row.no-gutters
-  .col-md-6.col-md-offset-3.center
+  .col-10.col-sm-8.col-md-8.col-lg-6.col-xl-5.mx-auto.center
     h1
       | パスワード再設定
     = form_with(model: @user, url: password_reset_path(params[:id]), local: true) do |f|

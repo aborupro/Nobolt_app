@@ -1,6 +1,6 @@
 - user ||= current_user
-.stats
-  a href="#{following_user_path(user)}" 
+.stats.stats-index
+  a.css-br href="#{following_user_path(user)}" 
     strong.stat id="following_#{user.id}"
       = user.following.count
     |  フォロー中

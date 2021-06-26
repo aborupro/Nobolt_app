@@ -80,7 +80,10 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.id == 2
+      flash[:danger] = 'ゲストユーザはプロフィールを編集できません'
+      render 'edit'
+    elsif @user.update_attributes(user_params)
       flash[:success] = 'プロフィールの編集に成功しました'
       redirect_to @user
     else

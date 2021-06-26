@@ -4,7 +4,7 @@
     | ユーザ一覧
   .content_center
     = will_paginate(inner_window: 1, outer_window: 0)
-  ul.users.user_info
+  ul.users.user_info.col-11.col-sm-11.col-md-9.col-lg-8.col-xl-7.mx-auto.center
     = render @users
   .content_center.second-paginate
-    = will_paginate(inner_window: 1, outer_window: 0))
+    = will_paginate(inner_window: 1, outer_window: 0)
