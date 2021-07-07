@@ -30,6 +30,7 @@ services:
     volumes:
       - ./public:/Nobolt_app/public
       - ./tmp:/Nobolt_app/tmp
+      - ./log/nginx:/var/log/nginx
     ports:
       - 80:80
     depends_on:
