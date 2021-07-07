@@ -117,6 +117,9 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     concurrent-ruby (1.1.8)
+    counter_culture (2.8.0)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
     crass (1.0.6)
     devise (4.7.3)
       bcrypt (~> 3.0)
@@ -437,6 +440,7 @@ DEPENDENCIES
   chartkick
   coffee-rails (~> 4.2)
   coffee-script-source (= 1.8.0)
+  counter_culture (~> 2.0)
   devise
   factory_bot_rails (~> 4.10.0)
   faker
@@ -485,4 +489,4 @@ RUBY VERSION
    ruby 2.4.9p362
 
 BUNDLED WITH
-   2.2.17
+   2.2.21

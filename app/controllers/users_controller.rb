@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     @records = @user.records
                     .where('grade_id in (?)', @grade_select)
                     .where('gym_id in (?)', @gym_select)
-                    .includes(:gym, :grade).paginate(page: params[:page])
+                    .includes(:gym, :grade, :likes).paginate(page: params[:page])
 
     @point = user_point(@user)
 

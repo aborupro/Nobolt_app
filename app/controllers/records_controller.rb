@@ -4,7 +4,7 @@ class RecordsController < ApplicationController
   before_action :set_gym, only: %i[new search]
 
   def index
-    @records = Record.includes(:grade, :gym, :user).paginate(page: params[:page])
+    @records = Record.includes(:grade, :gym, :user, :likes).paginate(page: params[:page])
   end
 
   def show

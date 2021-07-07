@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_033457) do
+ActiveRecord::Schema.define(version: 2021_07_07_022256) do
 
   create_table "grades", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_033457) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "grade_id"
     t.string "challenge"
+    t.integer "likes_count", default: 0, null: false
     t.index ["grade_id"], name: "index_records_on_grade_id"
     t.index ["gym_id"], name: "index_records_on_gym_id"
     t.index ["user_id", "gym_id", "created_at"], name: "index_records_on_user_id_and_gym_id_and_created_at"
