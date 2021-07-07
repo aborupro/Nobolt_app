@@ -9,6 +9,7 @@ gem 'carrierwave'
 gem 'chartkick'
 gem 'coffee-rails', '~> 4.2'
 gem 'coffee-script-source', '1.8.0'
+gem 'counter_culture', '~> 2.0'
 gem 'faker'
 gem 'font-awesome-sass'
 gem 'google_places'
@@ -32,7 +33,6 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap4'
-gem 'counter_culture', '~> 2.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -59,11 +59,11 @@ group :development do
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'listen', '3.1.5'
+  gem 'rails-erd'
   gem 'spring', '2.0.2'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '2.0.1'
   gem 'web-console', '>= 3.3.0'
-  gem 'rails-erd'
 end
 
 group :test do
