@@ -1,4 +1,4 @@
-<li id="record-#{record.id}", class=record >
+li.record id="record-#{record.id}"
 = link_to image_tag(record.user.picture.url), record.user, class: "avater"
 span.user
   = link_to record.user.name, record.user
@@ -14,8 +14,7 @@ span.content
   = image_tag record.picture.url if record.picture?
 span.timestamp
   = l record.created_at
-  <span id="likes_buttons_#{record.id}" class="like-button">
+  span.like-button id="likes_buttons_#{record.id}"
     = render partial: 'likes/like', locals: { record: record, likes: @likes}
-  </span>
   - if current_user?(record.user)
     = link_to "削除", record, method: :delete, data: { confirm: "本当に削除しますか?" }, class: "record-delete"

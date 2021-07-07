@@ -1,8 +1,8 @@
 - if current_user.already_liked?(record)
   = link_to record_like_path(record_id: record.id, id: record.likes[0].id), method: :delete, remote: true do
     .like.fas.fa-thumbs-up.count
-      = record.likes.count
+      = record.likes.size
 - else
   = link_to record_likes_path(record.id), method: :post, remote: true do
     .like.like-hover.far.fa-thumbs-up.hover.count
-      = record.likes.count
+      = record.likes.size
