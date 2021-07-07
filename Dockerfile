@@ -6,7 +6,8 @@ RUN apt-get update -qq && \
                        libpq-dev \
                        nodejs \
                        vim \
-                       shared-mime-info
+                       shared-mime-info \
+                       graphviz
 
 # ルート直下にNobolt_appという名前で作業ディレクトリを作成（コンテナ内のアプリケーションディレクトリ）
 RUN mkdir /Nobolt_app

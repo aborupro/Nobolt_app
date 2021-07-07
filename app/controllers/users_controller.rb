@@ -11,7 +11,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # @records = @user.records.includes(:gym, :grade, :likes).paginate(page: params[:page])
 
     @gym_select = if params[:gym_select].present?
                     params[:gym_select]

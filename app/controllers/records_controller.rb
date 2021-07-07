@@ -8,7 +8,6 @@ class RecordsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     @like = Like.new
   end
 
